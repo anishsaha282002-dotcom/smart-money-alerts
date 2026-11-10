@@ -3,8 +3,9 @@
 **Free, open-source memecoin alerts in plain English, on a record anyone can check.**
 
 When a wallet with a real track record buys a memecoin, you get a short story: who bought, how
-good they really are, whether the coin's theme is heating up, and whether there is anything left
-if you buy after them. Every alert is written to a hash-chained public ledger and priced again at
+good they really are, and whether the coin's theme is heating up. The story is an observation.
+Alerts only, not advice. We never tell you to buy or sell; trade decisions are yours.
+Every alert is written to a hash-chained public ledger and priced again at
 +15m, +1h, +4h and +24h. Misses stay on the record.
 
 Solana and BNB Chain (including four.meme launches and Chinese-language names), Base optional.
@@ -13,6 +14,7 @@ MIT licensed. Runs on free data. **Read-only: it cannot trade.**
 > **Not financial advice.** Memecoins are extremely risky and most go to zero. Past results of any
 > wallet or caller do not predict future results. This tool only reads public data. It never asks
 > for a wallet, private key or seed phrase, and there is no trading code in it.
+> **Alerts only, not advice. We never tell you to buy or sell; trade decisions are yours.**
 
 ![Home page](docs/screenshots/home.png)
 
@@ -83,6 +85,7 @@ Measured to the 4h peak, so these are best cases. This alert gets the same check
 
 Alert a-00070 · SYNTHETIC DEMO DATA
 Not financial advice. This tool cannot trade.
+Alerts only, not advice. We never tell you to buy or sell; trade decisions are yours.
 ```
 
 A wallet with too little history gets a warning instead of a confident grade:

@@ -12,7 +12,22 @@ import time
 
 import httpx
 
+from . import ADVICE
+
 log = logging.getLogger(__name__)
+
+
+def message_text(alert: dict, limit: int | None = None) -> str:
+    """Inbox and console text. Always carries the no-advice line."""
+    text = alert.get("story") or ""
+    if ADVICE not in text:
+        text = text.rstrip() + "\n" + ADVICE
+    if limit is not None and len(text) > limit:
+        tail = "\n" + ADVICE
+        if len(tail) >= limit:
+            return ADVICE[:limit]
+        text = text[: limit - len(tail)] + tail
+    return text
 
 
 class Console:
@@ -22,7 +37,7 @@ class Console:
         self.out = out
 
     def send(self, alert: dict) -> bool:
-        self.out("\n" + "─" * 64 + "\n" + alert["story"] + "\n" + "─" * 64)
+        self.out("\n" + "─" * 64 + "\n" + message_text(alert) + "\n" + "─" * 64)
         return True
 
 
@@ -37,7 +52,7 @@ class Telegram:
         self._sleep = sleep
 
     def send(self, alert: dict) -> bool:
-        payload = {"chat_id": self.chat_id, "text": alert["story"][: self.LIMIT], "disable_web_page_preview": True}
+        payload = {"chat_id": self.chat_id, "text": message_text(alert, self.LIMIT), "disable_web_page_preview": True}
         try:
             r = self.http.post(self.url, json=payload)
             if r.status_code == 429:
@@ -62,9 +77,7 @@ class Discord:
         self.http = client or httpx.Client(timeout=20)
 
     def send(self, alert: dict) -> bool:
-        text = alert["story"]
-        if len(text) > self.LIMIT:
-            text = text[: self.LIMIT - 1] + "…"
+        text = message_text(alert, self.LIMIT)
         try:
             r = self.http.post(self.url, json={"content": text, "allowed_mentions": {"parse": []}})
             if r.status_code >= 300:

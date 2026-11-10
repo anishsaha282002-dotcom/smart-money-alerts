@@ -105,7 +105,11 @@ function card(a, i) {
   const w = a.grades.wallet, c = a.grades.caller, n = a.grades.narrative, tok = a.token;
   const who = a.wallet.label || fmt.short(a.wallet.address);
   const where = CHAIN[a.chain] || a.chain;
-  const lede = el("p", { class: "lede" }, el("b", { text: who }), ` put ${fmt.usd(a.buy.usd)} in`,
+  const selling = a.activity === "sm_selling";
+  const lede = selling
+    ? el("p", { class: "lede" }, el("b", { text: who }), ` sold ${fmt.usd(a.buy.usd)}`,
+        a.mcap_usd ? ` around a ${fmt.usd(a.mcap_usd)} market cap.` : ".")
+    : el("p", { class: "lede" }, el("b", { text: who }), ` put ${fmt.usd(a.buy.usd)} in`,
     a.mcap_usd ? ` at a ${fmt.usd(a.mcap_usd)} market cap` : "",
     a.buy.age_s != null && a.buy.age_s < 86400 ? `, ${fmt.dur(a.buy.age_s)} after launch.` : ".");
 
@@ -126,7 +130,10 @@ function card(a, i) {
       el("div", {},
         el("div", { class: "sym", text: `$${tok.symbol || fmt.short(tok.address)}` }),
         el("div", { class: "meta" },
+          el("span", { class: selling ? "chip sell" : "chip", text: selling ? "Smart-money selling" : "Smart-money buying" }),
           el("span", { class: "chip", text: where }),
+          a.kol ? el("span", { class: "chip", text: "KOL bought" }) : null,
+          (a.sm_cluster || []).length >= 2 || (a.cluster || []).length ? el("span", { class: "chip", text: "Wallet cluster bought" }) : null,
           tok.launchpad ? el("span", { class: "chip", text: tok.launchpad }) : null,
           tok.name && tok.name !== tok.symbol ? el("span", { class: "chip", text: tok.name }) : null)),
       el("time", { datetime: new Date(a.ts * 1000).toISOString(), title: fmt.date(a.ts), text: ago(a.ts) })),

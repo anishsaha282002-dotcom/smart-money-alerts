@@ -1,5 +1,5 @@
-"""Command line: `sms demo`, `sms run`, `sms watch`, `sms grade-wallet`, `sms score-ledger`,
-`sms report`, `sms verify`, `sms anchor`, `sms sources`, `sms serve`."""
+"""Command line: `sms demo`, `sms run`, `sms watch`, `sms stream`, `sms grade-wallet`,
+`sms score-ledger`, `sms report`, `sms verify`, `sms anchor`, `sms sources`, `sms serve`."""
 from __future__ import annotations
 
 import functools
@@ -141,7 +141,10 @@ def grade_wallet_cmd(address: str = typer.Argument(..., help="Wallet address (or
         typer.echo(f"⚠ {FLAG_TEXT.get(f, f)}")
     if g.capped:
         typer.echo("Grade capped at C (too few closed trades, or a serious flag).")
-    if not demo and not (settings.gmgn_api_key or (settings.helius_api_key and chain == "solana")):
+    if not demo and chain == "solana" and not settings.helius_api_key and not settings.gmgn_api_key:
+        typer.echo(f"\nNote: no Helius key, so Solana history is the keyless public RPC "
+                   f"({len(trades)} trade(s) this run, budgeted). Set HELIUS_API_KEY for the stream store.")
+    elif not demo and not (settings.gmgn_api_key or (settings.helius_api_key and chain == "solana")):
         typer.echo(f"\nNote: no history key is set for {chain}, so this is built only from the {len(trades)} trade(s) this "
                    "tool has itself observed. Add HELIUS_API_KEY (Solana) or GMGN_API_KEY (all chains) for 30 days of history.")
     typer.echo("\n" + DISCLAIMER)
@@ -217,6 +220,23 @@ def sources():
     for name, on in (("telegram", settings.telegram_bot_token and settings.telegram_chat_id),
                      ("discord", settings.discord_webhook_url), ("llm rewording", settings.llm_reword and settings.anthropic_api_key)):
         typer.echo(f"{'on ' if on else 'off'}  {name:<14} delivery / optional")
+
+
+@app.command()
+def stream(probe: bool = typer.Option(False, "--probe", help="Check Free-plan subscribe methods, then exit."),
+           method: str = typer.Option(None, "--method", help="parsedTransactionSubscribe or logsSubscribe.")):
+    """Optional Helius Parsed Streams worker. Needs HELIUS_API_KEY. Never trades.
+
+    Shards 100 addresses per subscription, heartbeats the local store, reconnects,
+    and falls back to logsSubscribe. The daily credit cap is 30,000 in America/Chicago
+    (STREAM_DAILY_CREDIT_CAP overrides it): shrink to the top 150 at 80%, pause at 100%.
+    """
+    from .stream_worker import main as stream_main
+    argv = ["probe"] if probe else ["run"]
+    if method and not probe:
+        argv += ["--method", method]
+    code = stream_main(argv)
+    raise typer.Exit(code or 0)
 
 
 @app.command()

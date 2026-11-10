@@ -1,0 +1,5694 @@
+{
+  "title": "pump.fun Callout Rewards leaderboard snapshot",
+  "disclaimer": "Signals only. Not financial advice. Numbers are copied from the cited public pages; rounded display figures are stored as approximations and were not invented.",
+  "captured_at_utc": "2026-11-10T05:19:00Z",
+  "captured_at_chicago": "2026-11-09T23:19:00-06:00",
+  "n_callers": 128,
+  "period_windows": {
+    "1d": "24 hours",
+    "1w": "7 days",
+    "1m": "30 days",
+    "all": "all-time"
+  },
+  "grading_notes": {
+    "post_oct_10_2026": "From the 10 Oct 2026 payout, rewards track whether followers profited (not volume); low-cap calls pay less. Weight 1d/1w/1m (these snapshots are dated 27 Oct 2026, after that change) more than all-time, which still includes earlier earnings.",
+    "high_frequency": "Since 4 Oct 2026, very high-frequency callers earn less. A frequency penalty is applied only when a source publishes a call count; these snapshots do not include a total call count, so that penalty is not applied to this capture.",
+    "boost_only": "Leaderboard presence only boosts an existing signal. A call or a leaderboard rank alone never creates a BUY."
+  },
+  "sources": [
+    {
+      "id": "calledcard_snapshots",
+      "url_pattern": "https://calledcard.fun/data/lb_{all,1m,1w,1d}.json",
+      "urls": [
+        "https://calledcard.fun/data/lb_all.json",
+        "https://calledcard.fun/data/lb_1m.json",
+        "https://calledcard.fun/data/lb_1w.json",
+        "https://calledcard.fun/data/lb_1d.json"
+      ],
+      "as_of": "2026-10-27T06:59:18.099Z",
+      "as_of_chicago": "2026-10-27T01:59:18-05:00",
+      "used": true,
+      "what": "Top 50 per period with exact USDC paid, payout counts, public wallets, twitter ids. Field names match the pump.fun rewards board (rank, username, walletAddress, totalPaidUsdc, payoutCount, lastPaidAt). Official live API was not reachable, so these published snapshots were used. Live proxy https://calledcard.fun/api/lb returned 502.",
+      "total_earners_reported": {
+        "all": 45119,
+        "1m": 26829,
+        "1w": 11199,
+        "1d": 3245
+      },
+      "entries_per_period": 50
+    },
+    {
+      "id": "pumpbubble_kols",
+      "url": "https://pumpbubble.fun/kols",
+      "as_of": "2026-11-10T05:19:00Z",
+      "as_of_chicago": "2026-11-09T23:19:00-06:00",
+      "used": true,
+      "what": "All-time top 100 as of this time, with linked X handles and last-100-call stats (hit 2x, median peak, hold-now, avg mcap at call, followers). Rewards are rounded display values (e.g. $588K). Independent site; it says the payout board and callouts come from pump.fun public data."
+    },
+    {
+      "id": "pumpfun_official",
+      "urls_tried": [
+        "https://pump.fun/callouts/leaderboard",
+        "https://pump.fun/leaderboard?tab=rewards",
+        "https://pump.fun/creators",
+        "https://frontend-api-v3.pump.fun/callouts/leaderboard",
+        "https://frontend-api.pump.fun/callouts/leaderboard",
+        "https://advanced-api-v2.pump.fun/callouts/leaderboard",
+        "https://frontend-api-v3.pump.fun/payouts/leaderboard",
+        "https://frontend-api-v3.pump.fun/leaderboards/rewards?period=ALL"
+      ],
+      "used": false,
+      "blocked": "Cloudflare 403 (and WebFetch 500 on the leaderboard page). Unauthenticated requests from this environment did not return the live board or JSON."
+    },
+    {
+      "id": "pumpfyi_learn_callouts",
+      "url": "https://pumpfyi.com/learn/callouts/",
+      "as_of": "2026-11-04",
+      "used": true,
+      "what": "Policy context only (Oct 4 frequency cut, Oct 10 follower-profit / low-cap change). No leaderboard numbers."
+    },
+    {
+      "id": "protos_2026_08_27",
+      "url": "https://protos.com/pump-fun-paid-700k-to-callers-shilling-mostly-tiny-tokens/",
+      "as_of": "2026-08-27",
+      "used": false,
+      "why_not_used_as_ranks": "Pre-Oct 10 metric (volume-based). Article text names only a few figures (Slingoor $47,500 / 215 calls; lowest top-50 $6,100 / 624 calls; one earner 2,417 calls / $6,800; Shkreli ~$11,000 / 11 calls; top 50 ~$700K). The full top-50 chart is an image, not a machine-readable table. Not used as current ranks or call counts."
+    },
+    {
+      "id": "helius_onchain",
+      "used": false,
+      "why_not_used": "No public, citable address for the Callout Rewards USDC payout distributor was identified. A similarly named memecoin mint and a Pump.fun (USDC) vault are not the rewards distributor. On-chain transfer crawling was skipped to stay inside the credit budget and to avoid inventing a sender."
+    }
+  ],
+  "callers": [
+    {
+      "username": "POORGOAT___",
+      "x_handle": "PoorGoat_",
+      "twitter_id": "1962627293949632512",
+      "twitter_url": "https://x.com/i/user/1962627293949632512",
+      "wallet": "8k1sAmVUjzaZkxqexeYkCPphjcQobYugQeGmCyvKtHNG",
+      "wallets": [
+        "0xd035f669f6518f65773328a88fb6971d133a7dd6",
+        "8k1sAmVUjzaZkxqexeYkCPphjcQobYugQeGmCyvKtHNG"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 2,
+          "reward_usdc": 484985.73024,
+          "payout_count": 63,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 1,
+          "reward_usdc": 386535.355089,
+          "payout_count": 30,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 1,
+          "reward_usdc": 182544.538907,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1d": {
+          "rank": 2,
+          "reward_usdc": 16613.221072,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 1,
+        "reward_display": "$588K",
+        "reward_usdc_approx": 588000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 69,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 114000,
+        "followers_display": "114K",
+        "avg_mcap_at_call_approx": 964000.0,
+        "avg_mcap_at_call_display": "$964K",
+        "median_peak_x": 3.1,
+        "hold_now_x": 0.07,
+        "hit_2x": 0.65,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "chairman",
+      "x_handle": "Chairman_DN",
+      "twitter_id": "1180963377406853121",
+      "twitter_url": "https://x.com/i/user/1180963377406853121",
+      "wallet": "Be24Gbf5KisDk1LcWWZsBn8dvB816By7YzYF5zWZnRR6",
+      "wallets": [
+        "0x826fc54012f74c0cd7bccc5a6b964686322201ca",
+        "Be24Gbf5KisDk1LcWWZsBn8dvB816By7YzYF5zWZnRR6"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 1,
+          "reward_usdc": 509660.248045,
+          "payout_count": 76,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 2,
+          "reward_usdc": 281321.482766,
+          "payout_count": 30,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 3,
+          "reward_usdc": 113441.304087,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1d": {
+          "rank": 6,
+          "reward_usdc": 11879.980328,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 2,
+        "reward_display": "$565K",
+        "reward_usdc_approx": 565000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 82,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 151000,
+        "followers_display": "151K",
+        "avg_mcap_at_call_approx": 410000.0,
+        "avg_mcap_at_call_display": "$410K",
+        "median_peak_x": 2.5,
+        "hold_now_x": 0.07,
+        "hit_2x": 0.64,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "slingoor",
+      "x_handle": "slingoorio",
+      "twitter_id": "1509239489021030405",
+      "twitter_url": "https://x.com/i/user/1509239489021030405",
+      "wallet": "5YRgrP3mjGzrzirYYN5HAQH19cTYREYwGxW6XRJQUzij",
+      "wallets": [
+        "0x17e9d5945dcea0e5f51e9915b78e3be71ee0731b",
+        "5YRgrP3mjGzrzirYYN5HAQH19cTYREYwGxW6XRJQUzij"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 5,
+          "reward_usdc": 420314.815594,
+          "payout_count": 76,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 6,
+          "reward_usdc": 218556.746464,
+          "payout_count": 30,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 5,
+          "reward_usdc": 91332.921154,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1d": {
+          "rank": 4,
+          "reward_usdc": 13679.562811,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 3,
+        "reward_display": "$526K",
+        "reward_usdc_approx": 526000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 82,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 188000,
+        "followers_display": "188K",
+        "avg_mcap_at_call_approx": 297000.0,
+        "avg_mcap_at_call_display": "$297K",
+        "median_peak_x": 2.3,
+        "hold_now_x": 0.19,
+        "hit_2x": 0.59,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "Dior",
+      "x_handle": "Dior100x",
+      "twitter_id": "2728708501",
+      "twitter_url": "https://x.com/i/user/2728708501",
+      "wallet": "87rRdssFiTJKY4MGARa4G5vQ31hmR7MxSmhzeaJ5AAxJ",
+      "wallets": [
+        "0x4fe775d1b80e14db3bcb35440c4091a30d3ef920",
+        "87rRdssFiTJKY4MGARa4G5vQ31hmR7MxSmhzeaJ5AAxJ"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 3,
+          "reward_usdc": 459698.402561,
+          "payout_count": 76,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 5,
+          "reward_usdc": 259695.202466,
+          "payout_count": 30,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 4,
+          "reward_usdc": 93670.094257,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1d": {
+          "rank": 20,
+          "reward_usdc": 5923.302458,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 4,
+        "reward_display": "$518K",
+        "reward_usdc_approx": 518000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 82,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 127000,
+        "followers_display": "127K",
+        "avg_mcap_at_call_approx": 222000.0,
+        "avg_mcap_at_call_display": "$222K",
+        "median_peak_x": 2.6,
+        "hold_now_x": 0.06,
+        "hit_2x": 0.69,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "cupsey",
+      "x_handle": "Cupseyy",
+      "twitter_id": "1168903946989010944",
+      "twitter_url": "https://x.com/i/user/1168903946989010944",
+      "wallet": "6DQAGJT7VZPVBsuG4kn3AvpyHCEi7B2RFFvMZdbqQqqP",
+      "wallets": [
+        "6DQAGJT7VZPVBsuG4kn3AvpyHCEi7B2RFFvMZdbqQqqP"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 4,
+          "reward_usdc": 429964.28173,
+          "payout_count": 72,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 3,
+          "reward_usdc": 279015.63074,
+          "payout_count": 28,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 6,
+          "reward_usdc": 82187.00003,
+          "payout_count": 6,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1d": {
+          "rank": 3,
+          "reward_usdc": 15482.211179,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 5,
+        "reward_display": "$517K",
+        "reward_usdc_approx": 517000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 78,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 148000,
+        "followers_display": "148K",
+        "avg_mcap_at_call_approx": 100000.0,
+        "avg_mcap_at_call_display": "$100K",
+        "median_peak_x": 3.3,
+        "hold_now_x": 0.07,
+        "hit_2x": 0.78,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "HarryPaulDavies",
+      "x_handle": "harrypauldavies",
+      "twitter_id": "1521199226113384449",
+      "twitter_url": "https://x.com/i/user/1521199226113384449",
+      "wallet": "DuARUpsEzdVbVpSnbGipLJvWxaXUCPLDJDjNov6Rc6s6",
+      "wallets": [
+        "DuARUpsEzdVbVpSnbGipLJvWxaXUCPLDJDjNov6Rc6s6"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 6,
+          "reward_usdc": 274765.764295,
+          "payout_count": 24,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 4,
+          "reward_usdc": 274765.764295,
+          "payout_count": 24,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 2,
+          "reward_usdc": 141590.79602,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1d": {
+          "rank": 9,
+          "reward_usdc": 11011.902614,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 6,
+        "reward_display": "$381K",
+        "reward_usdc_approx": 381000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 30,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 71000,
+        "followers_display": "71K",
+        "avg_mcap_at_call_approx": 62000.0,
+        "avg_mcap_at_call_display": "$62K",
+        "median_peak_x": 3.1,
+        "hold_now_x": 0.14,
+        "hit_2x": 0.71,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "ely",
+      "x_handle": "ProofOfEly",
+      "twitter_id": "1432387651974443009",
+      "twitter_url": "https://x.com/i/user/1432387651974443009",
+      "wallet": "CE44oKS3wpUerx8afyeii56u5oQjBLZknzm4Q2CYHUz9",
+      "wallets": [
+        "0x4416fc70a89b354c416bd5c8c60add32170e7c83",
+        "CE44oKS3wpUerx8afyeii56u5oQjBLZknzm4Q2CYHUz9"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 7,
+          "reward_usdc": 254768.278148,
+          "payout_count": 62,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 7,
+          "reward_usdc": 206594.843903,
+          "payout_count": 30,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 7,
+          "reward_usdc": 68054.03499,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1d": {
+          "rank": 18,
+          "reward_usdc": 6118.659365,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 7,
+        "reward_display": "$302K",
+        "reward_usdc_approx": 302000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 68,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 77000,
+        "followers_display": "77K",
+        "avg_mcap_at_call_approx": 83000.0,
+        "avg_mcap_at_call_display": "$83K",
+        "median_peak_x": 2.9,
+        "hold_now_x": 0.18,
+        "hit_2x": 0.66,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "thedetective",
+      "x_handle": "MemeRetire",
+      "twitter_id": "1841927243712417792",
+      "twitter_url": "https://x.com/i/user/1841927243712417792",
+      "wallet": "6qudAN2kV8mtCcYJxb5QQ6Vr15itdHHdeVbYm99NKMhy",
+      "wallets": [
+        "0x639785a2c9b110b9cf6a470f5fe621c6696a47dd",
+        "6qudAN2kV8mtCcYJxb5QQ6Vr15itdHHdeVbYm99NKMhy"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 8,
+          "reward_usdc": 242719.024917,
+          "payout_count": 70,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 8,
+          "reward_usdc": 161417.629005,
+          "payout_count": 28,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 12,
+          "reward_usdc": 48797.454005,
+          "payout_count": 6,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1d": {
+          "rank": 15,
+          "reward_usdc": 8208.481447,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 8,
+        "reward_display": "$253K",
+        "reward_usdc_approx": 253000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 76,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 93000,
+        "followers_display": "93K",
+        "avg_mcap_at_call_approx": 43000.0,
+        "avg_mcap_at_call_display": "$43K",
+        "median_peak_x": 2.6,
+        "hold_now_x": 0.11,
+        "hit_2x": 0.73,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "jackduvalcalls",
+      "x_handle": "jackduval",
+      "twitter_id": "1592708747943497728",
+      "twitter_url": "https://x.com/i/user/1592708747943497728",
+      "wallet": "BAr5csYtpWoNpwhUjixX7ZPHXkUciFZzjBp9uNxZXJPh",
+      "wallets": [
+        "0x6a427c7187e49b2b0b44e76f3a26285779d8aa93",
+        "BAr5csYtpWoNpwhUjixX7ZPHXkUciFZzjBp9uNxZXJPh"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 9,
+          "reward_usdc": 212387.489365,
+          "payout_count": 64,
+          "last_paid_at": "2026-10-25T15:15:10.399Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 16,
+          "reward_usdc": 92533.662689,
+          "payout_count": 25,
+          "last_paid_at": "2026-10-25T15:15:10.399Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 9,
+        "reward_display": "$218K",
+        "reward_usdc_approx": 218000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 67,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 112000,
+        "followers_display": "112K",
+        "avg_mcap_at_call_approx": 60000.0,
+        "avg_mcap_at_call_display": "$60K",
+        "median_peak_x": 2.6,
+        "hold_now_x": 0.08,
+        "hit_2x": 0.74,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "RoaringKitty",
+      "x_handle": "RoaringKitty",
+      "twitter_id": "1576648308264779777",
+      "twitter_url": "https://x.com/i/user/1576648308264779777",
+      "wallet": "HVaeUPbAwFhZnY8T3MrUzTWqpHiAbTU1NACmCQdJrqZp",
+      "wallets": [
+        "0x723356c50e93f2b274e465fc3e05386d6e109a62",
+        "HVaeUPbAwFhZnY8T3MrUzTWqpHiAbTU1NACmCQdJrqZp"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 10,
+          "reward_usdc": 189266.077549,
+          "payout_count": 62,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 10,
+          "reward_usdc": 131582.477181,
+          "payout_count": 28,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 9,
+          "reward_usdc": 67680.988042,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1d": {
+          "rank": 12,
+          "reward_usdc": 9201.967964,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 10,
+        "reward_display": "$200K",
+        "reward_usdc_approx": 200000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 68,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 80000,
+        "followers_display": "80K",
+        "avg_mcap_at_call_approx": 467000.0,
+        "avg_mcap_at_call_display": "$467K",
+        "median_peak_x": 2.0,
+        "hold_now_x": 0.06,
+        "hit_2x": 0.5,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "wirelyss",
+      "x_handle": "wirelyss",
+      "twitter_id": "887814866",
+      "twitter_url": "https://x.com/i/user/887814866",
+      "wallet": "AvGiSdrkwtGYhrrFXZPtdhNhV4pASUR67TmRjfaKGdMP",
+      "wallets": [
+        "0x96414792bf76a700e180749c748b70f3ce35d035",
+        "AvGiSdrkwtGYhrrFXZPtdhNhV4pASUR67TmRjfaKGdMP"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 12,
+          "reward_usdc": 171150.534725,
+          "payout_count": 59,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 9,
+          "reward_usdc": 152025.99928,
+          "payout_count": 30,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 15,
+          "reward_usdc": 39329.207937,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1d": {
+          "rank": 16,
+          "reward_usdc": 8163.252647,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 11,
+        "reward_display": "$189K",
+        "reward_usdc_approx": 189000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 65,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 80000,
+        "followers_display": "80K",
+        "avg_mcap_at_call_approx": 118000.0,
+        "avg_mcap_at_call_display": "$118K",
+        "median_peak_x": 2.2,
+        "hold_now_x": 0.11,
+        "hit_2x": 0.59,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "cap",
+      "x_handle": "cap100x",
+      "twitter_id": "1903141483290435584",
+      "twitter_url": "https://x.com/i/user/1903141483290435584",
+      "wallet": "CAPn1yH4oSywsxGU456jfgTrSSUidf9jgeAnHceNUJdw",
+      "wallets": [
+        "0x6bb02f484fb212c63dc367cd99aedb331840dcb9",
+        "CAPn1yH4oSywsxGU456jfgTrSSUidf9jgeAnHceNUJdw"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 16,
+          "reward_usdc": 141092.217823,
+          "payout_count": 76,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 25,
+          "reward_usdc": 61963.412249,
+          "payout_count": 30,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 12,
+        "reward_display": "$182K",
+        "reward_usdc_approx": 182000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 82,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 117000,
+        "followers_display": "117K",
+        "avg_mcap_at_call_approx": 191000.0,
+        "avg_mcap_at_call_display": "$191K",
+        "median_peak_x": 2.1,
+        "hold_now_x": 0.06,
+        "hit_2x": 0.57,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "marcell",
+      "x_handle": "MarcellxMarcell",
+      "twitter_id": "1585960998321770497",
+      "twitter_url": "https://x.com/i/user/1585960998321770497",
+      "wallet": "6vbrTLsWy76TxDQAUKLqZrPohQuq6EVaJgfGzR82paFa",
+      "wallets": [
+        "0x1978276bbb44d16f0d2e3e3ea34f889e03b2ef86",
+        "6vbrTLsWy76TxDQAUKLqZrPohQuq6EVaJgfGzR82paFa"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 11,
+          "reward_usdc": 174736.296868,
+          "payout_count": 70,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 26,
+          "reward_usdc": 61045.472753,
+          "payout_count": 26,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1d": {
+          "rank": 43,
+          "reward_usdc": 1777.561084,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 13,
+        "reward_display": "$176K",
+        "reward_usdc_approx": 176000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 75,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 174000,
+        "followers_display": "174K",
+        "avg_mcap_at_call_approx": 5670000.0,
+        "avg_mcap_at_call_display": "$5.67M",
+        "median_peak_x": 1.98,
+        "hold_now_x": 0.05,
+        "hit_2x": 0.49,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "Yennii56",
+      "x_handle": "Yennii56",
+      "twitter_id": "1575062832894210048",
+      "twitter_url": "https://x.com/i/user/1575062832894210048",
+      "wallet": "5B52w1ZW9tuwUduueP5J7HXz5AcGfruGoX6YoAudvyxG",
+      "wallets": [
+        "0x49143aa3e44f71f3d5fd01287c7c2c190e6cdf84",
+        "5B52w1ZW9tuwUduueP5J7HXz5AcGfruGoX6YoAudvyxG"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 13,
+          "reward_usdc": 165598.88095,
+          "payout_count": 76,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 19,
+          "reward_usdc": 78573.48203,
+          "payout_count": 30,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 42,
+          "reward_usdc": 14227.184644,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 14,
+        "reward_display": "$175K",
+        "reward_usdc_approx": 175000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 82,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 97000,
+        "followers_display": "97K",
+        "avg_mcap_at_call_approx": 78000.0,
+        "avg_mcap_at_call_display": "$78K",
+        "median_peak_x": 1.99,
+        "hold_now_x": 0.08,
+        "hit_2x": 0.5,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "mickeymantled",
+      "x_handle": "mickeymantled",
+      "twitter_id": "1486935756249567232",
+      "twitter_url": "https://x.com/i/user/1486935756249567232",
+      "wallet": "9z332Pxs4xaz7CdE4sYPEHu9a9qrxcUTkbvMXVo1q1Q8",
+      "wallets": [
+        "9z332Pxs4xaz7CdE4sYPEHu9a9qrxcUTkbvMXVo1q1Q8"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 24,
+          "reward_usdc": 120590.157551,
+          "payout_count": 71,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 11,
+          "reward_usdc": 111134.108078,
+          "payout_count": 30,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 11,
+          "reward_usdc": 53954.270865,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1d": {
+          "rank": 19,
+          "reward_usdc": 6047.743079,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 15,
+        "reward_display": "$171K",
+        "reward_usdc_approx": 171000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 77,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 59000,
+        "followers_display": "59K",
+        "avg_mcap_at_call_approx": 117000.0,
+        "avg_mcap_at_call_display": "$117K",
+        "median_peak_x": 2.2,
+        "hold_now_x": 0.08,
+        "hit_2x": 0.62,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "Anglio",
+      "x_handle": "anglio",
+      "twitter_id": "2729214382",
+      "twitter_url": "https://x.com/i/user/2729214382",
+      "wallet": "2ksQ77e9e5SS6VA6poanRGWfkU3R4R5wZnptbJHb2nx9",
+      "wallets": [
+        "0x830209a087bb169a8b8e36e691c733b1829e4ee1",
+        "0x96b93a027e2c3a6fa09d7d7fe140f26c991858f6",
+        "2ksQ77e9e5SS6VA6poanRGWfkU3R4R5wZnptbJHb2nx9"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 26,
+          "reward_usdc": 114640.646828,
+          "payout_count": 65,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 30,
+          "reward_usdc": 58987.653981,
+          "payout_count": 29,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 24,
+          "reward_usdc": 24931.457501,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 16,
+        "reward_display": "$167K",
+        "reward_usdc_approx": 167000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 71,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 82000,
+        "followers_display": "82K",
+        "avg_mcap_at_call_approx": 92000.0,
+        "avg_mcap_at_call_display": "$92K",
+        "median_peak_x": 1.64,
+        "hold_now_x": 0.54,
+        "hit_2x": 0.36,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "ferre",
+      "x_handle": "FerreWeb3",
+      "twitter_id": "1074566198",
+      "twitter_url": "https://x.com/i/user/1074566198",
+      "wallet": "BSzpGGB3AMwtW126RT3Z27STSBrVjKV5A96H4BsUKdtD",
+      "wallets": [
+        "0x41055cbeee5078238e3324d6bf2d0712947b423a",
+        "BSzpGGB3AMwtW126RT3Z27STSBrVjKV5A96H4BsUKdtD"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 14,
+          "reward_usdc": 151035.563293,
+          "payout_count": 74,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 38,
+          "reward_usdc": 51420.030995,
+          "payout_count": 28,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 17,
+        "reward_display": "$154K",
+        "reward_usdc_approx": 154000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 78,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 77000,
+        "followers_display": "77K",
+        "avg_mcap_at_call_approx": 11000.0,
+        "avg_mcap_at_call_display": "$11K",
+        "median_peak_x": 2.1,
+        "hold_now_x": 0.35,
+        "hit_2x": 0.52,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "cooker",
+      "x_handle": "CookerFlips",
+      "twitter_id": "1189381231198134272",
+      "twitter_url": "https://x.com/i/user/1189381231198134272",
+      "wallet": "8deJ9xeUvXSJwicYptA9mHsU2rN2pDx37KWzkDkEXhU6",
+      "wallets": [
+        "0xb86f49b6387386badc4d74a217faa3273ad36c03",
+        "8deJ9xeUvXSJwicYptA9mHsU2rN2pDx37KWzkDkEXhU6"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 15,
+          "reward_usdc": 141689.607435,
+          "payout_count": 74,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 29,
+          "reward_usdc": 59157.577084,
+          "payout_count": 30,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1d": {
+          "rank": 30,
+          "reward_usdc": 3161.012607,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 18,
+        "reward_display": "$148K",
+        "reward_usdc_approx": 148000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 80,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 144000,
+        "followers_display": "144K",
+        "avg_mcap_at_call_approx": 780000.0,
+        "avg_mcap_at_call_display": "$780K",
+        "median_peak_x": 1.9,
+        "hold_now_x": 0.12,
+        "hit_2x": 0.47,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "hugo",
+      "x_handle": "hdegroott",
+      "twitter_id": "1747538855517921280",
+      "twitter_url": "https://x.com/i/user/1747538855517921280",
+      "wallet": "4y2T1ghykCTq4EddoXjptZamk4qAsqcZw6eKxS8jdvE1",
+      "wallets": [
+        "0xb367caea2d18bf1ee2aa2638af3efc87fc8512d7",
+        "4y2T1ghykCTq4EddoXjptZamk4qAsqcZw6eKxS8jdvE1"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 18,
+          "reward_usdc": 134374.013448,
+          "payout_count": 51,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 14,
+          "reward_usdc": 99207.174406,
+          "payout_count": 19,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 10,
+          "reward_usdc": 62511.405329,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1d": {
+          "rank": 21,
+          "reward_usdc": 5602.075341,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 19,
+        "reward_display": "$143K",
+        "reward_usdc_approx": 143000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 57,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 114000,
+        "followers_display": "114K",
+        "avg_mcap_at_call_approx": 47130000.0,
+        "avg_mcap_at_call_display": "$47.13M",
+        "median_peak_x": 2.4,
+        "hold_now_x": 0.14,
+        "hit_2x": 0.59,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "bestcook",
+      "x_handle": null,
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": "7g5CJ754NboeY6D44MDdGwQmVX4Fvu59Q47c9ZKLPMkE",
+      "wallets": [
+        "0x866b15047afc4d74e6fdace1eb71db9dcfc5435a",
+        "7g5CJ754NboeY6D44MDdGwQmVX4Fvu59Q47c9ZKLPMkE"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 19,
+          "reward_usdc": 126813.771785,
+          "payout_count": 66,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 12,
+          "reward_usdc": 110758.806562,
+          "payout_count": 29,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 8,
+          "reward_usdc": 67927.110239,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 20,
+        "reward_display": "$143K",
+        "reward_usdc_approx": 143000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 72,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 56000,
+        "followers_display": "56K",
+        "avg_mcap_at_call_approx": 10000.0,
+        "avg_mcap_at_call_display": "$10K",
+        "median_peak_x": 1.87,
+        "hold_now_x": 0.45,
+        "hit_2x": 0.47,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "schoen",
+      "x_handle": "Schoen_xyz",
+      "twitter_id": "1898389320773550080",
+      "twitter_url": "https://x.com/i/user/1898389320773550080",
+      "wallet": "5hAgYC8TJCcEZV7LTXAzkTrm7YL29YXyQQJPCNrG84zM",
+      "wallets": [
+        "0x4fb6da76d7b9e0bdcd3ffc52fb55dbadaca248de",
+        "5hAgYC8TJCcEZV7LTXAzkTrm7YL29YXyQQJPCNrG84zM"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 22,
+          "reward_usdc": 123818.40101,
+          "payout_count": 76,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 34,
+          "reward_usdc": 56251.028438,
+          "payout_count": 30,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 34,
+          "reward_usdc": 19497.134665,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1d": {
+          "rank": 7,
+          "reward_usdc": 11293.964692,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 21,
+        "reward_display": "$142K",
+        "reward_usdc_approx": 142000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 82,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 139000,
+        "followers_display": "139K",
+        "avg_mcap_at_call_approx": 182000.0,
+        "avg_mcap_at_call_display": "$182K",
+        "median_peak_x": 2.1,
+        "hold_now_x": 0.12,
+        "hit_2x": 0.55,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "0xEthan",
+      "x_handle": "0xEthan",
+      "twitter_id": "1365093503601106946",
+      "twitter_url": "https://x.com/i/user/1365093503601106946",
+      "wallet": "6yVb4pxNwDfr6rovwNnBg3SyKSvDcHGD4WdFPN1JJBqm",
+      "wallets": [
+        "6yVb4pxNwDfr6rovwNnBg3SyKSvDcHGD4WdFPN1JJBqm"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 17,
+          "reward_usdc": 136905.179087,
+          "payout_count": 50,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 18,
+          "reward_usdc": 81610.786443,
+          "payout_count": 24,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 36,
+          "reward_usdc": 17730.324515,
+          "payout_count": 6,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 22,
+        "reward_display": "$141K",
+        "reward_usdc_approx": 141000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 54,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 77000,
+        "followers_display": "77K",
+        "avg_mcap_at_call_approx": 41000.0,
+        "avg_mcap_at_call_display": "$41K",
+        "median_peak_x": 2.7,
+        "hold_now_x": 0.21,
+        "hit_2x": 0.74,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "daumen",
+      "x_handle": "daumenxyz",
+      "twitter_id": "1762266425589149696",
+      "twitter_url": "https://x.com/i/user/1762266425589149696",
+      "wallet": "8MaVa9kdt3NW4Q5HyNAm1X5LbR8PQRVDc1W8NMVK88D5",
+      "wallets": [
+        "0x91738593af1599abb3f219c4e647994435527ac3",
+        "8MaVa9kdt3NW4Q5HyNAm1X5LbR8PQRVDc1W8NMVK88D5"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 21,
+          "reward_usdc": 125311.785615,
+          "payout_count": 75,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 41,
+          "reward_usdc": 50545.457331,
+          "payout_count": 30,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 23,
+        "reward_display": "$137K",
+        "reward_usdc_approx": 137000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 80,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 129000,
+        "followers_display": "129K",
+        "avg_mcap_at_call_approx": 50000.0,
+        "avg_mcap_at_call_display": "$50K",
+        "median_peak_x": 2.1,
+        "hold_now_x": 0.13,
+        "hit_2x": 0.55,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "icedknife",
+      "x_handle": "IcedKnife",
+      "twitter_id": "618539620",
+      "twitter_url": "https://x.com/i/user/618539620",
+      "wallet": "DrJ6SnDXkEsPeGdmSs93v5rwWumv5QMvAGSZjAyWSd5o",
+      "wallets": [
+        "0x1288c94dccd1072d46fe44267db83fd62eb5cf0c",
+        "DrJ6SnDXkEsPeGdmSs93v5rwWumv5QMvAGSZjAyWSd5o"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 23,
+          "reward_usdc": 122966.786626,
+          "payout_count": 74,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 22,
+          "reward_usdc": 65186.733432,
+          "payout_count": 30,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 24,
+        "reward_display": "$135K",
+        "reward_usdc_approx": 135000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 80,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 84000,
+        "followers_display": "84K",
+        "avg_mcap_at_call_approx": 110000.0,
+        "avg_mcap_at_call_display": "$110K",
+        "median_peak_x": 2.0,
+        "hold_now_x": 0.07,
+        "hit_2x": 0.5,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "FlippingProfits",
+      "x_handle": "Flippingprofits",
+      "twitter_id": "1477006427646476294",
+      "twitter_url": "https://x.com/i/user/1477006427646476294",
+      "wallet": "DdM1tyCdoEyoxYYmGMjdf5rRPcpmj3UzZTpE7ScuTf7d",
+      "wallets": [
+        "0xbdf739f94260ee660ba462dadbf53418867c56ca",
+        "DdM1tyCdoEyoxYYmGMjdf5rRPcpmj3UzZTpE7ScuTf7d"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 20,
+          "reward_usdc": 126276.120162,
+          "payout_count": 66,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 47,
+          "reward_usdc": 42035.933195,
+          "payout_count": 25,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 25,
+        "reward_display": "$130K",
+        "reward_usdc_approx": 130000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 70,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 152000,
+        "followers_display": "152K",
+        "avg_mcap_at_call_approx": 784000.0,
+        "avg_mcap_at_call_display": "$784K",
+        "median_peak_x": 1.77,
+        "hold_now_x": 0.07,
+        "hit_2x": 0.37,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "cousin",
+      "x_handle": "cousincrypt0",
+      "twitter_id": "1351968481369968643",
+      "twitter_url": "https://x.com/i/user/1351968481369968643",
+      "wallet": "6mrqa4cDaqBCD9UrUiUyoK78e4AJ8XzRaF8uTbcuTVae",
+      "wallets": [
+        "0x46545023081cab52c207c7c6d708dfa7b57e897a",
+        "6mrqa4cDaqBCD9UrUiUyoK78e4AJ8XzRaF8uTbcuTVae"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 25,
+          "reward_usdc": 117691.28354,
+          "payout_count": 63,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 17,
+          "reward_usdc": 82276.115012,
+          "payout_count": 26,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 31,
+          "reward_usdc": 20276.616801,
+          "payout_count": 6,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 26,
+        "reward_display": "$122K",
+        "reward_usdc_approx": 122000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 68,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 95000,
+        "followers_display": "95K",
+        "avg_mcap_at_call_approx": 12840000.0,
+        "avg_mcap_at_call_display": "$12.84M",
+        "median_peak_x": 2.1,
+        "hold_now_x": 0.09,
+        "hit_2x": 0.53,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "sadcrissy",
+      "x_handle": "sadcrissy",
+      "twitter_id": "2757507047",
+      "twitter_url": "https://x.com/i/user/2757507047",
+      "wallet": "EqBQhoU88ty3a3aDphDRCBuiRirjUsFSFi4UHGY64qvv",
+      "wallets": [
+        "EqBQhoU88ty3a3aDphDRCBuiRirjUsFSFi4UHGY64qvv"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 27,
+          "reward_usdc": 106882.732463,
+          "payout_count": 25,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 13,
+          "reward_usdc": 106882.732463,
+          "payout_count": 25,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 35,
+          "reward_usdc": 19473.597198,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 27,
+        "reward_display": "$114K",
+        "reward_usdc_approx": 114000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 31,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 39000,
+        "followers_display": "39K",
+        "avg_mcap_at_call_approx": 98770000.0,
+        "avg_mcap_at_call_display": "$98.77M",
+        "median_peak_x": 2.8,
+        "hold_now_x": 0.37,
+        "hit_2x": 0.67,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "cwuhn4",
+      "x_handle": "cwuhn4",
+      "twitter_id": "2057475339530432512",
+      "twitter_url": "https://x.com/i/user/2057475339530432512",
+      "wallet": "CwUHN4zTn5wiEYoZjsP4FrDvAT9heDWewCTQjhgwhJqS",
+      "wallets": [
+        "0x4e195ad3faac2d3e8e39958e731f7d0f9c72125b",
+        "CwUHN4zTn5wiEYoZjsP4FrDvAT9heDWewCTQjhgwhJqS"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 32,
+          "reward_usdc": 98754.615073,
+          "payout_count": 76,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 20,
+          "reward_usdc": 73625.099212,
+          "payout_count": 30,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 23,
+          "reward_usdc": 25025.69707,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 28,
+        "reward_display": "$111K",
+        "reward_usdc_approx": 111000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 82,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 76000,
+        "followers_display": "76K",
+        "avg_mcap_at_call_approx": 18000.0,
+        "avg_mcap_at_call_display": "$18K",
+        "median_peak_x": 1.86,
+        "hold_now_x": 0.32,
+        "hit_2x": 0.48,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "SossaDotKek",
+      "x_handle": "GeoffO7",
+      "twitter_id": "1478144797982564352",
+      "twitter_url": "https://x.com/i/user/1478144797982564352",
+      "wallet": "2M2vLX34LXMg24dMEnjWHvRXS1tshpEDRWzmXgV8ENNZ",
+      "wallets": [
+        "2M2vLX34LXMg24dMEnjWHvRXS1tshpEDRWzmXgV8ENNZ"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 31,
+          "reward_usdc": 99416.171634,
+          "payout_count": 34,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 15,
+          "reward_usdc": 96607.685871,
+          "payout_count": 27,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 29,
+        "reward_display": "$110K",
+        "reward_usdc_approx": 110000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 40,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 155000,
+        "followers_display": "155K",
+        "avg_mcap_at_call_approx": 406000.0,
+        "avg_mcap_at_call_display": "$406K",
+        "median_peak_x": 2.0,
+        "hold_now_x": 0.07,
+        "hit_2x": 0.51,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "_logjam",
+      "x_handle": "_logjam",
+      "twitter_id": "1866517291724120067",
+      "twitter_url": "https://x.com/i/user/1866517291724120067",
+      "wallet": "AH39BneW9UeWxQysUcwogQrYFdPvJuRVZ5w4ccq9SKfL",
+      "wallets": [
+        "0x30f83dd6705973af5eafd91a4b6d5ffa87fffbef",
+        "AH39BneW9UeWxQysUcwogQrYFdPvJuRVZ5w4ccq9SKfL"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 29,
+          "reward_usdc": 104581.312329,
+          "payout_count": 74,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 27,
+          "reward_usdc": 60612.475668,
+          "payout_count": 29,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1d": {
+          "rank": 47,
+          "reward_usdc": 1457.026201,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 30,
+        "reward_display": "$109K",
+        "reward_usdc_approx": 109000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 80,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 147000,
+        "followers_display": "147K",
+        "avg_mcap_at_call_approx": 447000.0,
+        "avg_mcap_at_call_display": "$447K",
+        "median_peak_x": 2.1,
+        "hold_now_x": 0.11,
+        "hit_2x": 0.54,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "J777Crypto",
+      "x_handle": "J777Crypto",
+      "twitter_id": "3046411560",
+      "twitter_url": "https://x.com/i/user/3046411560",
+      "wallet": "4UrFSCrGxgoCtCUBAEZq7ZmPK3Pczkxx7PwYnkBMi1KR",
+      "wallets": [
+        "0xe48b6e0e9900d68ba93ac417d9e2ce911c52f753",
+        "4UrFSCrGxgoCtCUBAEZq7ZmPK3Pczkxx7PwYnkBMi1KR"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 28,
+          "reward_usdc": 105625.054386,
+          "payout_count": 64,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 23,
+          "reward_usdc": 64396.737987,
+          "payout_count": 30,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 22,
+          "reward_usdc": 27999.119426,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1d": {
+          "rank": 37,
+          "reward_usdc": 2221.739047,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 31,
+        "reward_display": "$109K",
+        "reward_usdc_approx": 109000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 70,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 215000,
+        "followers_display": "215K",
+        "avg_mcap_at_call_approx": 14120000.0,
+        "avg_mcap_at_call_display": "$14.12M",
+        "median_peak_x": 1.8,
+        "hold_now_x": 0.09,
+        "hit_2x": 0.43,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "_fox09",
+      "x_handle": "_fox09",
+      "twitter_id": "1957515478936559617",
+      "twitter_url": "https://x.com/i/user/1957515478936559617",
+      "wallet": "DAEdBmTPEKM6xkwfzC3d411QUe6coKpkND6UURa4CvHC",
+      "wallets": [
+        "0x05f17efba51855fd22979d61d111a175dfe5189b",
+        "DAEdBmTPEKM6xkwfzC3d411QUe6coKpkND6UURa4CvHC"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 38,
+          "reward_usdc": 91050.185563,
+          "payout_count": 76,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 33,
+          "reward_usdc": 57421.415943,
+          "payout_count": 30,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 26,
+          "reward_usdc": 23543.570836,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1d": {
+          "rank": 25,
+          "reward_usdc": 3984.079413,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 32,
+        "reward_display": "$107K",
+        "reward_usdc_approx": 107000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 82,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 83000,
+        "followers_display": "83K",
+        "avg_mcap_at_call_approx": 91000.0,
+        "avg_mcap_at_call_display": "$91K",
+        "median_peak_x": 1.95,
+        "hold_now_x": 0.13,
+        "hit_2x": 0.48,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "gr3gor14n",
+      "x_handle": "gr3gor14n",
+      "twitter_id": "3229257164",
+      "twitter_url": "https://x.com/i/user/3229257164",
+      "wallet": "J23qr98GjGJJqKq9CBEnyRhHbmkaVxtTJNNxKu597wsA",
+      "wallets": [
+        "0x34568cb6bb15afc4d314a88304b93b616dbde77c",
+        "J23qr98GjGJJqKq9CBEnyRhHbmkaVxtTJNNxKu597wsA"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 30,
+          "reward_usdc": 104390.837775,
+          "payout_count": 38,
+          "last_paid_at": "2026-10-22T15:34:00.144Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 44,
+          "reward_usdc": 47081.179336,
+          "payout_count": 13,
+          "last_paid_at": "2026-10-22T15:34:00.144Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 29,
+          "reward_usdc": 22323.769242,
+          "payout_count": 3,
+          "last_paid_at": "2026-10-22T15:34:00.144Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 33,
+        "reward_display": "$106K",
+        "reward_usdc_approx": 106000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 44,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 196000,
+        "followers_display": "196K",
+        "avg_mcap_at_call_approx": 4630000.0,
+        "avg_mcap_at_call_display": "$4.63M",
+        "median_peak_x": 2.3,
+        "hold_now_x": 0.09,
+        "hit_2x": 0.6,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "0xkgc",
+      "x_handle": "0xkgc",
+      "twitter_id": "1437055418874880001",
+      "twitter_url": "https://x.com/i/user/1437055418874880001",
+      "wallet": "BFmgjdgepMxNnEyndQZC68Db3ajPdD3V8is1bQbdj4h4",
+      "wallets": [
+        "BFmgjdgepMxNnEyndQZC68Db3ajPdD3V8is1bQbdj4h4"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 33,
+          "reward_usdc": 97816.799747,
+          "payout_count": 55,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 21,
+          "reward_usdc": 65412.452093,
+          "payout_count": 23,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 19,
+          "reward_usdc": 30969.408042,
+          "payout_count": 4,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 34,
+        "reward_display": "$104K",
+        "reward_usdc_approx": 104000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 60,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 26000,
+        "followers_display": "26K",
+        "avg_mcap_at_call_approx": 10000.0,
+        "avg_mcap_at_call_display": "$10K",
+        "median_peak_x": 1.88,
+        "hold_now_x": 0.56,
+        "hit_2x": 0.48,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "ogantd",
+      "x_handle": "0GAntD",
+      "twitter_id": "1791586676520734720",
+      "twitter_url": "https://x.com/i/user/1791586676520734720",
+      "wallet": "215nhcAHjQQGgwpQSJQ7zR26etbjjtVdW74NLzwEgQjP",
+      "wallets": [
+        "0x16f5ef133d0d15b196a778d22bf1ec56f8f37c05",
+        "215nhcAHjQQGgwpQSJQ7zR26etbjjtVdW74NLzwEgQjP"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 34,
+          "reward_usdc": 97196.027259,
+          "payout_count": 73,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 35,
+          "reward_usdc": 55346.491958,
+          "payout_count": 27,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 35,
+        "reward_display": "$102K",
+        "reward_usdc_approx": 102000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 79,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 121000,
+        "followers_display": "121K",
+        "avg_mcap_at_call_approx": 778000.0,
+        "avg_mcap_at_call_display": "$778K",
+        "median_peak_x": 2.1,
+        "hold_now_x": 0.07,
+        "hit_2x": 0.51,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "limfork",
+      "x_handle": "Limfork",
+      "twitter_id": "1466732366932680712",
+      "twitter_url": "https://x.com/i/user/1466732366932680712",
+      "wallet": "BQVz7fQ1WsQmSTMY3umdPEPPTm1sdcBcX9sP7o6kPRmB",
+      "wallets": [
+        "0x96181b01970070b6a9bbbc3002889092d4eda65d",
+        "BQVz7fQ1WsQmSTMY3umdPEPPTm1sdcBcX9sP7o6kPRmB"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 37,
+          "reward_usdc": 92532.209661,
+          "payout_count": 76,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 36,
+        "reward_display": "$101K",
+        "reward_usdc_approx": 101000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 82,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 90000,
+        "followers_display": "90K",
+        "avg_mcap_at_call_approx": 43000.0,
+        "avg_mcap_at_call_display": "$43K",
+        "median_peak_x": 1.85,
+        "hold_now_x": 0.2,
+        "hit_2x": 0.42,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "chriskogias",
+      "x_handle": "ChrisKogias",
+      "twitter_id": "1427878767851196420",
+      "twitter_url": "https://x.com/i/user/1427878767851196420",
+      "wallet": "3JQvkiF2GKfca3ggMPRwTHmzvnj6emReuSFwSrBBonp5",
+      "wallets": [
+        "0xbc9f0b15e681b0ff6d38c4b792a09fa6d78f8b18",
+        "3JQvkiF2GKfca3ggMPRwTHmzvnj6emReuSFwSrBBonp5"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 46,
+          "reward_usdc": 75956.715931,
+          "payout_count": 73,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 37,
+        "reward_display": "$97K",
+        "reward_usdc_approx": 97000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 79,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 80000,
+        "followers_display": "80K",
+        "avg_mcap_at_call_approx": 39380000.0,
+        "avg_mcap_at_call_display": "$39.38M",
+        "median_peak_x": 1.64,
+        "hold_now_x": 0.38,
+        "hit_2x": 0.36,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "sapphy",
+      "x_handle": null,
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": "B5TrL7PsRUwCTL5bVcueieht5QchTw4TWLQDKqEaxEzi",
+      "wallets": [
+        "0xddeb5dae1e53d7ed06e4dbc14621cc9370b09881",
+        "B5TrL7PsRUwCTL5bVcueieht5QchTw4TWLQDKqEaxEzi"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 36,
+          "reward_usdc": 93008.944643,
+          "payout_count": 43,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1d": {
+          "rank": 17,
+          "reward_usdc": 7374.828129,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 38,
+        "reward_display": "$97K",
+        "reward_usdc_approx": 97000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 48,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 150000,
+        "followers_display": "150K",
+        "avg_mcap_at_call_approx": 27400000.0,
+        "avg_mcap_at_call_display": "$27.40M",
+        "median_peak_x": 3.0,
+        "hold_now_x": 0.2,
+        "hit_2x": 0.69,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "zinc",
+      "x_handle": "zinceth",
+      "twitter_id": "947410517588660224",
+      "twitter_url": "https://x.com/i/user/947410517588660224",
+      "wallet": "AK18Ru6UzvbhBWcfnhALuMM4hSXvyDCmvMkrZD3QQqrU",
+      "wallets": [
+        "0x4ba3a02216257d8894eb05f951d1a5771c433209",
+        "AK18Ru6UzvbhBWcfnhALuMM4hSXvyDCmvMkrZD3QQqrU"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 35,
+          "reward_usdc": 95861.524937,
+          "payout_count": 44,
+          "last_paid_at": "2026-10-22T15:34:00.144Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 39,
+        "reward_display": "$97K",
+        "reward_usdc_approx": 97000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 45,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 102000,
+        "followers_display": "102K",
+        "avg_mcap_at_call_approx": 10620000.0,
+        "avg_mcap_at_call_display": "$10.62M",
+        "median_peak_x": 2.4,
+        "hold_now_x": 0.12,
+        "hit_2x": 0.59,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "SoloFNF",
+      "x_handle": "SoloFNF",
+      "twitter_id": "2009637642061938688",
+      "twitter_url": "https://x.com/i/user/2009637642061938688",
+      "wallet": "GccvEcZqMrcNdp3CarCasGdN5dUfdQ4wZ6iQsk5myRzX",
+      "wallets": [
+        "0xb21b6f51a12aaedecfbb36ea9e12dea0252a70bd",
+        "GccvEcZqMrcNdp3CarCasGdN5dUfdQ4wZ6iQsk5myRzX"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 39,
+          "reward_usdc": 89985.724285,
+          "payout_count": 75,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 49,
+          "reward_usdc": 12122.004078,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 40,
+        "reward_display": "$95K",
+        "reward_usdc_approx": 95000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 81,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 93000,
+        "followers_display": "93K",
+        "avg_mcap_at_call_approx": 97000.0,
+        "avg_mcap_at_call_display": "$97K",
+        "median_peak_x": 1.61,
+        "hold_now_x": 0.13,
+        "hit_2x": 0.4,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "runitbackghost",
+      "x_handle": "runitbackghost",
+      "twitter_id": "1888479408912228352",
+      "twitter_url": "https://x.com/i/user/1888479408912228352",
+      "wallet": "ApRnQN2HkbCn7W2WWiT2FEKvuKJp9LugRyAE1a9Hdz1",
+      "wallets": [
+        "0xb1c4bd4e56e378231a05cd100367f6010f2e1db4",
+        "ApRnQN2HkbCn7W2WWiT2FEKvuKJp9LugRyAE1a9Hdz1"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 42,
+          "reward_usdc": 82502.461078,
+          "payout_count": 76,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 41,
+        "reward_display": "$93K",
+        "reward_usdc_approx": 93000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 82,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 92000,
+        "followers_display": "92K",
+        "avg_mcap_at_call_approx": 59000.0,
+        "avg_mcap_at_call_display": "$59K",
+        "median_peak_x": 2.0,
+        "hold_now_x": 0.11,
+        "hit_2x": 0.51,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "poe",
+      "x_handle": "poe_real69",
+      "twitter_id": "349128988",
+      "twitter_url": "https://x.com/i/user/349128988",
+      "wallet": "7YndBV5gp3VvAiBbSfv8M7CoyMhFsiKeGYWkwee49fTg",
+      "wallets": [
+        "0x9dc85444ac9cb7063ab4182f3f3723bcb0e1672a",
+        "7YndBV5gp3VvAiBbSfv8M7CoyMhFsiKeGYWkwee49fTg"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 41,
+          "reward_usdc": 85420.935083,
+          "payout_count": 56,
+          "last_paid_at": "2026-10-23T15:44:54.059Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 42,
+        "reward_display": "$90K",
+        "reward_usdc_approx": 90000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 62,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 91000,
+        "followers_display": "91K",
+        "avg_mcap_at_call_approx": 792000.0,
+        "avg_mcap_at_call_display": "$792K",
+        "median_peak_x": 1.97,
+        "hold_now_x": 0.06,
+        "hit_2x": 0.5,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "netvyxe",
+      "x_handle": "netvyxe",
+      "twitter_id": "1892138065746948097",
+      "twitter_url": "https://x.com/i/user/1892138065746948097",
+      "wallet": "HmUt3Jn46j7c7ANdURmEyjSRj8i3Em6MhjQUi37PZ219",
+      "wallets": [
+        "0x4d4f0de8045fb9c86ca28e99549b3f54675b9606",
+        "HmUt3Jn46j7c7ANdURmEyjSRj8i3Em6MhjQUi37PZ219"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 40,
+          "reward_usdc": 86535.356257,
+          "payout_count": 71,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 43,
+        "reward_display": "$90K",
+        "reward_usdc_approx": 90000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 77,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 40000,
+        "followers_display": "40K",
+        "avg_mcap_at_call_approx": 76970000.0,
+        "avg_mcap_at_call_display": "$76.97M",
+        "median_peak_x": 1.61,
+        "hold_now_x": 0.44,
+        "hit_2x": 0.36,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "gar0u",
+      "x_handle": "WatcherGarou",
+      "twitter_id": "1979928025715326976",
+      "twitter_url": "https://x.com/i/user/1979928025715326976",
+      "wallet": "649ot18fccD6Mc9V4aHWTdoSVCuqAEtg9aWuxBA9cRoU",
+      "wallets": [
+        "0x9fcc179ca0b531772a0d327785b0346183d7399e",
+        "649ot18fccD6Mc9V4aHWTdoSVCuqAEtg9aWuxBA9cRoU"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 47,
+          "reward_usdc": 75258.733379,
+          "payout_count": 76,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 28,
+          "reward_usdc": 59965.9192,
+          "payout_count": 30,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 14,
+          "reward_usdc": 42038.59198,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1d": {
+          "rank": 14,
+          "reward_usdc": 8963.25403,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 44,
+        "reward_display": "$89K",
+        "reward_usdc_approx": 89000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 82,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 18000,
+        "followers_display": "18K",
+        "avg_mcap_at_call_approx": 20000.0,
+        "avg_mcap_at_call_display": "$20K",
+        "median_peak_x": 1.99,
+        "hold_now_x": 0.3,
+        "hit_2x": 0.49,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "sambati",
+      "x_handle": "sambati_",
+      "twitter_id": "2074816651418030080",
+      "twitter_url": "https://x.com/i/user/2074816651418030080",
+      "wallet": "8MpJbCLZDXTvbDQUPdBGkZD2kqN2qj1mVkFgyaYMrbN5",
+      "wallets": [
+        "8MpJbCLZDXTvbDQUPdBGkZD2kqN2qj1mVkFgyaYMrbN5"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 43,
+          "reward_usdc": 82498.099785,
+          "payout_count": 71,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 39,
+          "reward_usdc": 51172.046709,
+          "payout_count": 29,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 20,
+          "reward_usdc": 30850.502439,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 45,
+        "reward_display": "$85K",
+        "reward_usdc_approx": 85000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 77,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 46000,
+        "followers_display": "46K",
+        "avg_mcap_at_call_approx": 16000.0,
+        "avg_mcap_at_call_display": "$16K",
+        "median_peak_x": 1.72,
+        "hold_now_x": 0.31,
+        "hit_2x": 0.35,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "babyansemdevv",
+      "x_handle": "trencherdeploy",
+      "twitter_id": "2060680615414927360",
+      "twitter_url": "https://x.com/i/user/2060680615414927360",
+      "wallet": "CoSBdHyBnZA8uAeu3fJn1mByCK3qeX2q6mqUVTsagDDT",
+      "wallets": [
+        "CoSBdHyBnZA8uAeu3fJn1mByCK3qeX2q6mqUVTsagDDT"
+      ],
+      "is_verified": false,
+      "periods": {
+        "1m": {
+          "rank": 36,
+          "reward_usdc": 53497.254591,
+          "payout_count": 28,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 25,
+          "reward_usdc": 23600.482141,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 46,
+        "reward_display": "$85K",
+        "reward_usdc_approx": 85000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 73,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 16000,
+        "followers_display": "16K",
+        "avg_mcap_at_call_approx": 42000.0,
+        "avg_mcap_at_call_display": "$42K",
+        "median_peak_x": 1.96,
+        "hold_now_x": 0.18,
+        "hit_2x": 0.48,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "cyberleekonpump",
+      "x_handle": "cyberleek_io_",
+      "twitter_id": "2015956584917016576",
+      "twitter_url": "https://x.com/i/user/2015956584917016576",
+      "wallet": "PrEytJ4nKqKcLwzHrxLZT3JcZHfr2NnMGMDcQWkj8dS",
+      "wallets": [
+        "PrEytJ4nKqKcLwzHrxLZT3JcZHfr2NnMGMDcQWkj8dS"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 50,
+          "reward_usdc": 71261.449193,
+          "payout_count": 43,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 24,
+          "reward_usdc": 63860.584217,
+          "payout_count": 30,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 17,
+          "reward_usdc": 32171.983616,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 47,
+        "reward_display": "$85K",
+        "reward_usdc_approx": 85000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 49,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 5418,
+        "followers_display": "5,418",
+        "avg_mcap_at_call_approx": 1030000.0,
+        "avg_mcap_at_call_display": "$1.03M",
+        "median_peak_x": 1.6,
+        "hold_now_x": 0.04,
+        "hit_2x": 0.38,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "BLESSEDJINGTAO",
+      "x_handle": "PUNISHEDJINGTAO",
+      "twitter_id": "2052210337168883724",
+      "twitter_url": "https://x.com/i/user/2052210337168883724",
+      "wallet": "7yuqR9JAgohMibPrB8rpryCzTrQSU9Fprrsuj2Z5VRf7",
+      "wallets": [
+        "0x625e3e81d4f2aac227da5335c60516213c5c52c6",
+        "7yuqR9JAgohMibPrB8rpryCzTrQSU9Fprrsuj2Z5VRf7"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 44,
+          "reward_usdc": 79100.782404,
+          "payout_count": 68,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 48,
+        "reward_display": "$82K",
+        "reward_usdc_approx": 82000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 73,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 79000,
+        "followers_display": "79K",
+        "avg_mcap_at_call_approx": 144270000.0,
+        "avg_mcap_at_call_display": "$144.27M",
+        "median_peak_x": 2.3,
+        "hold_now_x": 0.06,
+        "hit_2x": 0.55,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "rikz_",
+      "x_handle": "kenAbz",
+      "twitter_id": "226563468",
+      "twitter_url": "https://x.com/i/user/226563468",
+      "wallet": "9LXWa7V3AE15VfBupcx5gDts2ix3Y9NzbcKZKjkkq6hV",
+      "wallets": [
+        "9LXWa7V3AE15VfBupcx5gDts2ix3Y9NzbcKZKjkkq6hV"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 45,
+          "reward_usdc": 79080.834701,
+          "payout_count": 74,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 49,
+        "reward_display": "$81K",
+        "reward_usdc_approx": 81000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 80,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 62000,
+        "followers_display": "62K",
+        "avg_mcap_at_call_approx": 9300.0,
+        "avg_mcap_at_call_display": "$9.3K",
+        "median_peak_x": 1.47,
+        "hold_now_x": 0.44,
+        "hit_2x": 0.22,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "The__Solstice",
+      "x_handle": "The__Solstice",
+      "twitter_id": "2650025562",
+      "twitter_url": "https://x.com/i/user/2650025562",
+      "wallet": "4ugDhHJ8XDXAeABmrNmGffFaLbJb9BkPyiFGVSV9ocwo",
+      "wallets": [
+        "4ugDhHJ8XDXAeABmrNmGffFaLbJb9BkPyiFGVSV9ocwo"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1m": {
+          "rank": 37,
+          "reward_usdc": 53260.968455,
+          "payout_count": 27,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 45,
+          "reward_usdc": 13943.366869,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1d": {
+          "rank": 23,
+          "reward_usdc": 4981.297575,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 50,
+        "reward_display": "$79K",
+        "reward_usdc_approx": 79000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 37,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 129000,
+        "followers_display": "129K",
+        "avg_mcap_at_call_approx": 13080000.0,
+        "avg_mcap_at_call_display": "$13.08M",
+        "median_peak_x": 1.62,
+        "hold_now_x": 0.1,
+        "hit_2x": 0.44,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "TylerD",
+      "x_handle": "Tyler_Did_It",
+      "twitter_id": "40134343",
+      "twitter_url": "https://x.com/i/user/40134343",
+      "wallet": "23LAQiqYP77uDchq5k4W2SPUuZ7f1du9rt7KGUkXa36V",
+      "wallets": [
+        "0x278a634d7eb1c45b86a97ed19171981b5cb87b7c",
+        "23LAQiqYP77uDchq5k4W2SPUuZ7f1du9rt7KGUkXa36V"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 49,
+          "reward_usdc": 72029.909183,
+          "payout_count": 61,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1m": {
+          "rank": 43,
+          "reward_usdc": 47134.66616,
+          "payout_count": 30,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 47,
+          "reward_usdc": 13310.612731,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 51,
+        "reward_display": "$78K",
+        "reward_usdc_approx": 78000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 67,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 62000,
+        "followers_display": "62K",
+        "avg_mcap_at_call_approx": 281000.0,
+        "avg_mcap_at_call_display": "$281K",
+        "median_peak_x": 2.0,
+        "hold_now_x": 0.1,
+        "hit_2x": 0.51,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "cryptogodfather",
+      "x_handle": "CosmoCapy",
+      "twitter_id": "1957304679412686849",
+      "twitter_url": "https://x.com/i/user/1957304679412686849",
+      "wallet": "9emXYGUF7cYtX2uyuZavDhhxZ65wHcYZgRv5AHVAHGSp",
+      "wallets": [
+        "0xf5df412c3c5b6bc7a5b410fa68bcac9e2010592a",
+        "9emXYGUF7cYtX2uyuZavDhhxZ65wHcYZgRv5AHVAHGSp"
+      ],
+      "is_verified": true,
+      "periods": {
+        "all": {
+          "rank": 48,
+          "reward_usdc": 74079.639756,
+          "payout_count": 75,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_all.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 52,
+        "reward_display": "$76K",
+        "reward_usdc_approx": 76000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 81,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 59000,
+        "followers_display": "59K",
+        "avg_mcap_at_call_approx": 64000.0,
+        "avg_mcap_at_call_display": "$64K",
+        "median_peak_x": 1.61,
+        "hold_now_x": 0.42,
+        "hit_2x": 0.28,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "Skroot",
+      "x_handle": "skrootimburg",
+      "twitter_id": "1876211719925583872",
+      "twitter_url": "https://x.com/i/user/1876211719925583872",
+      "wallet": "7x6AHogMm2SYoYmJwiRm691ro3eWTQoVz4taHK6Q19AR",
+      "wallets": [
+        "7x6AHogMm2SYoYmJwiRm691ro3eWTQoVz4taHK6Q19AR"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1m": {
+          "rank": 31,
+          "reward_usdc": 57906.959024,
+          "payout_count": 27,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 28,
+          "reward_usdc": 22590.125688,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1d": {
+          "rank": 26,
+          "reward_usdc": 3910.949131,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 53,
+        "reward_display": "$74K",
+        "reward_usdc_approx": 74000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 52,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 11000,
+        "followers_display": "11K",
+        "avg_mcap_at_call_approx": 20000.0,
+        "avg_mcap_at_call_display": "$20K",
+        "median_peak_x": 1.65,
+        "hold_now_x": 0.23,
+        "hit_2x": 0.38,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "collectible",
+      "x_handle": "collectible",
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": null,
+      "wallets": [],
+      "is_verified": null,
+      "periods": {},
+      "all_time_later": {
+        "rank": 54,
+        "reward_display": "$72K",
+        "reward_usdc_approx": 72000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 80,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 167000,
+        "followers_display": "167K",
+        "avg_mcap_at_call_approx": 1560000.0,
+        "avg_mcap_at_call_display": "$1.56M",
+        "median_peak_x": 1.98,
+        "hold_now_x": 0.12,
+        "hit_2x": 0.5,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "FrankieMelli",
+      "x_handle": null,
+      "twitter_id": "1963573133056561152",
+      "twitter_url": "https://x.com/i/user/1963573133056561152",
+      "wallet": "6zZyanyff5jr3zrWzwN3zEkjCKcADPSNm1c6KoFHxKj8",
+      "wallets": [
+        "6zZyanyff5jr3zrWzwN3zEkjCKcADPSNm1c6KoFHxKj8"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1w": {
+          "rank": 33,
+          "reward_usdc": 19822.943572,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1d": {
+          "rank": 40,
+          "reward_usdc": 1812.806083,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 55,
+        "reward_display": "$72K",
+        "reward_usdc_approx": 72000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 43,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 4552,
+        "followers_display": "4,552",
+        "avg_mcap_at_call_approx": 158000.0,
+        "avg_mcap_at_call_display": "$158K",
+        "median_peak_x": 1.3,
+        "hold_now_x": 0.78,
+        "hit_2x": 0.26,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "onlyljc",
+      "x_handle": "OnlyLJC",
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": null,
+      "wallets": [],
+      "is_verified": null,
+      "periods": {},
+      "all_time_later": {
+        "rank": 56,
+        "reward_display": "$71K",
+        "reward_usdc_approx": 71000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 38,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 123000,
+        "followers_display": "123K",
+        "avg_mcap_at_call_approx": 1060000.0,
+        "avg_mcap_at_call_display": "$1.06M",
+        "median_peak_x": 3.2,
+        "hold_now_x": 0.1,
+        "hit_2x": 0.7,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "Smokez",
+      "x_handle": "SmokezXBT",
+      "twitter_id": "1426750739699933185",
+      "twitter_url": "https://x.com/i/user/1426750739699933185",
+      "wallet": "5t9xBNuDdGTGpjaPTx6hKd7sdRJbvtKS8Mhq6qVbo8Qz",
+      "wallets": [
+        "5t9xBNuDdGTGpjaPTx6hKd7sdRJbvtKS8Mhq6qVbo8Qz"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1w": {
+          "rank": 41,
+          "reward_usdc": 15381.575527,
+          "payout_count": 6,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 57,
+        "reward_display": "$71K",
+        "reward_usdc_approx": 71000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 62,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 72000,
+        "followers_display": "72K",
+        "avg_mcap_at_call_approx": 128000.0,
+        "avg_mcap_at_call_display": "$128K",
+        "median_peak_x": 1.65,
+        "hold_now_x": 0.12,
+        "hit_2x": 0.33,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "Henrys0x",
+      "x_handle": "henrys0x",
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": null,
+      "wallets": [],
+      "is_verified": null,
+      "periods": {},
+      "all_time_later": {
+        "rank": 58,
+        "reward_display": "$70K",
+        "reward_usdc_approx": 70000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 76,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 50000,
+        "followers_display": "50K",
+        "avg_mcap_at_call_approx": 16000.0,
+        "avg_mcap_at_call_display": "$16K",
+        "median_peak_x": 1.44,
+        "hold_now_x": 0.3,
+        "hit_2x": 0.24,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "jeets",
+      "x_handle": "ieatjeets",
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": null,
+      "wallets": [],
+      "is_verified": null,
+      "periods": {},
+      "all_time_later": {
+        "rank": 59,
+        "reward_display": "$68K",
+        "reward_usdc_approx": 68000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 69,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 99000,
+        "followers_display": "99K",
+        "avg_mcap_at_call_approx": 190000.0,
+        "avg_mcap_at_call_display": "$190K",
+        "median_peak_x": 1.87,
+        "hold_now_x": 0.08,
+        "hit_2x": 0.46,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "YourMistyy",
+      "x_handle": "YourMistyy",
+      "twitter_id": "1487353107390799872",
+      "twitter_url": "https://x.com/i/user/1487353107390799872",
+      "wallet": "8NFh9y6qmMigMvRtT2KhrnCDo4BE2jMYcondAzmXZ26E",
+      "wallets": [
+        "8NFh9y6qmMigMvRtT2KhrnCDo4BE2jMYcondAzmXZ26E"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1m": {
+          "rank": 46,
+          "reward_usdc": 44016.573231,
+          "payout_count": 29,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 16,
+          "reward_usdc": 39269.98416,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1d": {
+          "rank": 5,
+          "reward_usdc": 13511.218298,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 60,
+        "reward_display": "$68K",
+        "reward_usdc_approx": 68000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 72,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 6745,
+        "followers_display": "6,745",
+        "avg_mcap_at_call_approx": 31000.0,
+        "avg_mcap_at_call_display": "$31K",
+        "median_peak_x": 1.68,
+        "hold_now_x": 0.25,
+        "hit_2x": 0.37,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "PascaI",
+      "x_handle": "pscldev_pf",
+      "twitter_id": "2096587212720574467",
+      "twitter_url": "https://x.com/i/user/2096587212720574467",
+      "wallet": "BLbAr8VL6akdTtjPPdRAwnSvBRegYjjRuuXQB494FdNW",
+      "wallets": [
+        "BLbAr8VL6akdTtjPPdRAwnSvBRegYjjRuuXQB494FdNW"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1m": {
+          "rank": 45,
+          "reward_usdc": 46956.449201,
+          "payout_count": 20,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 13,
+          "reward_usdc": 45140.855473,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1d": {
+          "rank": 11,
+          "reward_usdc": 9422.571533,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 61,
+        "reward_display": "$68K",
+        "reward_usdc_approx": 68000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 26,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 1220,
+        "followers_display": "1,220",
+        "avg_mcap_at_call_approx": 112000.0,
+        "avg_mcap_at_call_display": "$112K",
+        "median_peak_x": 1.33,
+        "hold_now_x": 0.59,
+        "hit_2x": 0.29,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "BeyonderTR",
+      "x_handle": "BeyonderTR",
+      "twitter_id": "1218225354759905280",
+      "twitter_url": "https://x.com/i/user/1218225354759905280",
+      "wallet": "BB1jeGTHnvU3DLiAQkuucBsRWqEx4R4oPLXV52RX9QSh",
+      "wallets": [
+        "BB1jeGTHnvU3DLiAQkuucBsRWqEx4R4oPLXV52RX9QSh"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1m": {
+          "rank": 32,
+          "reward_usdc": 57452.898446,
+          "payout_count": 28,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 38,
+          "reward_usdc": 17071.61103,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1d": {
+          "rank": 10,
+          "reward_usdc": 10237.426953,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 62,
+        "reward_display": "$67K",
+        "reward_usdc_approx": 67000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 49,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 7012,
+        "followers_display": "7,012",
+        "avg_mcap_at_call_approx": 23000.0,
+        "avg_mcap_at_call_display": "$23K",
+        "median_peak_x": 1.57,
+        "hold_now_x": 0.25,
+        "hit_2x": 0.36,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "axe",
+      "x_handle": "trading_axe",
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": null,
+      "wallets": [],
+      "is_verified": null,
+      "periods": {},
+      "all_time_later": {
+        "rank": 63,
+        "reward_display": "$67K",
+        "reward_usdc_approx": 67000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 26,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 86000,
+        "followers_display": "86K",
+        "avg_mcap_at_call_approx": 6210000.0,
+        "avg_mcap_at_call_display": "$6.21M",
+        "median_peak_x": 1.93,
+        "hold_now_x": 0.09,
+        "hit_2x": 0.49,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "y22",
+      "x_handle": "real_y22",
+      "twitter_id": "1695900575563403264",
+      "twitter_url": "https://x.com/i/user/1695900575563403264",
+      "wallet": "2NsevsKWiaDtEiYF5gGLCVGNBwsLNibgppoiVPHHYrqq",
+      "wallets": [
+        "2NsevsKWiaDtEiYF5gGLCVGNBwsLNibgppoiVPHHYrqq"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1m": {
+          "rank": 40,
+          "reward_usdc": 50912.927875,
+          "payout_count": 17,
+          "last_paid_at": "2026-10-24T17:20:45.716Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 64,
+        "reward_display": "$66K",
+        "reward_usdc_approx": 66000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 35,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 85000,
+        "followers_display": "85K",
+        "avg_mcap_at_call_approx": 134850000.0,
+        "avg_mcap_at_call_display": "$134.85M",
+        "median_peak_x": 2.2,
+        "hold_now_x": 0.4,
+        "hit_2x": 0.52,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "undercoverwhale",
+      "x_handle": "undercoverwhale",
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": null,
+      "wallets": [],
+      "is_verified": null,
+      "periods": {},
+      "all_time_later": {
+        "rank": 65,
+        "reward_display": "$66K",
+        "reward_usdc_approx": 66000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 72,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 80000,
+        "followers_display": "80K",
+        "avg_mcap_at_call_approx": 70000.0,
+        "avg_mcap_at_call_display": "$70K",
+        "median_peak_x": 2.4,
+        "hold_now_x": 0.18,
+        "hit_2x": 0.59,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "ohtwoo",
+      "x_handle": "Ohtworetard",
+      "twitter_id": "2096684291099168768",
+      "twitter_url": "https://x.com/i/user/2096684291099168768",
+      "wallet": "7bwGevcZDG2nKueEUkQQCLjmGNQ5W59KC8tFaLYAHayQ",
+      "wallets": [
+        "7bwGevcZDG2nKueEUkQQCLjmGNQ5W59KC8tFaLYAHayQ"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1w": {
+          "rank": 46,
+          "reward_usdc": 13850.398157,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1d": {
+          "rank": 8,
+          "reward_usdc": 11200.887083,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 66,
+        "reward_display": "$65K",
+        "reward_usdc_approx": 65000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 59,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 4416,
+        "followers_display": "4,416",
+        "avg_mcap_at_call_approx": 79000.0,
+        "avg_mcap_at_call_display": "$79K",
+        "median_peak_x": 1.87,
+        "hold_now_x": 0.19,
+        "hit_2x": 0.43,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "evening",
+      "x_handle": "eveningxbt",
+      "twitter_id": "2004994245162418177",
+      "twitter_url": "https://x.com/i/user/2004994245162418177",
+      "wallet": "E7gozEiAPNhpJsdS52amhhN2XCAqLZa7WPrhyR6C8o4S",
+      "wallets": [
+        "E7gozEiAPNhpJsdS52amhhN2XCAqLZa7WPrhyR6C8o4S"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1w": {
+          "rank": 37,
+          "reward_usdc": 17110.311003,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 67,
+        "reward_display": "$65K",
+        "reward_usdc_approx": 65000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 74,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 66000,
+        "followers_display": "66K",
+        "avg_mcap_at_call_approx": 63000.0,
+        "avg_mcap_at_call_display": "$63K",
+        "median_peak_x": 2.1,
+        "hold_now_x": 0.13,
+        "hit_2x": 0.53,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "element69420",
+      "x_handle": "Element69420",
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": null,
+      "wallets": [],
+      "is_verified": null,
+      "periods": {},
+      "all_time_later": {
+        "rank": 68,
+        "reward_display": "$64K",
+        "reward_usdc_approx": 64000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 78,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 34000,
+        "followers_display": "34K",
+        "avg_mcap_at_call_approx": 9700.0,
+        "avg_mcap_at_call_display": "$9.7K",
+        "median_peak_x": 1.88,
+        "hold_now_x": 0.63,
+        "hit_2x": 0.45,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "whereslodo01",
+      "x_handle": "WheresLodo01",
+      "twitter_id": "1171798741",
+      "twitter_url": "https://x.com/i/user/1171798741",
+      "wallet": "6FWhUybWmnjsQ933v2r6o7bhEG5yH9g9XsV7NVWKj5EW",
+      "wallets": [
+        "6FWhUybWmnjsQ933v2r6o7bhEG5yH9g9XsV7NVWKj5EW"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1w": {
+          "rank": 32,
+          "reward_usdc": 20189.090484,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 69,
+        "reward_display": "$64K",
+        "reward_usdc_approx": 64000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 81,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 83000,
+        "followers_display": "83K",
+        "avg_mcap_at_call_approx": 9500.0,
+        "avg_mcap_at_call_display": "$9.5K",
+        "median_peak_x": 1.3,
+        "hold_now_x": 0.44,
+        "hit_2x": 0.24,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "archelon",
+      "x_handle": "berdushsol",
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": null,
+      "wallets": [],
+      "is_verified": null,
+      "periods": {},
+      "all_time_later": {
+        "rank": 70,
+        "reward_display": "$64K",
+        "reward_usdc_approx": 64000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 82,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 100000,
+        "followers_display": "100K",
+        "avg_mcap_at_call_approx": 27000.0,
+        "avg_mcap_at_call_display": "$27K",
+        "median_peak_x": 1.51,
+        "hold_now_x": 0.33,
+        "hit_2x": 0.31,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "nothingandwin",
+      "x_handle": "nothingandwin",
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": null,
+      "wallets": [],
+      "is_verified": null,
+      "periods": {},
+      "all_time_later": {
+        "rank": 71,
+        "reward_display": "$64K",
+        "reward_usdc_approx": 64000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 70,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 9866,
+        "followers_display": "9,866",
+        "avg_mcap_at_call_approx": 28000.0,
+        "avg_mcap_at_call_display": "$28K",
+        "median_peak_x": 1.76,
+        "hold_now_x": 0.2,
+        "hit_2x": 0.42,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "hexiecs",
+      "x_handle": "hexiecs",
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": null,
+      "wallets": [],
+      "is_verified": null,
+      "periods": {},
+      "all_time_later": {
+        "rank": 72,
+        "reward_display": "$63K",
+        "reward_usdc_approx": 63000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 40,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 131000,
+        "followers_display": "131K",
+        "avg_mcap_at_call_approx": 4540000.0,
+        "avg_mcap_at_call_display": "$4.54M",
+        "median_peak_x": 2.0,
+        "hold_now_x": 0.09,
+        "hit_2x": 0.54,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "papipablo",
+      "x_handle": "Saint_pablo123",
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": null,
+      "wallets": [],
+      "is_verified": null,
+      "periods": {},
+      "all_time_later": {
+        "rank": 73,
+        "reward_display": "$63K",
+        "reward_usdc_approx": 63000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 68,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 55000,
+        "followers_display": "55K",
+        "avg_mcap_at_call_approx": 734000.0,
+        "avg_mcap_at_call_display": "$734K",
+        "median_peak_x": 1.62,
+        "hold_now_x": 0.07,
+        "hit_2x": 0.35,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "hachuping",
+      "x_handle": "bujaeyo",
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": null,
+      "wallets": [],
+      "is_verified": null,
+      "periods": {},
+      "all_time_later": {
+        "rank": 74,
+        "reward_display": "$62K",
+        "reward_usdc_approx": 62000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 80,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 79000,
+        "followers_display": "79K",
+        "avg_mcap_at_call_approx": 10000.0,
+        "avg_mcap_at_call_display": "$10K",
+        "median_peak_x": 1.61,
+        "hold_now_x": 0.43,
+        "hit_2x": 0.37,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "buddhaaaaa",
+      "x_handle": "mofo_chad",
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": null,
+      "wallets": [],
+      "is_verified": null,
+      "periods": {},
+      "all_time_later": {
+        "rank": 75,
+        "reward_display": "$62K",
+        "reward_usdc_approx": 62000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 81,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 29000,
+        "followers_display": "29K",
+        "avg_mcap_at_call_approx": 8500.0,
+        "avg_mcap_at_call_display": "$8.5K",
+        "median_peak_x": 1.43,
+        "hold_now_x": 0.44,
+        "hit_2x": 0.22,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "kingdoji",
+      "x_handle": "Humanevolvd",
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": null,
+      "wallets": [],
+      "is_verified": null,
+      "periods": {},
+      "all_time_later": {
+        "rank": 76,
+        "reward_display": "$61K",
+        "reward_usdc_approx": 61000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 82,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 28000,
+        "followers_display": "28K",
+        "avg_mcap_at_call_approx": 195000.0,
+        "avg_mcap_at_call_display": "$195K",
+        "median_peak_x": 1.64,
+        "hold_now_x": 0.28,
+        "hit_2x": 0.34,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "crackthecode",
+      "x_handle": "m00des",
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": null,
+      "wallets": [],
+      "is_verified": null,
+      "periods": {},
+      "all_time_later": {
+        "rank": 77,
+        "reward_display": "$61K",
+        "reward_usdc_approx": 61000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 55,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 52000,
+        "followers_display": "52K",
+        "avg_mcap_at_call_approx": 32000.0,
+        "avg_mcap_at_call_display": "$32K",
+        "median_peak_x": 1.73,
+        "hold_now_x": 0.21,
+        "hit_2x": 0.41,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "pumpfunchick",
+      "x_handle": null,
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": "ELNEWNeMJVY1p6a14CJ4YczcMB69CTxkC9Srfyj5n1Ve",
+      "wallets": [
+        "ELNEWNeMJVY1p6a14CJ4YczcMB69CTxkC9Srfyj5n1Ve"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1m": {
+          "rank": 48,
+          "reward_usdc": 41696.622032,
+          "payout_count": 30,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 78,
+        "reward_display": "$61K",
+        "reward_usdc_approx": 61000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 62,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 14000,
+        "followers_display": "14K",
+        "avg_mcap_at_call_approx": 74000.0,
+        "avg_mcap_at_call_display": "$74K",
+        "median_peak_x": 2.1,
+        "hold_now_x": 0.18,
+        "hit_2x": 0.53,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "theS0URCE",
+      "x_handle": null,
+      "twitter_id": "1775910080380063744",
+      "twitter_url": "https://x.com/i/user/1775910080380063744",
+      "wallet": "HjuSthanedLrVgPBF2CkwPf9FCDinLj7r3i3jeaefSve",
+      "wallets": [
+        "HjuSthanedLrVgPBF2CkwPf9FCDinLj7r3i3jeaefSve"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1w": {
+          "rank": 18,
+          "reward_usdc": 31285.763397,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1d": {
+          "rank": 1,
+          "reward_usdc": 30088.373616,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 79,
+        "reward_display": "$60K",
+        "reward_usdc_approx": 60000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 55,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_display": "—",
+        "avg_mcap_at_call_display": "—",
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "Dolo",
+      "x_handle": "doloxbt",
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": null,
+      "wallets": [],
+      "is_verified": null,
+      "periods": {},
+      "all_time_later": {
+        "rank": 80,
+        "reward_display": "$59K",
+        "reward_usdc_approx": 59000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 62,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 59000,
+        "followers_display": "59K",
+        "avg_mcap_at_call_approx": 19000.0,
+        "avg_mcap_at_call_display": "$19K",
+        "median_peak_x": 1.67,
+        "hold_now_x": 0.26,
+        "hit_2x": 0.37,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "johnsoncooks",
+      "x_handle": "johnsoncooks101",
+      "twitter_id": "1685659982539198465",
+      "twitter_url": "https://x.com/i/user/1685659982539198465",
+      "wallet": "J9TYAsWWidbrcZybmLSfrLzryANf4CgJBLdvwdGuC8MB",
+      "wallets": [
+        "J9TYAsWWidbrcZybmLSfrLzryANf4CgJBLdvwdGuC8MB"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1m": {
+          "rank": 49,
+          "reward_usdc": 41644.860162,
+          "payout_count": 30,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 81,
+        "reward_display": "$58K",
+        "reward_usdc_approx": 58000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 81,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 73000,
+        "followers_display": "73K",
+        "avg_mcap_at_call_approx": 68000.0,
+        "avg_mcap_at_call_display": "$68K",
+        "median_peak_x": 1.82,
+        "hold_now_x": 0.16,
+        "hit_2x": 0.48,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "traderpow",
+      "x_handle": "traderpow",
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": null,
+      "wallets": [],
+      "is_verified": null,
+      "periods": {},
+      "all_time_later": {
+        "rank": 82,
+        "reward_display": "$58K",
+        "reward_usdc_approx": 58000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 52,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 81000,
+        "followers_display": "81K",
+        "avg_mcap_at_call_approx": 1600000.0,
+        "avg_mcap_at_call_display": "$1.60M",
+        "median_peak_x": 2.1,
+        "hold_now_x": 0.04,
+        "hit_2x": 0.51,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "TolyTolys",
+      "x_handle": "FlorinLunc",
+      "twitter_id": "1523267624741875714",
+      "twitter_url": "https://x.com/i/user/1523267624741875714",
+      "wallet": "7LpJBPuwQZuUdtUWmhphramaTnkfDnrbuDfzBvPbkWfH",
+      "wallets": [
+        "7LpJBPuwQZuUdtUWmhphramaTnkfDnrbuDfzBvPbkWfH"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1d": {
+          "rank": 39,
+          "reward_usdc": 1819.749304,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 83,
+        "reward_display": "$58K",
+        "reward_usdc_approx": 58000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 59,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 3976,
+        "followers_display": "3,976",
+        "avg_mcap_at_call_approx": 293000.0,
+        "avg_mcap_at_call_display": "$293K",
+        "median_peak_x": 1.54,
+        "hold_now_x": 0.11,
+        "hit_2x": 0.36,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "officialpatty",
+      "x_handle": "Pattyice",
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": null,
+      "wallets": [],
+      "is_verified": null,
+      "periods": {},
+      "all_time_later": {
+        "rank": 84,
+        "reward_display": "$57K",
+        "reward_usdc_approx": 57000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 76,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 65000,
+        "followers_display": "65K",
+        "avg_mcap_at_call_approx": 337000.0,
+        "avg_mcap_at_call_display": "$337K",
+        "median_peak_x": 2.1,
+        "hold_now_x": 0.14,
+        "hit_2x": 0.54,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "notdecu",
+      "x_handle": "notdecu",
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": null,
+      "wallets": [],
+      "is_verified": null,
+      "periods": {},
+      "all_time_later": {
+        "rank": 85,
+        "reward_display": "$56K",
+        "reward_usdc_approx": 56000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 77,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 91000,
+        "followers_display": "91K",
+        "avg_mcap_at_call_approx": 21000.0,
+        "avg_mcap_at_call_display": "$21K",
+        "median_peak_x": 2.3,
+        "hold_now_x": 0.17,
+        "hit_2x": 0.61,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "KayThedoc",
+      "x_handle": null,
+      "twitter_id": "1779135321646514176",
+      "twitter_url": "https://x.com/i/user/1779135321646514176",
+      "wallet": "DYAn4XpAkN5mhiXkRB7dGq4Jadnx6XYgu8L5b3WGhbrt",
+      "wallets": [
+        "DYAn4XpAkN5mhiXkRB7dGq4Jadnx6XYgu8L5b3WGhbrt"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1d": {
+          "rank": 48,
+          "reward_usdc": 1337.493125,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 86,
+        "reward_display": "$55K",
+        "reward_usdc_approx": 55000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 72,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_display": "—",
+        "avg_mcap_at_call_display": "—",
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "lynk0x_",
+      "x_handle": "lynk0x",
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": null,
+      "wallets": [],
+      "is_verified": null,
+      "periods": {},
+      "all_time_later": {
+        "rank": 87,
+        "reward_display": "$55K",
+        "reward_usdc_approx": 55000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 53,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 60000,
+        "followers_display": "60K",
+        "avg_mcap_at_call_approx": 20000.0,
+        "avg_mcap_at_call_display": "$20K",
+        "median_peak_x": 1.78,
+        "hold_now_x": 0.19,
+        "hit_2x": 0.42,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "ram",
+      "x_handle": "ramonos",
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": null,
+      "wallets": [],
+      "is_verified": null,
+      "periods": {},
+      "all_time_later": {
+        "rank": 88,
+        "reward_display": "$54K",
+        "reward_usdc_approx": 54000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 56,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 23000,
+        "followers_display": "23K",
+        "avg_mcap_at_call_approx": 13000.0,
+        "avg_mcap_at_call_display": "$13K",
+        "median_peak_x": 1.32,
+        "hold_now_x": 0.35,
+        "hit_2x": 0.24,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "mrblankface",
+      "x_handle": "imblankface",
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": null,
+      "wallets": [],
+      "is_verified": null,
+      "periods": {},
+      "all_time_later": {
+        "rank": 89,
+        "reward_display": "$54K",
+        "reward_usdc_approx": 54000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 82,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 8753,
+        "followers_display": "8,753",
+        "avg_mcap_at_call_approx": 15000.0,
+        "avg_mcap_at_call_display": "$15K",
+        "median_peak_x": 1.4,
+        "hold_now_x": 0.39,
+        "hit_2x": 0.32,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "TheMisterTurtle",
+      "x_handle": "TheMisterTurtle",
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": null,
+      "wallets": [],
+      "is_verified": null,
+      "periods": {},
+      "all_time_later": {
+        "rank": 90,
+        "reward_display": "$53K",
+        "reward_usdc_approx": 53000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 78,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 86000,
+        "followers_display": "86K",
+        "avg_mcap_at_call_approx": 65000.0,
+        "avg_mcap_at_call_display": "$65K",
+        "median_peak_x": 1.3,
+        "hold_now_x": 0.37,
+        "hit_2x": 0.24,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "DrrrCrypto",
+      "x_handle": "dr_crypto_calls",
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": null,
+      "wallets": [],
+      "is_verified": null,
+      "periods": {},
+      "all_time_later": {
+        "rank": 91,
+        "reward_display": "$53K",
+        "reward_usdc_approx": 53000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 67,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 6259,
+        "followers_display": "6,259",
+        "avg_mcap_at_call_approx": 50000.0,
+        "avg_mcap_at_call_display": "$50K",
+        "median_peak_x": 1.61,
+        "hold_now_x": 0.16,
+        "hit_2x": 0.37,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "sh4vwty",
+      "x_handle": "sh4vwty",
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": null,
+      "wallets": [],
+      "is_verified": null,
+      "periods": {},
+      "all_time_later": {
+        "rank": 92,
+        "reward_display": "$53K",
+        "reward_usdc_approx": 53000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 72,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 53000,
+        "followers_display": "53K",
+        "avg_mcap_at_call_approx": 6200.0,
+        "avg_mcap_at_call_display": "$6.2K",
+        "median_peak_x": 1.5,
+        "hold_now_x": 0.51,
+        "hit_2x": 0.26,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "Judi",
+      "x_handle": "jxdita",
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": null,
+      "wallets": [],
+      "is_verified": null,
+      "periods": {},
+      "all_time_later": {
+        "rank": 93,
+        "reward_display": "$53K",
+        "reward_usdc_approx": 53000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 54,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 19000,
+        "followers_display": "19K",
+        "avg_mcap_at_call_approx": 19000.0,
+        "avg_mcap_at_call_display": "$19K",
+        "median_peak_x": 1.8,
+        "hold_now_x": 0.26,
+        "hit_2x": 0.46,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "appie",
+      "x_handle": "appiesol_",
+      "twitter_id": "1164305796588560393",
+      "twitter_url": "https://x.com/i/user/1164305796588560393",
+      "wallet": "DieowDJ137xDRyCDn3YZYfAe4qzeGmdQJvryyqdWhtuc",
+      "wallets": [
+        "DieowDJ137xDRyCDn3YZYfAe4qzeGmdQJvryyqdWhtuc"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1d": {
+          "rank": 49,
+          "reward_usdc": 1330.60561,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 94,
+        "reward_display": "$53K",
+        "reward_usdc_approx": 53000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 79,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 63000,
+        "followers_display": "63K",
+        "avg_mcap_at_call_approx": 167000.0,
+        "avg_mcap_at_call_display": "$167K",
+        "median_peak_x": 1.49,
+        "hold_now_x": 0.23,
+        "hit_2x": 0.34,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "meechie",
+      "x_handle": "meechie",
+      "twitter_id": "904503732",
+      "twitter_url": "https://x.com/i/user/904503732",
+      "wallet": "9iaawVBEsFG35PSwd4PahwT8fYNQe9XYuRdWm872dUqY",
+      "wallets": [
+        "9iaawVBEsFG35PSwd4PahwT8fYNQe9XYuRdWm872dUqY"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1w": {
+          "rank": 30,
+          "reward_usdc": 20731.790702,
+          "payout_count": 6,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": {
+        "rank": 95,
+        "reward_display": "$52K",
+        "reward_usdc_approx": 52000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 72,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 44000,
+        "followers_display": "44K",
+        "avg_mcap_at_call_approx": 15000.0,
+        "avg_mcap_at_call_display": "$15K",
+        "median_peak_x": 1.6,
+        "hold_now_x": 0.34,
+        "hit_2x": 0.39,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "JB",
+      "x_handle": "quantJB",
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": null,
+      "wallets": [],
+      "is_verified": null,
+      "periods": {},
+      "all_time_later": {
+        "rank": 96,
+        "reward_display": "$52K",
+        "reward_usdc_approx": 52000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 81,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 51000,
+        "followers_display": "51K",
+        "avg_mcap_at_call_approx": 114000.0,
+        "avg_mcap_at_call_display": "$114K",
+        "median_peak_x": 1.82,
+        "hold_now_x": 0.18,
+        "hit_2x": 0.42,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "waste",
+      "x_handle": "wastemanagem3nt",
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": null,
+      "wallets": [],
+      "is_verified": null,
+      "periods": {},
+      "all_time_later": {
+        "rank": 97,
+        "reward_display": "$50K",
+        "reward_usdc_approx": 50000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 81,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 76000,
+        "followers_display": "76K",
+        "avg_mcap_at_call_approx": 28000.0,
+        "avg_mcap_at_call_display": "$28K",
+        "median_peak_x": 1.79,
+        "hold_now_x": 0.16,
+        "hit_2x": 0.45,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "trunoest",
+      "x_handle": "trunoest",
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": null,
+      "wallets": [],
+      "is_verified": null,
+      "periods": {},
+      "all_time_later": {
+        "rank": 98,
+        "reward_display": "$50K",
+        "reward_usdc_approx": 50000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 80,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 71000,
+        "followers_display": "71K",
+        "avg_mcap_at_call_approx": 20000.0,
+        "avg_mcap_at_call_display": "$20K",
+        "median_peak_x": 2.1,
+        "hold_now_x": 0.16,
+        "hit_2x": 0.52,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "CuteCarrotTop",
+      "x_handle": null,
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": null,
+      "wallets": [],
+      "is_verified": null,
+      "periods": {},
+      "all_time_later": {
+        "rank": 99,
+        "reward_display": "$49K",
+        "reward_usdc_approx": 49000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 10,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_display": "—",
+        "avg_mcap_at_call_display": "—",
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "SerConnorr",
+      "x_handle": "SerConnorr",
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": null,
+      "wallets": [],
+      "is_verified": null,
+      "periods": {},
+      "all_time_later": {
+        "rank": 100,
+        "reward_display": "$49K",
+        "reward_usdc_approx": 49000.0,
+        "precision": "thousands_from_display",
+        "payout_count": 75,
+        "source": "https://pumpbubble.fun/kols",
+        "as_of": "2026-11-10T05:18:00Z"
+      },
+      "call_count": null,
+      "recent_call_stats": {
+        "followers_approx": 67000,
+        "followers_display": "67K",
+        "avg_mcap_at_call_approx": 17000.0,
+        "avg_mcap_at_call_display": "$17K",
+        "median_peak_x": 1.28,
+        "hold_now_x": 0.52,
+        "hit_2x": 0.19,
+        "sample": "last up to 100 callouts (pumpbubble, from pump.fun public callouts)"
+      },
+      "flags": []
+    },
+    {
+      "username": "bigbearwala",
+      "x_handle": null,
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": "FryD2DDSvKXAPj85S9iZAi9TNHYBt9xFZPai7BBabK6s",
+      "wallets": [
+        "FryD2DDSvKXAPj85S9iZAi9TNHYBt9xFZPai7BBabK6s"
+      ],
+      "is_verified": false,
+      "periods": {
+        "1w": {
+          "rank": 48,
+          "reward_usdc": 12794.399252,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": null,
+      "call_count": null,
+      "recent_call_stats": null,
+      "flags": []
+    },
+    {
+      "username": "borealj",
+      "x_handle": null,
+      "twitter_id": "1372149439637377029",
+      "twitter_url": "https://x.com/i/user/1372149439637377029",
+      "wallet": "H3T4nbQV119capeaPjXK1FJPK3PuB5neAa2Dicyek7wG",
+      "wallets": [
+        "H3T4nbQV119capeaPjXK1FJPK3PuB5neAa2Dicyek7wG"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1d": {
+          "rank": 50,
+          "reward_usdc": 1318.67974,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": null,
+      "call_count": null,
+      "recent_call_stats": null,
+      "flags": []
+    },
+    {
+      "username": "bsol_x",
+      "x_handle": null,
+      "twitter_id": "1765955861862653952",
+      "twitter_url": "https://x.com/i/user/1765955861862653952",
+      "wallet": "9EkcRCqFHP3QxyMmtMUNKLZSa6YrU7Uhc8yQNdKf34Eg",
+      "wallets": [
+        "9EkcRCqFHP3QxyMmtMUNKLZSa6YrU7Uhc8yQNdKf34Eg"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1d": {
+          "rank": 22,
+          "reward_usdc": 5305.690918,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": null,
+      "call_count": null,
+      "recent_call_stats": null,
+      "flags": []
+    },
+    {
+      "username": "clive_99",
+      "x_handle": null,
+      "twitter_id": "449208535",
+      "twitter_url": "https://x.com/i/user/449208535",
+      "wallet": "EwDxFbpLu8aUQ1fAvB9mCfyNfj565pdoVpZRmK843hzn",
+      "wallets": [
+        "EwDxFbpLu8aUQ1fAvB9mCfyNfj565pdoVpZRmK843hzn"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1d": {
+          "rank": 41,
+          "reward_usdc": 1801.637691,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": null,
+      "call_count": null,
+      "recent_call_stats": null,
+      "flags": []
+    },
+    {
+      "username": "CryptoCeeJay",
+      "x_handle": null,
+      "twitter_id": "1575926930582429696",
+      "twitter_url": "https://x.com/i/user/1575926930582429696",
+      "wallet": "CS3EREmMkPMsCswoxjt2oYE41SYhg4t1L6A1TahRRBTy",
+      "wallets": [
+        "CS3EREmMkPMsCswoxjt2oYE41SYhg4t1L6A1TahRRBTy"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1d": {
+          "rank": 38,
+          "reward_usdc": 2015.444825,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": null,
+      "call_count": null,
+      "recent_call_stats": null,
+      "flags": []
+    },
+    {
+      "username": "devil87",
+      "x_handle": null,
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": "DmFSDGKv5H5Bu2t9C3qYFkKaAcAUyWmf7J34H6wLA5rY",
+      "wallets": [
+        "DmFSDGKv5H5Bu2t9C3qYFkKaAcAUyWmf7J34H6wLA5rY"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1d": {
+          "rank": 42,
+          "reward_usdc": 1797.567971,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": null,
+      "call_count": null,
+      "recent_call_stats": null,
+      "flags": []
+    },
+    {
+      "username": "fair69",
+      "x_handle": null,
+      "twitter_id": "1959252929694597120",
+      "twitter_url": "https://x.com/i/user/1959252929694597120",
+      "wallet": "C4udGwTg6oqcrr8SmSLmkcXDbaFEcopsiaT21KUE4psU",
+      "wallets": [
+        "C4udGwTg6oqcrr8SmSLmkcXDbaFEcopsiaT21KUE4psU"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1d": {
+          "rank": 13,
+          "reward_usdc": 9109.381443,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": null,
+      "call_count": null,
+      "recent_call_stats": null,
+      "flags": []
+    },
+    {
+      "username": "hienlovesu",
+      "x_handle": null,
+      "twitter_id": "1575082027896000512",
+      "twitter_url": "https://x.com/i/user/1575082027896000512",
+      "wallet": "Gn9jrmzjYPfAFsXpauik2FkkPZ9bSReAffKiMQR1qeZb",
+      "wallets": [
+        "Gn9jrmzjYPfAFsXpauik2FkkPZ9bSReAffKiMQR1qeZb"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1d": {
+          "rank": 44,
+          "reward_usdc": 1767.130982,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": null,
+      "call_count": null,
+      "recent_call_stats": null,
+      "flags": []
+    },
+    {
+      "username": "jpegslife",
+      "x_handle": null,
+      "twitter_id": "1527818822345973768",
+      "twitter_url": "https://x.com/i/user/1527818822345973768",
+      "wallet": "9eZU9vEvMEvYjV6NC7xAuwSFSsQ7vuvZGczbJ2Niqhze",
+      "wallets": [
+        "9eZU9vEvMEvYjV6NC7xAuwSFSsQ7vuvZGczbJ2Niqhze"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1d": {
+          "rank": 24,
+          "reward_usdc": 4460.955162,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": null,
+      "call_count": null,
+      "recent_call_stats": null,
+      "flags": []
+    },
+    {
+      "username": "Kingcardano",
+      "x_handle": null,
+      "twitter_id": "1430301246850748416",
+      "twitter_url": "https://x.com/i/user/1430301246850748416",
+      "wallet": "3dnoztGbk4X7hwMuFcNa8a4BXtMiKpoK9eHatHtDcNNa",
+      "wallets": [
+        "3dnoztGbk4X7hwMuFcNa8a4BXtMiKpoK9eHatHtDcNNa"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1w": {
+          "rank": 50,
+          "reward_usdc": 12077.155757,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": null,
+      "call_count": null,
+      "recent_call_stats": null,
+      "flags": []
+    },
+    {
+      "username": "kore_x",
+      "x_handle": null,
+      "twitter_id": "1640349194182352897",
+      "twitter_url": "https://x.com/i/user/1640349194182352897",
+      "wallet": "5qqkPyScponvE2CkZvj3TMsqPtVCTKNQdfjRTcTUdXFw",
+      "wallets": [
+        "5qqkPyScponvE2CkZvj3TMsqPtVCTKNQdfjRTcTUdXFw"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1d": {
+          "rank": 27,
+          "reward_usdc": 3699.145746,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": null,
+      "call_count": null,
+      "recent_call_stats": null,
+      "flags": []
+    },
+    {
+      "username": "lbexplorer",
+      "x_handle": null,
+      "twitter_id": "1462093600527994881",
+      "twitter_url": "https://x.com/i/user/1462093600527994881",
+      "wallet": "64w4qRu9VGio7U1Asc6B68QDpS8L1McmSn2yyExC6Fii",
+      "wallets": [
+        "64w4qRu9VGio7U1Asc6B68QDpS8L1McmSn2yyExC6Fii"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1w": {
+          "rank": 43,
+          "reward_usdc": 14128.468885,
+          "payout_count": 6,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": null,
+      "call_count": null,
+      "recent_call_stats": null,
+      "flags": []
+    },
+    {
+      "username": "Liebe10x",
+      "x_handle": null,
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": "E3EaNHA7QjRNMoGzzu1iFbXPZj9fvz2ewSUc3M7dgohM",
+      "wallets": [
+        "E3EaNHA7QjRNMoGzzu1iFbXPZj9fvz2ewSUc3M7dgohM"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1d": {
+          "rank": 46,
+          "reward_usdc": 1623.560539,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": null,
+      "call_count": null,
+      "recent_call_stats": null,
+      "flags": []
+    },
+    {
+      "username": "MattFws",
+      "x_handle": null,
+      "twitter_id": "816419707263811590",
+      "twitter_url": "https://x.com/i/user/816419707263811590",
+      "wallet": "3bzaJd5yZG73EVDz8xosQb7gfZm2LN5auFGh6wnP1n1f",
+      "wallets": [
+        "3bzaJd5yZG73EVDz8xosQb7gfZm2LN5auFGh6wnP1n1f"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1d": {
+          "rank": 34,
+          "reward_usdc": 2453.29006,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": null,
+      "call_count": null,
+      "recent_call_stats": null,
+      "flags": []
+    },
+    {
+      "username": "mitch",
+      "x_handle": null,
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": "4Be9CvxqHW6BYiRAxW9Q3xu1ycTMWaL5z8NX4HR3ha7t",
+      "wallets": [
+        "4Be9CvxqHW6BYiRAxW9Q3xu1ycTMWaL5z8NX4HR3ha7t"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1w": {
+          "rank": 44,
+          "reward_usdc": 13947.546835,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": null,
+      "call_count": null,
+      "recent_call_stats": null,
+      "flags": []
+    },
+    {
+      "username": "mrx1105",
+      "x_handle": null,
+      "twitter_id": "1477041910439047169",
+      "twitter_url": "https://x.com/i/user/1477041910439047169",
+      "wallet": "GHPR2pduaUn26yN1pWRTU9DXoWuN98a4ddrDxWPVmJ6H",
+      "wallets": [
+        "GHPR2pduaUn26yN1pWRTU9DXoWuN98a4ddrDxWPVmJ6H"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1d": {
+          "rank": 35,
+          "reward_usdc": 2276.260691,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": null,
+      "call_count": null,
+      "recent_call_stats": null,
+      "flags": []
+    },
+    {
+      "username": "payki_flip",
+      "x_handle": null,
+      "twitter_id": "1954594015254597633",
+      "twitter_url": "https://x.com/i/user/1954594015254597633",
+      "wallet": "8UfkYXd2cSE8CXmcfnbtF7DcgUeJJoQpt2TmSHrkCvD6",
+      "wallets": [
+        "8UfkYXd2cSE8CXmcfnbtF7DcgUeJJoQpt2TmSHrkCvD6"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1w": {
+          "rank": 27,
+          "reward_usdc": 22873.145456,
+          "payout_count": 4,
+          "last_paid_at": "2026-10-23T15:44:54.059Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": null,
+      "call_count": null,
+      "recent_call_stats": null,
+      "flags": []
+    },
+    {
+      "username": "Pinguroyale",
+      "x_handle": null,
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": "8emnM6nfVM2ePrYDmZcMkwy8qzDhRFZ5EefCkMsmgByX",
+      "wallets": [
+        "8emnM6nfVM2ePrYDmZcMkwy8qzDhRFZ5EefCkMsmgByX"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1w": {
+          "rank": 39,
+          "reward_usdc": 16643.459795,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": null,
+      "call_count": null,
+      "recent_call_stats": null,
+      "flags": []
+    },
+    {
+      "username": "ShapeFN",
+      "x_handle": null,
+      "twitter_id": "4140004847",
+      "twitter_url": "https://x.com/i/user/4140004847",
+      "wallet": "6cn4MCKJQiykzxtfge6deWfkNRu4wVVKk1MGpTnZY63f",
+      "wallets": [
+        "6cn4MCKJQiykzxtfge6deWfkNRu4wVVKk1MGpTnZY63f"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1d": {
+          "rank": 45,
+          "reward_usdc": 1632.185252,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": null,
+      "call_count": null,
+      "recent_call_stats": null,
+      "flags": []
+    },
+    {
+      "username": "shawmakesmagic",
+      "x_handle": null,
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": "DScqtGwFoDTme2Rzdjpdb2w7CtuKc6Z8KF7hMhbx8ugQ",
+      "wallets": [
+        "DScqtGwFoDTme2Rzdjpdb2w7CtuKc6Z8KF7hMhbx8ugQ"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1d": {
+          "rank": 36,
+          "reward_usdc": 2226.652499,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": null,
+      "call_count": null,
+      "recent_call_stats": null,
+      "flags": []
+    },
+    {
+      "username": "SOREIN",
+      "x_handle": null,
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": "EGLhxVyqRFF9gTMMhSJfN1n12mW31GJe1ZjZZnR9oxM2",
+      "wallets": [
+        "EGLhxVyqRFF9gTMMhSJfN1n12mW31GJe1ZjZZnR9oxM2"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1d": {
+          "rank": 33,
+          "reward_usdc": 2572.622874,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": null,
+      "call_count": null,
+      "recent_call_stats": null,
+      "flags": []
+    },
+    {
+      "username": "tommyfades",
+      "x_handle": null,
+      "twitter_id": "484772231",
+      "twitter_url": "https://x.com/i/user/484772231",
+      "wallet": "3XNbxn8PHezWv9UF6etyscv4iuAcT78dtiyjiC7gRqYw",
+      "wallets": [
+        "3XNbxn8PHezWv9UF6etyscv4iuAcT78dtiyjiC7gRqYw"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1d": {
+          "rank": 31,
+          "reward_usdc": 3088.820451,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": null,
+      "call_count": null,
+      "recent_call_stats": null,
+      "flags": []
+    },
+    {
+      "username": "trenchbrat",
+      "x_handle": null,
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": "J1AYySZJ38CzFUPP3w7bzso9RW7SfbvYMvFmVUr35YUN",
+      "wallets": [
+        "J1AYySZJ38CzFUPP3w7bzso9RW7SfbvYMvFmVUr35YUN"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1d": {
+          "rank": 32,
+          "reward_usdc": 3075.719903,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": null,
+      "call_count": null,
+      "recent_call_stats": null,
+      "flags": []
+    },
+    {
+      "username": "VALANTIS",
+      "x_handle": null,
+      "twitter_id": "1833185789884166144",
+      "twitter_url": "https://x.com/i/user/1833185789884166144",
+      "wallet": "FqpxzuAAUZjd14pFNU2CWyKGQZtbeuT5DwSVgg9cfDb",
+      "wallets": [
+        "FqpxzuAAUZjd14pFNU2CWyKGQZtbeuT5DwSVgg9cfDb"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1d": {
+          "rank": 29,
+          "reward_usdc": 3370.169585,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": null,
+      "call_count": null,
+      "recent_call_stats": null,
+      "flags": []
+    },
+    {
+      "username": "vein",
+      "x_handle": null,
+      "twitter_id": "1775967687069294592",
+      "twitter_url": "https://x.com/i/user/1775967687069294592",
+      "wallet": "4xbeoxDPTUeiaAvt5afxNtLHPYqUW7Xb3X4sK8sMvCqQ",
+      "wallets": [
+        "4xbeoxDPTUeiaAvt5afxNtLHPYqUW7Xb3X4sK8sMvCqQ"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1w": {
+          "rank": 40,
+          "reward_usdc": 16568.369162,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": null,
+      "call_count": null,
+      "recent_call_stats": null,
+      "flags": []
+    },
+    {
+      "username": "watchouttoday",
+      "x_handle": null,
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": "argBY3beN7VRYuDCiwktZ9sDSG3UncrpzSwjQ83pwER",
+      "wallets": [
+        "argBY3beN7VRYuDCiwktZ9sDSG3UncrpzSwjQ83pwER"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1d": {
+          "rank": 28,
+          "reward_usdc": 3469.863071,
+          "payout_count": 1,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1d.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": null,
+      "call_count": null,
+      "recent_call_stats": null,
+      "flags": []
+    },
+    {
+      "username": "whitewhaledev1",
+      "x_handle": null,
+      "twitter_id": "1788809098365952000",
+      "twitter_url": "https://x.com/i/user/1788809098365952000",
+      "wallet": "FPrWHsHS2SVqSpCZrsdqfiND2un8d4rQN1tNQJ8febNs",
+      "wallets": [
+        "FPrWHsHS2SVqSpCZrsdqfiND2un8d4rQN1tNQJ8febNs"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1m": {
+          "rank": 50,
+          "reward_usdc": 41458.298393,
+          "payout_count": 30,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": null,
+      "call_count": null,
+      "recent_call_stats": null,
+      "flags": []
+    },
+    {
+      "username": "xlordkek",
+      "x_handle": null,
+      "twitter_id": null,
+      "twitter_url": null,
+      "wallet": "BH74DZL2EzWnHy2BghqGYkeNSgPPekgdV1KEDGeYx62c",
+      "wallets": [
+        "BH74DZL2EzWnHy2BghqGYkeNSgPPekgdV1KEDGeYx62c"
+      ],
+      "is_verified": true,
+      "periods": {
+        "1m": {
+          "rank": 42,
+          "reward_usdc": 48930.873674,
+          "payout_count": 24,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1m.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        },
+        "1w": {
+          "rank": 21,
+          "reward_usdc": 28193.761608,
+          "payout_count": 7,
+          "last_paid_at": "2026-10-26T15:11:39.381Z",
+          "precision": "exact",
+          "source": "https://calledcard.fun/data/lb_1w.json",
+          "as_of": "2026-10-27T06:59:18.099Z"
+        }
+      },
+      "all_time_later": null,
+      "call_count": null,
+      "recent_call_stats": null,
+      "flags": []
+    }
+  ]
+}

@@ -14,6 +14,7 @@ from .grading.caller import grade_callers
 from .grading.wallet import grade_wallet
 from .ledger import Ledger
 from .models import Token, Trade, WalletGrade, grade_rank, short
+from .signals import SM_BUYING, SM_SELLING, SM_WINDOW_S, cluster_wallets, kol_buy, shill_block, soft_sell
 from .store import Store
 from .util import duration, usd
 
@@ -106,8 +107,9 @@ class Pipeline:
         out = []
         if cluster:
             grades = ", ".join(sorted(c["grade"] for c in cluster))
-            out.append({"kind": "cluster", "text": f"Cluster: {len(cluster)} other graded wallet{'s' if len(cluster) != 1 else ''} "
-                        f"({grades}) bought it in the {self.s.cluster_window_min} minutes before."})
+            out.append({"kind": "cluster", "text": f"Wallet cluster bought: {len(cluster)} other graded wallet"
+                        f"{'s' if len(cluster) != 1 else ''} ({grades}) bought it in the "
+                        f"{self.s.cluster_window_min} minutes before."})
         key = read["key"]
         if g.narratives and key not in g.narratives and key != "other" and g.n_closed >= 3:
             out.append({"kind": "new-narrative", "text": f"First buy in the {read['label']} narrative for this wallet "
@@ -122,15 +124,15 @@ class Pipeline:
             out.append({"kind": "size", "text": f"Conviction: {size_x:.1f}× its usual buy size."})
         best = next((c for c in callers.callers if c.get("grade") in ("A", "B")), None)
         if best:
-            out.append({"kind": "caller", "text": f"{'An' if best['grade'] == 'A' else 'A'} {best['grade']}-rated caller "
-                        f"(@{best['caller']}) has mentioned it."})
+            out.append({"kind": "caller", "text": f"Caller mentioned: @{best['caller']} ({best['grade']})."})
         return out
 
     def build_alert(self, buy: Trade, g: WalletGrade, trades: list[Trade], token: Token, now: int) -> dict:
         meta = self.hub.wallet_meta(buy.chain, buy.wallet)
         mentions = self.hub.calls(buy.chain, token)
         histories = {m.caller: self.hub.caller_history(m.caller) for m in mentions}
-        callers = grade_callers(mentions, histories, self.s.min_caller_followers)
+        callers = grade_callers(mentions, histories, self.s.min_caller_followers,
+                                leaderboard=self.leaderboard())
 
         tags = narrative.classify(token.name, token.symbol, token.description)
         board = self.board()
@@ -145,6 +147,9 @@ class Pipeline:
         mcap = token.mcap_usd
         cluster = self.cluster(buy)
         safety = self.hub.safety(buy.chain, token.address) if self.s.safety_checks else None
+        tracked = self.store.token_buys(buy.chain, buy.token, buy.ts - SM_WINDOW_S, buy.ts) + [buy]
+        sm = cluster_wallets(tracked, buy.chain, buy.token, buy.ts, self.s.wallet_book)
+        kol = kol_buy(buy.chain, buy.wallet, self.s.wallet_book)
 
         alert = {
             "id": self.ledger.next_alert_id(),
@@ -159,12 +164,29 @@ class Pipeline:
             "grades": {"wallet": g.to_dict(), "caller": callers.to_dict(), "narrative": read},
             "copy_hist": self.copy_history(buy.chain, buy.wallet, trades),
             "cluster": cluster,
+            "sm_cluster": sm,
+            "kol": bool(kol),
+            "activity": SM_BUYING,
             "reasons": self.reasons(buy, token, g, cluster, read, callers, age_s, size_x, mcap),
             "safety": safety,
             "demo": bool(getattr(self.hub, "demo", False)),
+            "_mentions": mentions,
         }
+        if sm:
+            names = ", ".join(x["name"] or short(x["wallet"]) for x in sm[:4])
+            alert["reasons"].append({"kind": "sm-cluster",
+                                     "text": f"Wallet cluster bought: {len(sm)} tracked wallets bought it within the hour ({names})."})
+        if kol:
+            alert["reasons"].append({"kind": "kol", "text": f"KOL bought: {kol.get('name') or short(buy.wallet)}."})
         alert["story"] = story.reword(story.render(alert, self.s.cap_below), self.s)
         return alert
+
+    def leaderboard(self) -> dict:
+        if getattr(self, "_lb", None) is None:
+            from .sources.pumpfun_callouts import index_callers, load_snapshot
+            snap = load_snapshot()
+            self._lb = index_callers(snap) if snap.get("loaded") else {}
+        return self._lb
 
     # ------------------------------------------------------------------- run
 
@@ -195,11 +217,51 @@ class Pipeline:
                 log.info("skip %s: no price to anchor the record to", short(buy.token))
                 continue
             alert = self.build_alert(buy, g, wallet_trades, token, now)
+            mentions = alert.pop("_mentions", [])
+            block = shill_block(mentions, token.organic_score, g.flags)
+            if block:
+                log.info("skip %s: %s", short(buy.token), block)
+                continue
             entry = self.ledger.append("alert", now, alert)       # on the record first
             self.store.mark_alerted(buy.chain, buy.wallet, buy.token, now)
             for d in self.deliverers:
                 d.send(entry)
             alerts.append(entry)
+        self._record_sells(trades, since, now)
         self.store.put("cursor", resume_at if resume_at is not None else now, now)
         self.board()
         return alerts
+
+    def _record_sells(self, trades: list[Trade], since: int, now: int) -> None:
+        """Record smart-money selling. This is an observation, not a trade instruction."""
+        from . import ADVICE
+        for sell in sorted((t for t in trades if t.side == "sell" and since < t.ts <= now), key=lambda t: t.ts):
+            info = soft_sell(sell, self.s.wallet_book)
+            if not info:
+                continue
+            if self.store.alerted_since(sell.chain, sell.wallet, sell.token, now - int(self.s.cooldown_hours * 3600)):
+                continue
+            token = self.hub.token(sell.chain, sell.token) or Token(chain=sell.chain, address=sell.token, symbol=sell.symbol)
+            meta = self.hub.wallet_meta(sell.chain, sell.wallet)
+            n = len(self.ledger.entries(SM_SELLING)) + 1
+            symbol = token.symbol or short(sell.token)
+            text = f"Smart-money selling ${symbol} — {info['text']}. {ADVICE}"
+            payload = {
+                "id": f"s-{n:05d}", "activity": SM_SELLING, "chain": sell.chain,
+                "token": {"address": token.address, "symbol": token.symbol or sell.symbol, "name": token.name,
+                          "pool": token.pool, "dex": token.dex, "launchpad": token.launchpad},
+                "wallet": {"address": sell.wallet, "label": meta.get("name") or info["name"], "twitter": meta.get("twitter") or ""},
+                "buy": {"ts": sell.ts, "usd": round(sell.usd, 2), "price": sell.price_usd, "tx": sell.tx,
+                        "age_s": None, "size_x": None},
+                "entry_price": sell.price_usd or token.price_usd, "mcap_usd": token.mcap_usd,
+                "liquidity_usd": token.liquidity_usd,
+                "grades": {"wallet": {"grade": None, "score": None, "n_closed": 0, "flags": [], "days": self.s.lookback_days,
+                                      "last10_wins": 0, "last10_n": 0, "pnl_usd": 0, "small_sample": False},
+                           "caller": {"grade": None, "n_callers": 0, "callers": [], "note": ""},
+                           "narrative": {"key": "other", "label": "No clear theme", "state": "unknown"}},
+                "copy_hist": None, "cluster": [], "sm_cluster": [], "kol": info["kind"] == "kol",
+                "reasons": [{"kind": SM_SELLING, "text": info["text"]}],
+                "safety": None, "demo": bool(getattr(self.hub, "demo", False)), "story": text,
+            }
+            self.ledger.append(SM_SELLING, now, payload)
+            self.store.mark_alerted(sell.chain, sell.wallet, sell.token, now)

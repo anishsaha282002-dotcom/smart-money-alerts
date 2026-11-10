@@ -48,7 +48,8 @@ class Settings:
     cap_below: int = 5              # fewer than this can never grade above C
 
     # --- sources
-    watch_wallets: dict[str, list[str]] = field(default_factory=dict)   # chain -> addresses
+    watch_wallets: dict[str, list[str]] = field(default_factory=dict)   # chain -> addresses that are streamed
+    wallet_book: dict[tuple[str, str], dict] = field(default_factory=dict)
     keyless_pools_per_chain: int = 4
     gecko_max_per_min: int = 24
     helius_max_per_min: int = 60
@@ -60,7 +61,7 @@ class Settings:
 
     # --- story
     llm_reword: bool = False
-    llm_model: str = "claude-opus-5-5"
+    llm_model: str = ""                 # set in config.toml when llm_reword is on; no guessed model id
 
     def has(self, name: str) -> bool:
         return bool(getattr(self, name, ""))
@@ -103,7 +104,20 @@ def load(config_path: str | Path | None = None, env_file: str | Path | None = No
                 elif k == "chains":
                     v = tuple(v)
                 setattr(s, k, v)
-        s.watch_wallets = {c: list(a) for c, a in (raw.get("wallets") or {}).items()}
+        wallets = raw.get("wallets") or {}
+        listed = {c: list(a) for c, a in wallets.items() if isinstance(a, list)}
+        file_name = wallets.get("file") if isinstance(wallets.get("file"), str) else ""
+        if file_name:
+            from .wallets import book_index, load_records, split_book
+            path_w = Path(file_name) if Path(file_name).is_absolute() else ROOT / file_name
+            rows, _notes = load_records(path_w)
+            s.wallet_book = book_index(rows)
+            s.watch_wallets = split_book(rows)
+            for chain, addrs in listed.items():
+                if addrs:
+                    s.watch_wallets[chain] = [a for a in addrs]
+        else:
+            s.watch_wallets = listed
     if environ.get("SMS_DATA_DIR"):
         s.data_dir = Path(environ["SMS_DATA_DIR"])
     if environ.get("SMS_WEB_DIR"):
