@@ -21,7 +21,7 @@ This tool never trades, posts, likes, follows or DMs. Its signals come from fixe
 
 ## One run (v2, 10 Nov 2026). The agent does the X steps, because X is only reachable through MCP
 ```
-cd tracker
+cd /workspace/memecoin-tracker
 python3 tracker.py plan                                   # prints RUN; writes runs/RUN/plan.json (4 searches: EN callers, ZH callers, catalysts, ZH keywords)
 .venv/bin/python narratives.py collect --run RUN          # ~60-90s; free feeds + PumpPortal websocket snapshot -> narratives.json, feed_tokens.json
 #   agent: x.search_posts_all with each plan.json query (args exactly as given). Only the callers_en query may take 1 extra page
@@ -58,11 +58,11 @@ Set these in the shell before `score`. The tracker never signs up, never reads a
 | `HELIUS_API_KEY` | [Helius dashboard](https://dashboard.helius.dev) — Free plan ($0/mo, no card, 1M credits). Docs: [plans](https://www.helius.dev/docs/billing/plans), [Parsed Streams](https://www.helius.dev/docs/parsed-streams). | **Primary:** `stream_worker.py` opens `parsedTransactionSubscribe` on `wss://beta.helius-rpc.com` (verified on Free; 1 credit/event) and records SWAP buys/sells for every wallet in `smart_wallets.json` into `helius_swaps.db`. The subscribe filter AND's `accounts.include` with nine swap programs (Jupiter, Raydium AMM/CLMM/CPMM, Pump.fun, PumpSwap, Meteora DLMM/pools, Orca) so credits are spent on swap-related txs, not every wallet mention. `transactionSubscribe` is not on Free; `logsSubscribe` is the fallback. **If the worker is not running** (heartbeat older than 2 minutes), `score` polls Parsed Events history (`POST /v1/parsed-events/transaction-history`, ~10 credits/request) — not the legacy 100-credit Enhanced Transactions endpoint. Optional: `stream_worker.py register-webhook --url https://...` (refuses without a public HTTPS URL; the box has no public URL, so no webhook is created by default). |
 | `GMGN_API_KEY` | [GMGN Agent API key page](https://gmgn.ai/ai) — upload a locally generated public key ([tutorial](https://docs.gmgn.ai/index/generate-public-key), [Agent API docs](https://docs.gmgn.ai/index/gmgn-agent-api)). Query skills need only the API key, not the private key. IPv4 only. | Official OpenAPI (`https://openapi.gmgn.ai`), exist-auth only (header `X-APIKEY` + `timestamp` + `client_id`). Read endpoints: `GET /v1/user/smartmoney`, `GET /v1/user/kol`, `POST /v1/market/token_signal` (types 12 = smart-money buy, 20 = KOL buy) on `sol`, `bsc`, `base`. A hard guard refuses trade / order / swap / wallet-management / `follow-wallet` commands. The official CLI is not installed here because it also bundles trading. |
 
-`smart_wallets.json` is seeded from public leaderboard write-ups (full addresses published at [Solana Trading, 2 Nov 2026](https://solana-trading.com/blog/top-10-solana-memecoin-trader-wallets-october-2026), with Kolscan account URLs where the address is in the path). Cielo public list pages did not expose full addresses in fetchable HTML. Add or disable wallets there as you like.
+`smart_wallets.json` is a **public, dated snapshot** (compiled 9 Nov 2026, America/Chicago), not a live feed. Each wallet has a source URL and a `stats.stats_date`. The seeded ten still come from [Solana Trading, 2 Nov 2026](https://solana-trading.com/blog/top-10-solana-memecoin-trader-wallets-october-2026); the expanded list also uses committed GitHub snapshots from [nirholas/kol-quest](https://github.com/nirholas/kol-quest) (GMGN scrape 9 Mar 2026; Kolscan leaderboard retrieved 9 Nov 2026), the [Evidence Deflator Kolscan freeze (15 Oct 2026)](https://evidencedeflator.com/data/kolscan/frozen-2026-10-15.json), [duolaAmengweb3 verified KOLs (3 May 2026)](https://github.com/duolaAmengweb3/solana-alpha-tracker/blob/main/packages/core/src/data/verified.json), and a [yksanjo/kol-tracker snapshot (21 May 2026)](https://github.com/yksanjo/kol-tracker). Sniper-only, inactive, and ~200+ swaps/day wallets are excluded from the stream (the latter sit in the same file with `stream: false`). The worker enforces a 30,000-credit daily cap (configurable) and shrinks to the top-ranked subset at 80%. Cielo public pages did not expose full addresses; live gmgn.ai rank endpoints returned 403. Cloning the repo only needs a free `HELIUS_API_KEY`. Add or disable wallets as you like. Leaderboard ranks change quickly; this is not financial advice.
 
 ## Helius stream worker
 ```
-cd tracker
+cd /workspace/memecoin-tracker
 # one-shot check (does not print the API key)
 .venv/bin/python stream_worker.py probe
 # start (pid: stream_worker.pid, log: stream_worker.log)
@@ -115,3 +115,4 @@ Soft exits (2 or more trigger a SELL): the coin's narrative is FADING; last-3h m
 `pumpfun_callouts.py` loads `data/pumpfun_callout_leaderboard.json`, a dated snapshot of the public Callout Rewards board (daily / weekly / monthly / all-time). Ranks and rewards from after the 10 Oct 2026 follower-profit change are weighted more than all-time; a high call-frequency penalty applies only when a source published a call count; caller wallets flagged as bot-like, wash-like, sybil, or bundled get no boost.
 
 This is an extra input next to the existing 24h-2x caller hit rate. **A callout or a leaderboard rank alone never creates a BUY** — it only adds a plain-English boost note when a coin already has an independent signal.
+

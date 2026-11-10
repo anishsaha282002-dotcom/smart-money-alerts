@@ -33,14 +33,14 @@ GMGN's value was the labeled set, not the clustering math. Free sources of full 
 
 ### How this plugs into the two codebases (when Anish asks to build)
 
-**`tracker/smartmoney.py`**
+**`/workspace/memecoin-tracker/smartmoney.py`**
 
 - Keep `cluster_by_mint`, `summarize`, and the rule "2+ tracked wallets in ~1h". Without GMGN, `sm_confirmed` still fires from `helius_buyers`.
 - Leave `HELIUS_MAX_WALLETS = 12` and `HELIUS_MAX_CALLS = 20` on the polling path.
 - New optional collector: webhook or Parsed Streams events → same `{mint, maker, side, timestamp}` shape → feed `cluster_by_mint`. That path can drop the 12-wallet cap.
 - GMGN blocks (`gmgn_sm`, type-12 / type-20 signals, KOL buy/sell) stay optional and dark until a key exists without a $100 balance.
 
-**`src/sma/sources/`**
+**`/workspace/smart-money-alerts/src/sma/sources/`**
 
 - `solana.py` already polls Helius Enhanced history when `HELIUS_API_KEY` is set. `pipeline.py` already treats other graded wallets buying the same token as `cobuyers`.
 - Add a webhook/stream source next to `solana.py` / `gmgn.py`. Parse SWAP/buy events, store them, and let the existing cobuyer + wallet-grade path do the "cluster in one message" work.

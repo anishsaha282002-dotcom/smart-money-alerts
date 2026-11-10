@@ -302,17 +302,34 @@ class SwapStore:
         with self._connect() as c:
             c.execute('insert or replace into meta values(?,?)', (k, str(v)))
 
+    def _chicago_date(self):
+        try:
+            from credit_budget import chicago_date
+            return chicago_date()
+        except Exception:
+            return time.strftime('%Y-%m-%d', time.gmtime())
+
     def bump_credits(self, n=1):
         cur = int(self.get_meta('credits_session', '0') or 0)
         total = int(self.get_meta('credits_total', '0') or 0)
+        day_date = self._chicago_date()
+        stored_date = self.get_meta('credits_day_date') or ''
+        day = 0 if stored_date != day_date else int(self.get_meta('credits_day', '0') or 0)
         self.set_meta('credits_session', cur + n)
         self.set_meta('credits_total', total + n)
+        self.set_meta('credits_day_date', day_date)
+        self.set_meta('credits_day', day + n)
         return cur + n
 
     def credits(self):
+        day_date = self._chicago_date()
+        stored_date = self.get_meta('credits_day_date') or ''
+        day = 0 if stored_date != day_date else int(self.get_meta('credits_day', '0') or 0)
         return {
             'session': int(self.get_meta('credits_session', '0') or 0),
             'total': int(self.get_meta('credits_total', '0') or 0),
+            'day': day,
+            'day_date': day_date if stored_date == day_date else day_date,
         }
 
     def heartbeat(self, **kw):

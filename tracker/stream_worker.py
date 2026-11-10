@@ -16,6 +16,7 @@ sys.path.insert(0, HERE)
 
 import helius_stream as HS
 import smartmoney as SM
+import credit_budget as CB
 
 PID_PATH = os.path.join(HERE, 'stream_worker.pid')
 DEFAULT_LOG = os.path.join(HERE, 'stream_worker.log')
@@ -90,9 +91,19 @@ SWAP_PROGRAMS = [
 ]
 
 
-def parsed_subscribe_payload(addresses):
+# Parsed Streams allows at most 100 addresses per accounts.include subscription.
+# Webhooks can watch more; this worker shards the list across multiple subs on one socket.
+MAX_ACCOUNTS_PER_SUB = 100
+
+
+def shard_addresses(addresses, size=MAX_ACCOUNTS_PER_SUB):
+    addrs = list(addresses)
+    return [addrs[i:i + size] for i in range(0, len(addrs), size)] or [[]]
+
+
+def parsed_subscribe_payload(addresses, req_id=1):
     return {
-        'jsonrpc': '2.0', 'id': 1, 'method': 'parsedTransactionSubscribe',
+        'jsonrpc': '2.0', 'id': req_id, 'method': 'parsedTransactionSubscribe',
         'params': [
             {'programs': list(SWAP_PROGRAMS),
              'accounts': {'include': list(addresses)},
@@ -154,14 +165,18 @@ async def probe_methods(key, address, wait=6):
 
 
 # ---------------- main run loop ----------------
-async def listen_parsed(key, wallets, store, stop):
+async def listen_parsed(key, wallets, store, stop, budget=None):
     import websockets
     addrs = [w['address'] for w in wallets]
+    batches = shard_addresses(addrs, MAX_ACCOUNTS_PER_SUB)
     url = HS.auth_url(HS.PARSED_STREAM_WS, key)
-    log(f'connecting parsedTransactionSubscribe wallets={len(addrs)}')
+    log(f'connecting parsedTransactionSubscribe wallets={len(addrs)} subscriptions={len(batches)} '
+        f'(max {MAX_ACCOUNTS_PER_SUB}/sub)')
     async with websockets.connect(url, open_timeout=20, close_timeout=5, ping_interval=PING_S, ping_timeout=20) as ws:
-        await ws.send(json.dumps(parsed_subscribe_payload(addrs)))
-        confirmed = False
+        for i, batch in enumerate(batches, start=1):
+            await ws.send(json.dumps(parsed_subscribe_payload(batch, req_id=i)))
+        pending = set(range(1, len(batches) + 1))
+        confirmed = 0
         last_beat = 0
         while not stop.is_set():
             try:
@@ -169,26 +184,45 @@ async def listen_parsed(key, wallets, store, stop):
             except asyncio.TimeoutError:
                 now = time.time()
                 if now - last_beat >= HEARTBEAT_S:
-                    store.heartbeat(method='parsedTransactionSubscribe', wallets=len(addrs))
+                    store.heartbeat(method='parsedTransactionSubscribe', wallets=len(addrs),
+                                    subscribed=str(confirmed))
                     last_beat = now
+                    if budget:
+                        st = CB.observe(store, budget)
+                        store.set_meta('credits_day_log', f"{st['day']}/{st['cap']} {st['action']}")
+                        if st['action'] in ('shrink', 'pause'):
+                            log(f'credit budget {st["action"]} daily={st["day"]}/{st["cap"]} '
+                                f'monthly={st["monthly_total"]}/{st["monthly_cap"]} subscribed={len(addrs)}')
+                            return st['action']
                 continue
             if msg.get('error'):
                 raise RuntimeError(HS.redact(msg['error']))
-            if not confirmed and 'result' in msg and msg.get('id') == 1:
-                confirmed = True
+            if pending and 'result' in msg and msg.get('id') in pending:
+                pending.discard(msg['id'])
+                confirmed += 1
                 store.heartbeat(method='parsedTransactionSubscribe', wallets=len(addrs),
-                                subscribed='1', sub_id=msg.get('result'))
-                log(f'subscribed parsedTransactionSubscribe id={msg.get("result")} wallets={len(addrs)}')
+                                subscribed=str(confirmed), sub_id=msg.get('result'))
+                if confirmed == 1 or not pending:
+                    log(f'subscribed parsedTransactionSubscribe {confirmed}/{len(batches)} '
+                        f'id={msg.get("result")} wallets={len(addrs)}')
                 last_beat = time.time()
                 continue
             if msg.get('method') == 'parsedTransactionNotification':
                 rows = HS.parse_notification(msg, wallets, source='stream')
                 added = store.insert_many(rows)
                 credits = store.bump_credits(1)
+                cred = store.credits()
                 store.heartbeat(method='parsedTransactionSubscribe', last_event_ts=HS._now_ts(),
-                                last_sig=(rows[0]['signature'][:8] + '…') if rows else '')
+                                last_sig=(rows[0]['signature'][:8] + '…') if rows else '',
+                                credits_day=cred.get('day'), wallets=len(addrs))
                 if added or credits % LOG_CREDIT_EVERY == 0:
-                    log(f'stream event credits={credits} inserted={added} swaps={len(rows)}')
+                    log(f'stream event credits={credits} daily={cred.get("day")} inserted={added} swaps={len(rows)}')
+                if budget:
+                    st = CB.observe(store, budget)
+                    if st['action'] in ('shrink', 'pause'):
+                        log(f'credit budget {st["action"]} daily={st["day"]}/{st["cap"]} '
+                            f'monthly={st["monthly_total"]}/{st["monthly_cap"]} subscribed={len(addrs)}')
+                        return st['action']
         return 'closed'
 
 
@@ -247,18 +281,55 @@ async def listen_logs(key, wallets, store, stop):
         return 'closed'
 
 
-async def run_forever(key, wallets, store, stop, prefer='parsedTransactionSubscribe'):
+async def run_forever(key, wallets, store, stop, prefer='parsedTransactionSubscribe', budget=None):
     backoff = BACKOFF_START
     method = prefer
+    budget = budget or CB.load_config(SM.WALLETS_PATH)
+    shrunk = False
+    active = CB.select_active_wallets(wallets, shrink=False, shrink_size=budget['shrink_size'])
+    log(f'credit budget daily_cap={budget["daily_cap"]} monthly_cap={budget["monthly_cap"]} '
+        f'shrink_size={budget["shrink_size"]} streamable={len(active)}')
     while not stop.is_set():
         try:
+            st = CB.observe(store, budget)
+            if st['action'] == 'pause':
+                wait = CB.seconds_until_next_chicago_midnight()
+                log(f'credit cap reached daily={st["day"]}/{st["cap"]} monthly={st["monthly_total"]}/'
+                    f'{st["monthly_cap"]}; pausing {wait}s until next America/Chicago day')
+                store.heartbeat(method='paused', wallets=0, credits_day=st['day'])
+                try:
+                    await asyncio.wait_for(stop.wait(), timeout=min(wait, 300))
+                except asyncio.TimeoutError:
+                    pass
+                # After midnight the daily counter resets via credits(); unsrink.
+                if CB.observe(store, budget)['action'] == 'ok':
+                    shrunk = False
+                    active = CB.select_active_wallets(wallets, shrink=False,
+                                                      shrink_size=budget['shrink_size'])
+                    log(f'resumed after cap reset; wallets={len(active)}')
+                continue
+            if st['action'] == 'shrink' and not shrunk:
+                active = CB.select_active_wallets(wallets, shrink=True,
+                                                  shrink_size=budget['shrink_size'])
+                shrunk = True
+                log(f'shrinking subscription to top {len(active)} wallets by score '
+                    f'(daily={st["day"]}/{st["cap"]})')
             if method == 'parsedTransactionSubscribe':
-                await listen_parsed(key, wallets, store, stop)
+                result = await listen_parsed(key, active, store, stop, budget=budget)
             else:
-                await listen_logs(key, wallets, store, stop)
+                result = await listen_logs(key, active, store, stop)
+                result = result or 'closed'
             backoff = BACKOFF_START
             if stop.is_set():
                 break
+            if result == 'shrink':
+                active = CB.select_active_wallets(wallets, shrink=True,
+                                                  shrink_size=budget['shrink_size'])
+                shrunk = True
+                log(f'resubscribing after shrink wallets={len(active)}')
+                continue
+            if result == 'pause':
+                continue
             log('socket closed; reconnecting')
         except asyncio.CancelledError:
             break
@@ -323,16 +394,19 @@ def cmd_run(args):
     signal.signal(signal.SIGINT, handle)
     signal.signal(signal.SIGTERM, handle)
     prefer = args.method or 'parsedTransactionSubscribe'
-    log(f'starting worker pid={os.getpid()} wallets={len(wallets)} method={prefer} db={store.path}')
+    budget = CB.load_config(SM.WALLETS_PATH)
+    log(f'starting worker pid={os.getpid()} wallets={len(wallets)} method={prefer} db={store.path} '
+        f'daily_cap={budget["daily_cap"]}')
     if notes:
         log('wallet notes: ' + '; '.join(notes[:2]))
     try:
-        asyncio.run(run_forever(key, wallets, store, stop, prefer=prefer))
+        asyncio.run(run_forever(key, wallets, store, stop, prefer=prefer, budget=budget))
     finally:
         store.mark_stopped()
         clear_pid()
         cred = store.credits()
-        log(f'stopped credits_session={cred["session"]} credits_total={cred["total"]}')
+        log(f'stopped credits_session={cred["session"]} credits_total={cred["total"]} '
+            f'credits_day={cred.get("day")} date={cred.get("day_date")}')
     return 0
 
 

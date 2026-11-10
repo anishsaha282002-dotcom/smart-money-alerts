@@ -125,7 +125,9 @@ def confidence_of(hit):
         return 'KOL buy'
     return 'standard'
 
-def load_smart_wallets(path=None):
+def load_smart_wallets(path=None, include_reserve=False):
+    """Load enabled wallets. Reserve / stream=false entries are skipped unless
+    include_reserve is True, so a downed stream worker will not poll them."""
     p = path or WALLETS_PATH
     try:
         with open(p) as f:
@@ -137,6 +139,8 @@ def load_smart_wallets(path=None):
     for w in j.get('wallets') or []:
         if w.get('enabled') is False:
             continue
+        if w.get('stream') is False and not include_reserve:
+            continue
         addr = (w.get('address') or '').strip()
         if not addr:
             continue
@@ -146,6 +150,13 @@ def load_smart_wallets(path=None):
             tags.append('kol')
         if 'smart' not in tags:
             tags.append('smart')
+        try:
+            score = float(w.get('score') or 0)
+        except (TypeError, ValueError):
+            score = 0.0
+        narr = w.get('narratives') or w.get('narrative') or []
+        if isinstance(narr, str):
+            narr = [narr]
         out.append({
             'name': w.get('name') or addr[:6],
             'chain': (w.get('chain') or 'sol').lower(),
@@ -153,6 +164,10 @@ def load_smart_wallets(path=None):
             'source': w.get('source') or '',
             'tags': tags,
             'role': role,
+            'score': score,
+            'stream': False if w.get('stream') is False else True,
+            'narratives': [str(x) for x in narr] or ['general'],
+            'vetting': w.get('vetting') or {},
         })
     return out, notes
 
