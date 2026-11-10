@@ -312,13 +312,27 @@ so a fresh deploy shows a working site.
 - **Vercel / Netlify / Cloudflare Pages** — import the repository and set the root (publish)
   directory to `web`. No build command.
 
-### Optional: a free scanner on GitHub Actions
+### Optional: a free scanner on GitHub Actions (nothing to install)
 
-[`scan.yml`](.github/workflows/scan.yml) runs `sms run` every 15 minutes and commits the ledger
-and site data, so git history becomes a second witness to the record. It is off until you set the
-repository variable `SMS_SCAN_ENABLED` to `true`. Keys go in Actions secrets. Scheduled workflows
-are often late, so this suits a slow public record; for timely alerts run `sms watch` on any
-machine that stays on.
+[`scan.yml`](.github/workflows/scan.yml) runs `sms run` every 30 minutes on GitHub's servers,
+commits the ledger, and publishes the website with fresh data. You only ever open a link.
+
+One-time setup, all in the repository's **Settings**:
+
+1. **General → Default branch**: the branch that holds this project (scheduled workflows only run
+   from the default branch).
+2. **Pages → Source**: "GitHub Actions". The site appears at
+   `https://<your-name>.github.io/<repository>/`, with the labelled demo data at first.
+3. **Secrets and variables → Actions → Variables**: add `SMS_SCAN_ENABLED` = `true` to switch the
+   live scanner on. From the next run the site shows live data instead of the demo.
+4. Optional, **Secrets**: `GMGN_API_KEY`, `HELIUS_API_KEY`, `TELEGRAM_BOT_TOKEN`,
+   `TELEGRAM_CHAT_ID`, `DISCORD_WEBHOOK_URL`.
+
+Good to know: scheduled workflows are often late, so this suits a slow public record; for timely
+alerts run `sms watch` on a machine that stays on. The ledger lives in `record/` in git, so commit
+history is a second witness to it. The scanner's working memory is kept in the Actions cache.
+These workflows are written for GitHub's documented behaviour but could not be run from the
+environment this project was built in, so watch the first runs in the **Actions** tab.
 
 ## Safety
 

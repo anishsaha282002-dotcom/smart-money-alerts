@@ -84,7 +84,13 @@ function alerts() {
     && (state.grade === "all" || a.grades.wallet.grade === state.grade));
   const root = $("#alerts");
   if (!list.length) {
-    root.replaceChildren(el("div", { class: "card empty", text: "No alerts match these filters yet." }));
+    // a live scanner that has not alerted yet is normal, not broken: say why
+    const cold = !site.meta.demo && !site.alerts.length;
+    root.replaceChildren(el("div", { class: "card empty" },
+      el("p", { text: cold ? "The scanner is running. No alert has been sent yet." : "No alerts match these filters yet." }),
+      cold ? el("p", { class: "muted", text: `It only alerts when a wallet graded ${site.meta.min_grade} or better buys. `
+        + `So far ${site.wallets.length} wallet${site.wallets.length === 1 ? " has" : "s have"} been graded. `
+        + "Without a GMGN or Helius key it has to watch wallets for days before it can trust one." }) : null));
     $("#more").replaceChildren();
     return;
   }

@@ -1,19 +1,26 @@
-# OPTIONAL free "server": GitHub Actions runs the scanner on a schedule and commits the ledger.
+# OPTIONAL free "server": GitHub Actions runs the scanner on a schedule, keeps the public ledger in
+# the repository, and publishes the website with fresh data. Nothing to install on your computer.
+#
 # Off until you opt in: Settings -> Secrets and variables -> Actions -> Variables -> SMS_SCAN_ENABLED = true
 # Keys are optional and go in Actions *secrets* (never in the repository).
 #
-# Good to know: scheduled workflows run at best every 5 minutes and are often late, so this is the
-# slow, free way to keep a public record. For timely alerts run `sms watch` on any always-on machine.
-# The ledger lives in record/ and every scan is a commit, so git history is a second witness to it.
+# Good to know:
+# - Scheduled workflows only run from the repository's default branch, and are often late. This is
+#   the slow, free way to keep a public record. For timely alerts run `sms watch` on a machine.
+# - The ledger (record/ledger.jsonl) is committed, so git history is a second witness to it.
+# - Working memory (record/state.db) is kept in the Actions cache, not in git. If the cache is
+#   ever lost the scanner starts cold again; the ledger is unaffected.
 name: scan
 
 on:
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "*/30 * * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: scan
@@ -23,7 +30,10 @@ jobs:
   scan:
     if: vars.SMS_SCAN_ENABLED == 'true' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     env:
       SMS_DATA_DIR: record
       HELIUS_API_KEY: ${{ secrets.HELIUS_API_KEY }}
@@ -38,13 +48,34 @@ jobs:
         with:
           python-version: "3.12"
           cache: pip
+      - name: Restore the scanner's working memory
+        uses: actions/cache/restore@v4
+        with:
+          path: record/state.db
+          key: sms-state-${{ github.run_id }}
+          restore-keys: sms-state-
       - run: pip install -e .
-      - run: sms run
-      - run: sms verify record/ledger.jsonl
-      - name: Commit the ledger and the site data
+      - name: Scan, score old alerts, write the website data
+        run: sms run
+      - name: Check the hash chain
+        run: if [ -f record/ledger.jsonl ]; then sms verify record/ledger.jsonl; fi
+      - name: Commit the ledger
         run: |
           git config user.name "smart-money-stories-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add record web/data
+          git add record
           git diff --cached --quiet || git commit -m "scan: $(date -u +%Y-%m-%dT%H:%MZ)"
           git push
+      - name: Save the scanner's working memory
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: record/state.db
+          key: sms-state-${{ github.run_id }}
+      # publish the site with the data this run just wrote (web/data is not committed by the scanner)
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web
+      - id: deployment
+        uses: actions/deploy-pages@v4

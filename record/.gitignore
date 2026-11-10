@@ -1,0 +1,2 @@
+# the scanner keeps its working memory here; only the public ledger is committed
+state.db*

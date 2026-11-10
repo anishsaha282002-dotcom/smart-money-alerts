@@ -1,10 +1,14 @@
 # Publishes the static site in web/ to GitHub Pages (free).
 # One-time setup: repository Settings -> Pages -> Source: "GitHub Actions".
+#
+# This publishes what is committed in web/, which is the labelled synthetic demo data. Once the
+# scheduled scanner is switched on (SMS_SCAN_ENABLED = true), scan.yml publishes the site with live
+# data instead and this workflow stands down, so the demo never overwrites the live record.
 name: pages
 
 on:
   push:
-    branches: [main]
+    branches: [main, smart-money-stories]
     paths: ["web/**"]
   workflow_dispatch:
 
@@ -19,6 +23,7 @@ concurrency:
 
 jobs:
   deploy:
+    if: vars.SMS_SCAN_ENABLED != 'true'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
