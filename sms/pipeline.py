@@ -9,7 +9,7 @@ import logging
 
 from . import story
 from .config import Settings
-from .grading import copycheck, narrative
+from .grading import baserate, copycheck, narrative
 from .grading.caller import grade_callers
 from .grading.wallet import grade_wallet
 from .ledger import Ledger
@@ -178,8 +178,21 @@ class Pipeline:
                                      "text": f"Wallet cluster bought: {len(sm)} tracked wallets bought it within the hour ({names})."})
         if kol:
             alert["reasons"].append({"kind": "kol", "text": f"KOL bought: {kol.get('name') or short(buy.wallet)}."})
+        alert["base_rate"] = baserate.lookup(alert, self.baserates(), leaders=self.leader_wallets())
         alert["story"] = story.reword(story.render(alert, self.s.cap_below), self.s)
         return alert
+
+    def leader_wallets(self) -> set:
+        if getattr(self, "_leaders", None) is None:
+            from .sources.pumpfun_callouts import load_snapshot
+            snap = load_snapshot()
+            self._leaders = baserate.leader_wallets(snap) if snap.get("loaded") else set()
+        return self._leaders
+
+    def baserates(self) -> dict:
+        if getattr(self, "_rates", None) is None:
+            self._rates = baserate.load()
+        return self._rates
 
     def leaderboard(self) -> dict:
         if getattr(self, "_lb", None) is None:

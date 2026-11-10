@@ -34,12 +34,10 @@ WORKER_FRESH_S = 120
 POLL_SLEEP = 0.6
 POLL_LIMIT = 100
 
-QUOTE_MINTS = {
-    'So11111111111111111111111111111111111111112',
-    'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',
-    'Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB',
-    'USD1ttGY1N17NEEHLmELoaybftRBUSErhqYiQzvEmuB',
-}
+from . import quote_tokens as QT
+
+# Quote / non-memecoin mints (SOL, stables, LSTs, wrapped majors, tokenized stocks like TTWO).
+QUOTE_MINTS = QT.quote_mints()
 
 UA = {"User-Agent": "smart-money-stories/0.1 (research; read-only helius stream)"}
 
@@ -192,6 +190,8 @@ def parse_swaps(tx, wallets, since_ts=0, source='stream', now_ts=None, default_t
         mint_n = _norm(mint)
         if not mint_n or mint in QUOTE_MINTS or mint_n in QUOTE_MINTS:
             return
+        if QT.is_quote_mint(mint_n):
+            return
         if wallet not in addrs:
             return
         key = (sig, wallet, mint_n, side)
@@ -225,7 +225,8 @@ def parse_swaps(tx, wallets, since_ts=0, source='stream', now_ts=None, default_t
         if payer in addrs:
             add('buy', summary.get('output_mint'), payer, 0)
             add('sell', summary.get('input_mint'), payer, 0)
-    return rows
+    # Pair rule: the row's mint must be the traded memecoin, never the quote it was paired with.
+    return QT.resolve_pair_rows(rows)
 
 
 def typ_from_summary(tx):

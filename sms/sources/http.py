@@ -124,6 +124,23 @@ class Http:
     def get(self, path: str, params: dict | None = None, headers: dict | None = None):
         return self.request("GET", path, params=params, headers=headers)
 
+    def get_text(self, path: str, params: dict | None = None, headers: dict | None = None) -> str | None:
+        """A public web page as text (GET only, same read-only guard and rate limit). None on failure."""
+        url = path if path.startswith("http") else f"{self.base}{path}"
+        check_readonly("GET", url)
+        self.limiter.wait()
+        self.requests += 1
+        try:
+            r = self.http.request("GET", url, params=params,
+                                  headers={**self.headers, "accept": "text/html", **(headers or {})})
+        except httpx.HTTPError as e:
+            self._warn("network", f"network error ({type(e).__name__})")
+            return None
+        if r.status_code >= 400:
+            self._warn(str(r.status_code), f"HTTP {r.status_code}")
+            return None
+        return r.text
+
 
 def _reason(r: httpx.Response) -> str:
     """The API's own short error code, when it sends one (e.g. GMGN's AUTH_IP_BLOCKED). Never the whole body."""

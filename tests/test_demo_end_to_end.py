@@ -95,7 +95,7 @@ def test_record_includes_misses_and_pending(world):
 def test_site_export_has_everything_the_website_reads(world):
     out = report.export(world["ledger"], world["store"], world["hub"], world["settings"])
     site = json.loads((out / "site.json").read_text(encoding="utf-8"))
-    assert set(site) == {"meta", "ticker", "alerts", "narratives", "wallets", "stats"}
+    assert set(site) == {"meta", "ticker", "alerts", "narratives", "wallets", "stats", "baserates"}
     assert site["meta"]["demo"] is True and site["meta"]["head"] == world["ledger"].head
     assert "Not financial advice" in site["meta"]["disclaimer"]
     assert site["ticker"] and site["alerts"][0]["ts"] >= site["alerts"][-1]["ts"]

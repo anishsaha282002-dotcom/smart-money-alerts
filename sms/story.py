@@ -11,6 +11,7 @@ import logging
 import re
 
 from . import ADVICE, DISCLAIMER
+from .grading import baserate
 from .grading.copycheck import VERDICT_TEXT
 from .grading.narrative import STATE_TEXT
 from .grading.wallet import FLAG_TEXT
@@ -89,6 +90,19 @@ def copy_lines(hist: dict | None) -> list[str]:
     return out
 
 
+def structure_line(st: dict) -> str:
+    parts = []
+    if st.get("top10_pct") is not None:
+        parts.append(f"top 10 own {st['top10_pct']:.0f}% (pools excluded)")
+    if st.get("insiders_detected") is not None:
+        parts.append(f"{st['insiders_detected']} linked insider wallets")
+    if st.get("creator_pct") is not None:
+        parts.append(f"creator holds {st['creator_pct']:.1f}%")
+    if st.get("holders"):
+        parts.append(f"{st['holders']:,} holders")
+    return " · ".join(parts) + " (RugCheck)." if parts else "no holder data (RugCheck)."
+
+
 def render(alert: dict, cap_below: int = 5) -> str:
     tok, w, buy = alert["token"], alert["grades"]["wallet"], alert["buy"]
     c, n = alert["grades"]["caller"], alert["grades"]["narrative"]
@@ -120,6 +134,11 @@ def render(alert: dict, cap_below: int = 5) -> str:
     lines += ["", f"CALLER GRADE: {c['grade'] or 'none yet'}"] + caller_lines(c)
     lines += ["", f"NARRATIVE: {'no clear theme' if n.get('key') == 'other' else n['label']}"] + narrative_lines(n)
     lines += ["", "CAN YOU STILL COPY IT?"] + copy_lines(alert.get("copy_hist"))
+    if "base_rate" in alert:
+        lines += ["", "HOW SIMILAR ALERTS TURNED OUT"] + baserate.lines(alert.get("base_rate"))
+    st = (alert.get("safety") or {}).get("structure")
+    if st:
+        lines += ["", "HOLDERS: " + structure_line(st)]
 
     risks = (alert.get("safety") or {}).get("risks") or []
     if risks:

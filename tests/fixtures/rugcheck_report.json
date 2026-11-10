@@ -1,0 +1,244 @@
+{
+ "with_holders": {
+  "_note": "synthetic test shape, not a real token",
+  "mint": "SYNTHmint",
+  "creator": "CREATOR1",
+  "creatorBalance": 30000000,
+  "token": {
+   "supply": 1000000000,
+   "decimals": 0
+  },
+  "score_normalised": 40,
+  "totalHolders": 812,
+  "rugged": false,
+  "graphInsidersDetected": 12,
+  "insiderNetworks": [
+   {
+    "id": "n1",
+    "size": 9,
+    "tokenAmount": 180000000,
+    "type": "transfer"
+   }
+  ],
+  "risks": [
+   {
+    "name": "Top 10 holders high ownership",
+    "level": "danger"
+   }
+  ],
+  "knownAccounts": {
+   "POOLOWNER": {
+    "name": "Pump Fun AMM",
+    "type": "AMM"
+   }
+  },
+  "topHolders": [
+   {
+    "address": "A0",
+    "owner": "POOLOWNER",
+    "pct": 20.0,
+    "insider": false
+   },
+   {
+    "address": "A1",
+    "owner": "O1",
+    "pct": 9,
+    "insider": true
+   },
+   {
+    "address": "A2",
+    "owner": "O2",
+    "pct": 7,
+    "insider": true
+   },
+   {
+    "address": "A3",
+    "owner": "O3",
+    "pct": 5,
+    "insider": false
+   },
+   {
+    "address": "A4",
+    "owner": "O4",
+    "pct": 4,
+    "insider": false
+   },
+   {
+    "address": "A5",
+    "owner": "O5",
+    "pct": 3,
+    "insider": false
+   },
+   {
+    "address": "A6",
+    "owner": "O6",
+    "pct": 2,
+    "insider": false
+   },
+   {
+    "address": "A7",
+    "owner": "O7",
+    "pct": 2,
+    "insider": false
+   },
+   {
+    "address": "A8",
+    "owner": "O8",
+    "pct": 1.5,
+    "insider": false
+   },
+   {
+    "address": "A9",
+    "owner": "O9",
+    "pct": 1.5,
+    "insider": false
+   },
+   {
+    "address": "A10",
+    "owner": "O10",
+    "pct": 1,
+    "insider": false
+   },
+   {
+    "address": "A11",
+    "owner": "O11",
+    "pct": 1,
+    "insider": false
+   }
+  ]
+ },
+ "insiders": {
+  "mint": "nxPqZ4F7ux8Vph5NFu25rEP6Kx9Gr1U6Fmj36Rjpump",
+  "creator": "8o6yYRnEGChhfRHm3zpmXE136Tu2mH7ChMoy741trVvJ",
+  "creatorBalance": 0,
+  "token": {
+   "mintAuthority": null,
+   "supply": 981723911629594,
+   "decimals": 6,
+   "isInitialized": true,
+   "freezeAuthority": null
+  },
+  "topHolders": null,
+  "risks": [
+   {
+    "name": "Large Amount of LP Unlocked",
+    "value": "100.00%",
+    "description": "A large amount of LP tokens are unlocked, allowing the owner to remove liquidity at any point.",
+    "score": 10999,
+    "level": "danger"
+   }
+  ],
+  "score_normalised": 51,
+  "totalHolders": 68726,
+  "rugged": false,
+  "graphInsidersDetected": 119,
+  "insiderNetworks": [
+   {
+    "id": "calm-caramel-kangaroo",
+    "size": 4,
+    "type": "transfer",
+    "tokenAmount": 55818110530727,
+    "currentHolding": 55818110530727,
+    "activeAccounts": 4
+   },
+   {
+    "id": "innocent-slate-toucan",
+    "size": 6,
+    "type": "transfer",
+    "tokenAmount": 54653483125498,
+    "currentHolding": 6199892765815,
+    "activeAccounts": 6
+   },
+   {
+    "id": "obtuse-maroon-duck",
+    "size": 10,
+    "type": "transfer",
+    "tokenAmount": 50822259403979,
+    "currentHolding": 50822259403979,
+    "activeAccounts": 10
+   },
+   {
+    "id": "angry-jasmine-quail",
+    "size": 7,
+    "type": "transfer",
+    "tokenAmount": 40324124017743,
+    "currentHolding": 40324124017743,
+    "activeAccounts": 7
+   },
+   {
+    "id": "unique-zircon-ant",
+    "size": 28,
+    "type": "transfer",
+    "tokenAmount": 31598426412602,
+    "currentHolding": 21727865673469,
+    "activeAccounts": 28
+   },
+   {
+    "id": "intense-cyan-iguana",
+    "size": 16,
+    "type": "transfer",
+    "tokenAmount": 21986480488199,
+    "currentHolding": 21986480488199,
+    "activeAccounts": 16
+   },
+   {
+    "id": "witty-coral-weevil",
+    "size": 5,
+    "type": "transfer",
+    "tokenAmount": 20336808240467,
+    "currentHolding": 8886231516901,
+    "activeAccounts": 5
+   },
+   {
+    "id": "lively-magenta-panther",
+    "size": 4,
+    "type": "transfer",
+    "tokenAmount": 19085171406152,
+    "currentHolding": 9548836286960,
+    "activeAccounts": 4
+   },
+   {
+    "id": "young-fuchsia-penguin",
+    "size": 34,
+    "type": "transfer",
+    "tokenAmount": 17929888121402,
+    "currentHolding": 15395103022525,
+    "activeAccounts": 34
+   },
+   {
+    "id": "witty-forest-quail",
+    "size": 5,
+    "type": "transfer",
+    "tokenAmount": 8519744831618,
+    "currentHolding": 8519744831618,
+    "activeAccounts": 5
+   }
+  ],
+  "knownAccounts": {
+   "22UstGnaDwXqQKT2eTpE6QdhwtjAJpvnSG2gS5W3vajy": {
+    "name": "Meteora DAMM v2 Position",
+    "type": "AMM"
+   },
+   "2F4JQY3pPmHnJd2EuPQxdxF1yw5JQBhMrjDNs7kjM1YC": {
+    "name": "Meteora DAMM v2 Position",
+    "type": "AMM"
+   },
+   "2PpuAj3GtKTm8PwPAq3sM4ETtQiNdQhNzXF3mq6p2oVQ": {
+    "name": "Meteora DLMM Pool",
+    "type": "AMM"
+   },
+   "2dNmUezA5CJscYYiHeuKCQ12e6A1NsTj2jW6YfuXwYyX": {
+    "name": "Meteora DLMM Pool",
+    "type": "AMM"
+   },
+   "2ex1HbhZzdqQ5b1Lc3weQ6fzcBgvRmAP5wgGihP5awTD": {
+    "name": "Meteora DLMM Pool",
+    "type": "AMM"
+   },
+   "2pvJqQgPMXCBFw678uSTFvTnC6mo7Q51yByHEqmd5ojQ": {
+    "name": "Meteora DLMM Pool",
+    "type": "AMM"
+   }
+  }
+ }
+}

@@ -125,6 +125,22 @@ function card(a, i) {
   const risks = a.safety && a.safety.risks && a.safety.risks.length
     ? el("div", { class: "danger", text: "⚠ Safety: " + a.safety.risks.slice(0, 3).join("; ") }) : null;
 
+  const br = a.base_rate;
+  const history = br
+    ? el("div", { class: "track history", title: "Measured from the alert price on past alerts of the same kind. Not a forecast." },
+        br.enough
+          ? `Past alerts like this (${br.label}, n=${br.n}): ${Math.round(br.pct_2x * 100)}% touched 2x within ${br.horizon}, ` +
+            `${Math.round(br.pct_down50 * 100)}% fell 50%+. History, not a forecast.`
+          : `Not enough history yet for this kind of alert (${br.n} priced).`)
+    : null;
+  const st = a.safety && a.safety.structure;
+  const holders = st
+    ? el("div", { class: "track", text: "Holders (RugCheck): " + [
+        st.top10_pct != null ? `top 10 own ${Math.round(st.top10_pct)}%` : null,
+        st.insiders_detected != null ? `${st.insiders_detected} linked insider wallets` : null,
+        st.creator_pct != null ? `creator holds ${st.creator_pct.toFixed(1)}%` : null,
+      ].filter(Boolean).join(" · ") || "no holder data" }) : null;
+
   return el("article", { class: "alert card reveal", id: a.id, style: `--i:${i}` },
     el("header", {},
       el("div", {},
@@ -146,7 +162,7 @@ function card(a, i) {
     el("div", { class: "track", text: w.n_closed
       ? `Won ${w.last10_wins} of its last ${w.last10_n} closed trades in ${w.days} days · ${fmt.signedUsd(w.pnl_usd)} realised · ${w.n_closed} closed trades`
       : `No closed trades in the last ${w.days} days.` }),
-    sample, cold, flags, risks,
+    sample, cold, flags, risks, history, holders,
     copyBox(a),
     el("div", { class: "outcome", role: "group", "aria-label": "Price after the alert" }, HORIZONS.map((h) => outcome(a, h))),
     el("details", { class: "story" }, el("summary", { text: "Read the full story" }), el("pre", { text: a.story })),

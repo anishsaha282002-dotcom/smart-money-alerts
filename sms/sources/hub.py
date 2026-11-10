@@ -25,6 +25,7 @@ from .helius import WSOL, Helius
 from .jupiter import Jupiter
 from .safety import Safety
 from .solana_rpc import SolanaRPC
+from .telegram_public import TelegramPublic
 from .xapi import XApi
 
 log = logging.getLogger(__name__)
@@ -47,6 +48,7 @@ class LiveHub:
         self.solana = None if self.helius else SolanaRPC()
         self.gmgn = Gmgn(settings.gmgn_api_key, max_per_min=settings.gmgn_max_per_min) if settings.gmgn_api_key else None
         self.x = XApi(settings.x_bearer_token) if settings.x_bearer_token else None
+        self.tg = TelegramPublic(settings.telegram_channels) if settings.telegram_channels else None
         self.safety_src = Safety() if settings.safety_checks else None
         self._meta: dict[tuple, dict] = {}
         self._tokens: dict[tuple, tuple[float, Token]] = {}
@@ -71,7 +73,8 @@ class LiveHub:
                 ("helius", self.helius, bool(self.helius), "HELIUS_API_KEY"),
                 ("solana_rpc", self.solana, bool(self.solana), "keyless, used when Helius is off"),
                 ("gmgn", self.gmgn, bool(self.gmgn), "GMGN_API_KEY"),
-                ("x", self.x, bool(self.x), "X_BEARER_TOKEN")]
+                ("x", self.x, bool(self.x), "X_BEARER_TOKEN"),
+                ("telegram", self.tg, bool(self.tg), "keyless, set telegram_channels in config.toml")]
         out = []
         for name, src, on, needs in rows:
             http = getattr(src, "http", None)
@@ -226,6 +229,8 @@ class LiveHub:
     def calls(self, chain: str, token: Token) -> list[Call]:
         if self.gmgn:
             self.store.add_calls(self._cached("callouts", 120, lambda: self.gmgn.callouts(self.s.chains)))
+        if self.tg:
+            self.store.add_calls(self._cached("telegram", 300, self.tg.calls))
         if self.x:
             self.store.add_calls(self._cached(f"x:{chain}:{token.address}", 600,
                                               lambda: self.x.mentions(chain, token.address, token.symbol)))
