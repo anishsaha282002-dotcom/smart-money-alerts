@@ -1,0 +1,37 @@
+{
+ "code": 0,
+ "data": {
+  "list": [
+   {
+    "ulid": "01J",
+    "chain": "bsc",
+    "call_wallet": "0x1111111111111111111111111111111111111111",
+    "call_token": "0xAbC0000000000000000000000000000000004444",
+    "call_price": "0.0005",
+    "call_mc": "182000",
+    "call_thesis": {
+     "source_content": "招财猫 要起飞了"
+    },
+    "create_time": 1794200100000,
+    "multiplier": "1.8",
+    "token_symbol": "招财猫",
+    "is_kol": true,
+    "twitter_username": "bnb_hunter"
+   },
+   {
+    "chain": "sol",
+    "call_wallet": "CallerWallet11111111111111111111111111111111",
+    "call_token": "MintAAA1111111111111111111111111111111111pump",
+    "call_price": "0.002",
+    "create_time": 1794283000000,
+    "twitter_username": ""
+   },
+   {
+    "chain": "tron",
+    "call_token": "x",
+    "create_time": 1
+   }
+  ],
+  "next_page_token": ""
+ }
+}

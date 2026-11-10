@@ -1,0 +1,422 @@
+{
+ "data": [
+  {
+   "id": "bsc_0x6558cede8867df17500a391678369341705effff",
+   "type": "pool",
+   "attributes": {
+    "base_token_price_usd": "0.00000318448668260412",
+    "base_token_price_native_currency": "0.00000000462996028293707",
+    "quote_token_price_usd": "687.8",
+    "quote_token_price_native_currency": "1.0",
+    "base_token_price_quote_token": "0.000000004629960283",
+    "quote_token_price_base_token": "215984574.14102",
+    "address": "0x6558cede8867df17500a391678369341705effff",
+    "name": "GECKO / BNB",
+    "pool_created_at": "2026-11-09T04:21:45Z",
+    "fdv_usd": "3184.486683",
+    "market_cap_usd": null,
+    "price_change_percentage": {
+     "m5": "0",
+     "m15": "0",
+     "m30": "0",
+     "h1": "0",
+     "h6": "0",
+     "h24": "-1.912"
+    },
+    "transactions": {
+     "m5": {
+      "buys": 0,
+      "sells": 0,
+      "buyers": 0,
+      "sellers": 0
+     },
+     "m15": {
+      "buys": 0,
+      "sells": 0,
+      "buyers": 0,
+      "sellers": 0
+     },
+     "m30": {
+      "buys": 0,
+      "sells": 0,
+      "buyers": 0,
+      "sellers": 0
+     },
+     "h1": {
+      "buys": 0,
+      "sells": 1,
+      "buyers": 0,
+      "sellers": 1
+     },
+     "h6": {
+      "buys": 0,
+      "sells": 1,
+      "buyers": 0,
+      "sellers": 1
+     },
+     "h24": {
+      "buys": 519,
+      "sells": 472,
+      "buyers": 323,
+      "sellers": 316
+     }
+    },
+    "volume_usd": {
+     "m5": "0.0",
+     "m15": "0.0",
+     "m30": "0.0",
+     "h1": "2.5725911147",
+     "h6": "2.5725911147",
+     "h24": "54830.1971035271"
+    },
+    "reserve_in_usd": "2550.9396"
+   },
+   "relationships": {
+    "base_token": {
+     "data": {
+      "id": "bsc_0x6558cede8867df17500a391678369341705effff",
+      "type": "token"
+     }
+    },
+    "quote_token": {
+     "data": {
+      "id": "bsc_0x0000000000000000000000000000000000000000",
+      "type": "token"
+     }
+    },
+    "dex": {
+     "data": {
+      "id": "four-meme",
+      "type": "dex"
+     }
+    }
+   }
+  },
+  {
+   "id": "bsc_0x014676d564738f9492217f3caa702949cd174444",
+   "type": "pool",
+   "attributes": {
+    "base_token_price_usd": "0.00000316460598221316",
+    "base_token_price_native_currency": "0.00000000459450910626493",
+    "quote_token_price_usd": "0.99508682700956",
+    "quote_token_price_native_currency": "0.00144470923518331",
+    "base_token_price_quote_token": "0.000003180231007",
+    "quote_token_price_base_token": "314442.56650038",
+    "address": "0x014676d564738f9492217f3caa702949cd174444",
+    "name": "牛马 / USDT",
+    "pool_created_at": "2026-11-09T05:32:46Z",
+    "fdv_usd": "3164.605982",
+    "market_cap_usd": null,
+    "price_change_percentage": {
+     "m5": "0",
+     "m15": "0",
+     "m30": "0",
+     "h1": "-0.613",
+     "h6": "-0.379",
+     "h24": "-10.71"
+    },
+    "transactions": {
+     "m5": {
+      "buys": 0,
+      "sells": 0,
+      "buyers": 0,
+      "sellers": 0
+     },
+     "m15": {
+      "buys": 0,
+      "sells": 0,
+      "buyers": 0,
+      "sellers": 0
+     },
+     "m30": {
+      "buys": 0,
+      "sells": 0,
+      "buyers": 0,
+      "sellers": 0
+     },
+     "h1": {
+      "buys": 0,
+      "sells": 2,
+      "buyers": 0,
+      "sellers": 2
+     },
+     "h6": {
+      "buys": 1,
+      "sells": 3,
+      "buyers": 1,
+      "sellers": 3
+     },
+     "h24": {
+      "buys": 774,
+      "sells": 117,
+      "buyers": 222,
+      "sellers": 80
+     }
+    },
+    "volume_usd": {
+     "m5": "0.0",
+     "m15": "0.0",
+     "m30": "0.0",
+     "h1": "4.1186390391",
+     "h6": "4.7154459734",
+     "h24": "13438.9174906756"
+    },
+    "reserve_in_usd": "2531.3811"
+   },
+   "relationships": {
+    "base_token": {
+     "data": {
+      "id": "bsc_0x014676d564738f9492217f3caa702949cd174444",
+      "type": "token"
+     }
+    },
+    "quote_token": {
+     "data": {
+      "id": "bsc_0x55d398326f99059ff775485246999027b3197955",
+      "type": "token"
+     }
+    },
+    "dex": {
+     "data": {
+      "id": "four-meme",
+      "type": "dex"
+     }
+    }
+   }
+  },
+  {
+   "id": "bsc_0x3b2cf389314ae390bd33cc398f8215ae95ec4444",
+   "type": "pool",
+   "attributes": {
+    "base_token_price_usd": "0.00000319278115637217",
+    "base_token_price_native_currency": "0.00000000463986100734199",
+    "quote_token_price_usd": "0.994165635510645",
+    "quote_token_price_native_currency": "0.00144475418731813",
+    "base_token_price_quote_token": "0.000003211522796",
+    "quote_token_price_base_token": "311378.764370741",
+    "address": "0x3b2cf389314ae390bd33cc398f8215ae95ec4444",
+    "name": "牛逼人生 / USDT",
+    "pool_created_at": "2026-11-09T12:27:27Z",
+    "fdv_usd": "3192.781156",
+    "market_cap_usd": null,
+    "price_change_percentage": {
+     "m5": "0",
+     "m15": "0",
+     "m30": "0",
+     "h1": "0",
+     "h6": "-0.662",
+     "h24": "-59.847"
+    },
+    "transactions": {
+     "m5": {
+      "buys": 0,
+      "sells": 0,
+      "buyers": 0,
+      "sellers": 0
+     },
+     "m15": {
+      "buys": 0,
+      "sells": 0,
+      "buyers": 0,
+      "sellers": 0
+     },
+     "m30": {
+      "buys": 0,
+      "sells": 0,
+      "buyers": 0,
+      "sellers": 0
+     },
+     "h1": {
+      "buys": 0,
+      "sells": 1,
+      "buyers": 0,
+      "sellers": 1
+     },
+     "h6": {
+      "buys": 0,
+      "sells": 8,
+      "buyers": 0,
+      "sellers": 7
+     },
+     "h24": {
+      "buys": 689,
+      "sells": 117,
+      "buyers": 241,
+      "sellers": 84
+     }
+    },
+    "volume_usd": {
+     "m5": "0.0",
+     "m15": "0.0",
+     "m30": "0.0",
+     "h1": "0.1089945374",
+     "h6": "6.5836023926",
+     "h24": "13997.5273040969"
+    },
+    "reserve_in_usd": "2556.3802"
+   },
+   "relationships": {
+    "base_token": {
+     "data": {
+      "id": "bsc_0x3b2cf389314ae390bd33cc398f8215ae95ec4444",
+      "type": "token"
+     }
+    },
+    "quote_token": {
+     "data": {
+      "id": "bsc_0x55d398326f99059ff775485246999027b3197955",
+      "type": "token"
+     }
+    },
+    "dex": {
+     "data": {
+      "id": "four-meme",
+      "type": "dex"
+     }
+    }
+   }
+  },
+  {
+   "id": "bsc_0x99fb2a982d05e21eea14583f865f879dcf784444",
+   "type": "pool",
+   "attributes": {
+    "base_token_price_usd": "0.00000317273089327751",
+    "base_token_price_native_currency": "0.00000000460536911873297",
+    "quote_token_price_usd": "1.00037852527923",
+    "quote_token_price_native_currency": "0.00145209679684031",
+    "base_token_price_quote_token": "0.000003171530389",
+    "quote_token_price_base_token": "315305.192570495",
+    "address": "0x99fb2a982d05e21eea14583f865f879dcf784444",
+    "name": "牛X / USDT",
+    "pool_created_at": "2026-11-09T19:51:26Z",
+    "fdv_usd": "3172.730893",
+    "market_cap_usd": null,
+    "price_change_percentage": {
+     "m5": "0",
+     "m15": "0",
+     "m30": "0",
+     "h1": "0",
+     "h6": "-85.484",
+     "h24": "-60.059"
+    },
+    "transactions": {
+     "m5": {
+      "buys": 0,
+      "sells": 0,
+      "buyers": 0,
+      "sellers": 0
+     },
+     "m15": {
+      "buys": 0,
+      "sells": 0,
+      "buyers": 0,
+      "sellers": 0
+     },
+     "m30": {
+      "buys": 0,
+      "sells": 0,
+      "buyers": 0,
+      "sellers": 0
+     },
+     "h1": {
+      "buys": 0,
+      "sells": 1,
+      "buyers": 0,
+      "sellers": 1
+     },
+     "h6": {
+      "buys": 112,
+      "sells": 77,
+      "buyers": 26,
+      "sellers": 67
+     },
+     "h24": {
+      "buys": 599,
+      "sells": 97,
+      "buyers": 217,
+      "sellers": 81
+     }
+    },
+    "volume_usd": {
+     "m5": "0.0",
+     "m15": "0.0",
+     "m30": "0.0",
+     "h1": "0.000006345461787",
+     "h6": "6263.8265210356",
+     "h24": "11812.5447212726"
+    },
+    "reserve_in_usd": "2537.3726"
+   },
+   "relationships": {
+    "base_token": {
+     "data": {
+      "id": "bsc_0x99fb2a982d05e21eea14583f865f879dcf784444",
+      "type": "token"
+     }
+    },
+    "quote_token": {
+     "data": {
+      "id": "bsc_0x55d398326f99059ff775485246999027b3197955",
+      "type": "token"
+     }
+    },
+    "dex": {
+     "data": {
+      "id": "four-meme",
+      "type": "dex"
+     }
+    }
+   }
+  }
+ ],
+ "included": [
+  {
+   "id": "bsc_0x6558cede8867df17500a391678369341705effff",
+   "type": "token",
+   "attributes": {
+    "address": "0x6558cede8867df17500a391678369341705effff",
+    "name": "gecko",
+    "symbol": "GECKO",
+    "decimals": 18,
+    "image_url": null,
+    "coingecko_coin_id": null
+   }
+  },
+  {
+   "id": "bsc_0x014676d564738f9492217f3caa702949cd174444",
+   "type": "token",
+   "attributes": {
+    "address": "0x014676d564738f9492217f3caa702949cd174444",
+    "name": "牛马",
+    "symbol": "牛马",
+    "decimals": 18,
+    "image_url": null,
+    "coingecko_coin_id": null
+   }
+  },
+  {
+   "id": "bsc_0x3b2cf389314ae390bd33cc398f8215ae95ec4444",
+   "type": "token",
+   "attributes": {
+    "address": "0x3b2cf389314ae390bd33cc398f8215ae95ec4444",
+    "name": "牛逼人生",
+    "symbol": "牛逼人生",
+    "decimals": 18,
+    "image_url": null,
+    "coingecko_coin_id": null
+   }
+  },
+  {
+   "id": "bsc_0x99fb2a982d05e21eea14583f865f879dcf784444",
+   "type": "token",
+   "attributes": {
+    "address": "0x99fb2a982d05e21eea14583f865f879dcf784444",
+    "name": "牛X",
+    "symbol": "牛X",
+    "decimals": 18,
+    "image_url": null,
+    "coingecko_coin_id": null
+   }
+  }
+ ]
+}

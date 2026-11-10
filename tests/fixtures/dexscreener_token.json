@@ -1,0 +1,51 @@
+[
+ {
+  "chainId": "bsc",
+  "dexId": "fourmeme",
+  "url": "https://dexscreener.com/bsc/0x014676d564738f9492217f3caa702949cd174444:4meme",
+  "pairAddress": "0x014676D564738f9492217f3cAA702949Cd174444:4meme",
+  "baseToken": {
+   "address": "0x014676D564738f9492217f3cAA702949Cd174444",
+   "name": "牛马",
+   "symbol": "牛马"
+  },
+  "quoteToken": {
+   "address": "0x55d398326f99059fF775485246999027B3197955",
+   "name": "Tether USD",
+   "symbol": "USDT"
+  },
+  "priceNative": "0.000003209",
+  "priceUsd": "0.000003209",
+  "txns": {
+   "m5": {
+    "buys": 0,
+    "sells": 0
+   },
+   "h1": {
+    "buys": 0,
+    "sells": 0
+   },
+   "h6": {
+    "buys": 1,
+    "sells": 3
+   },
+   "h24": {
+    "buys": 775,
+    "sells": 118
+   }
+  },
+  "volume": {
+   "h24": 13487.28,
+   "h6": 4.77,
+   "h1": 0,
+   "m5": 0
+  },
+  "priceChange": {
+   "h6": -0.25,
+   "h24": -3.29
+  },
+  "fdv": 3209.22,
+  "marketCap": 3209.22,
+  "pairCreatedAt": 1794202366000
+ }
+]

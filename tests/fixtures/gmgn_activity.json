@@ -1,0 +1,41 @@
+{
+ "code": 0,
+ "data": {
+  "activities": [
+   {
+    "tx_hash": "0xaaa",
+    "event_type": "buy",
+    "token": {
+     "address": "0xAbC0000000000000000000000000000000004444",
+     "symbol": "招财猫"
+    },
+    "token_amount": "1000000",
+    "cost_usd": "500",
+    "price_usd": "0.0005",
+    "timestamp": 1794200000
+   },
+   {
+    "tx_hash": "0xbbb",
+    "type": "sell",
+    "token": {
+     "address": "0xAbC0000000000000000000000000000000004444",
+     "symbol": "招财猫"
+    },
+    "token_amount": "1000000",
+    "cost_usd": "900",
+    "price_usd": "0.0009",
+    "timestamp": 1794207200
+   },
+   {
+    "tx_hash": "0xccc",
+    "event_type": "transferIn",
+    "token": {
+     "address": "0xdef",
+     "symbol": "X"
+    },
+    "timestamp": 1794207300
+   }
+  ],
+  "next": ""
+ }
+}

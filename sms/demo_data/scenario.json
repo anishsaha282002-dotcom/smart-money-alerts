@@ -1,0 +1,583 @@
+{
+ "_note": "SYNTHETIC. Every wallet, coin, caller and price in demo mode is generated from this file and a fixed seed. None of it is real market data and none of it says anything about real performance.",
+ "end": "2026-11-09T12:00:00+00:00",
+ "seed": 20261109,
+ "history_days": 10,
+ "history_buys": 66,
+ "wallets": [
+  {
+   "id": "sol-1",
+   "chain": "solana",
+   "archetype": "elite",
+   "label": "nightowl",
+   "home": [
+    "ai",
+    "animals"
+   ],
+   "weight": 3.0
+  },
+  {
+   "id": "sol-2",
+   "chain": "solana",
+   "archetype": "good",
+   "label": "trenchwizard",
+   "home": [
+    "animals",
+    "politics"
+   ],
+   "weight": 2.5
+  },
+  {
+   "id": "sol-3",
+   "chain": "solana",
+   "archetype": "good",
+   "label": "0xmomo",
+   "home": [
+    "ai",
+    "celebrity"
+   ],
+   "weight": 2.0
+  },
+  {
+   "id": "sol-4",
+   "chain": "solana",
+   "archetype": "newbie",
+   "label": "freshprince",
+   "home": [
+    "animals"
+   ],
+   "weight": 0
+  },
+  {
+   "id": "sol-5",
+   "chain": "solana",
+   "archetype": "mediocre",
+   "label": "bagholder_joe",
+   "home": [
+    "animals",
+    "politics",
+    "other"
+   ],
+   "weight": 1.5
+  },
+  {
+   "id": "sol-6",
+   "chain": "solana",
+   "archetype": "bot",
+   "label": "",
+   "home": [
+    "other"
+   ],
+   "weight": 0.5
+  },
+  {
+   "id": "sol-7",
+   "chain": "solana",
+   "archetype": "sniper",
+   "label": "blockzero",
+   "home": [
+    "animals",
+    "other"
+   ],
+   "weight": 1.0
+  },
+  {
+   "id": "bsc-1",
+   "chain": "bsc",
+   "archetype": "elite",
+   "label": "猫王",
+   "home": [
+    "chinese",
+    "animals"
+   ],
+   "weight": 3.0
+  },
+  {
+   "id": "bsc-2",
+   "chain": "bsc",
+   "archetype": "good",
+   "label": "四哥",
+   "home": [
+    "chinese",
+    "animals"
+   ],
+   "weight": 2.5
+  },
+  {
+   "id": "bsc-3",
+   "chain": "bsc",
+   "archetype": "good",
+   "label": "bnb_degen",
+   "home": [
+    "chinese",
+    "ai"
+   ],
+   "weight": 2.0
+  },
+  {
+   "id": "bsc-4",
+   "chain": "bsc",
+   "archetype": "wash",
+   "label": "",
+   "home": [
+    "chinese"
+   ],
+   "weight": 0.4
+  },
+  {
+   "id": "bsc-5",
+   "chain": "bsc",
+   "archetype": "fresh",
+   "label": "",
+   "home": [
+    "chinese"
+   ],
+   "weight": 0
+  },
+  {
+   "id": "base-1",
+   "chain": "base",
+   "archetype": "good",
+   "label": "basedandy",
+   "home": [
+    "animals",
+    "other"
+   ],
+   "weight": 1.5
+  }
+ ],
+ "callers": [
+  {
+   "handle": "bnb_hunter",
+   "followers": 48200,
+   "quality": "good",
+   "n": 22
+  },
+  {
+   "handle": "solana_sage",
+   "followers": 31500,
+   "quality": "good",
+   "n": 18
+  },
+  {
+   "handle": "cn_meme_radar",
+   "followers": 12900,
+   "quality": "mid",
+   "n": 15
+  },
+  {
+   "handle": "alpha_leaks",
+   "followers": 8800,
+   "quality": "mid",
+   "n": 9
+  },
+  {
+   "handle": "degen_dave",
+   "followers": 22400,
+   "quality": "bad",
+   "n": 25
+  },
+  {
+   "handle": "moonboi99",
+   "followers": 5600,
+   "quality": "bad",
+   "n": 12
+  },
+  {
+   "handle": "new_caller_x",
+   "followers": 3100,
+   "quality": "mid",
+   "n": 2
+  }
+ ],
+ "featured": [
+  {
+   "chain": "bsc",
+   "symbol": "招财猫",
+   "name": "招财猫",
+   "launchpad": "four.meme",
+   "path": "runner",
+   "params": {
+    "peak": 5.2,
+    "m_peak": 140,
+    "end": 2.9
+   },
+   "mcap": 182000,
+   "age_min": 14,
+   "buys": [
+    {
+     "wallet": "bsc-1",
+     "min_ago": 172,
+     "usd": 2400
+    },
+    {
+     "wallet": "bsc-2",
+     "min_ago": 163,
+     "usd": 900
+    },
+    {
+     "wallet": "bsc-3",
+     "min_ago": 151,
+     "usd": 1300
+    }
+   ],
+   "calls": [
+    {
+     "caller": "bnb_hunter",
+     "min_ago": 166
+    },
+    {
+     "caller": "cn_meme_radar",
+     "min_ago": 158
+    }
+   ]
+  },
+  {
+   "chain": "solana",
+   "symbol": "GROKCAT",
+   "name": "Grok Cat",
+   "launchpad": "pump.fun",
+   "path": "pumpdump",
+   "params": {
+    "peak": 2.3,
+    "m_peak": 18,
+    "end": 0.45
+   },
+   "mcap": 96000,
+   "age_min": 31,
+   "buys": [
+    {
+     "wallet": "sol-3",
+     "min_ago": 141,
+     "usd": 1100
+    }
+   ],
+   "calls": [
+    {
+     "caller": "solana_sage",
+     "min_ago": 146
+    },
+    {
+     "caller": "degen_dave",
+     "min_ago": 143
+    }
+   ]
+  },
+  {
+   "chain": "solana",
+   "symbol": "SWIFTIE",
+   "name": "Swiftie Coin",
+   "launchpad": "pump.fun",
+   "path": "spike",
+   "params": {
+    "peak": 3.4,
+    "m_peak": 3,
+    "settle": 1.12
+   },
+   "mcap": 61000,
+   "age_min": 4,
+   "buys": [
+    {
+     "wallet": "sol-1",
+     "min_ago": 122,
+     "usd": 1800
+    }
+   ],
+   "calls": [
+    {
+     "caller": "moonboi99",
+     "min_ago": 123
+    }
+   ]
+  },
+  {
+   "chain": "solana",
+   "symbol": "MAGAHAT",
+   "name": "MAGA Hat",
+   "launchpad": "pump.fun",
+   "path": "rug",
+   "params": {
+    "m_rug": 34,
+    "pre": 1.25
+   },
+   "mcap": 143000,
+   "age_min": 52,
+   "buys": [
+    {
+     "wallet": "sol-2",
+     "min_ago": 101,
+     "usd": 950
+    }
+   ],
+   "calls": [
+    {
+     "caller": "degen_dave",
+     "min_ago": 104
+    }
+   ],
+   "risks": [
+    "top 10 holders own 71%",
+    "liquidity is not locked"
+   ]
+  },
+  {
+   "chain": "bsc",
+   "symbol": "币安人生",
+   "name": "币安人生",
+   "launchpad": "four.meme",
+   "path": "grind",
+   "params": {
+    "end": 1.85
+   },
+   "mcap": 410000,
+   "age_min": 190,
+   "buys": [
+    {
+     "wallet": "bsc-1",
+     "min_ago": 76,
+     "usd": 6100
+    }
+   ],
+   "calls": [
+    {
+     "caller": "bnb_hunter",
+     "min_ago": 80
+    }
+   ]
+  },
+  {
+   "chain": "solana",
+   "symbol": "AGENTX",
+   "name": "Agent X",
+   "launchpad": "pump.fun",
+   "path": "runner",
+   "params": {
+    "peak": 3.1,
+    "m_peak": 200,
+    "end": 2.0
+   },
+   "mcap": 74000,
+   "age_min": 22,
+   "buys": [
+    {
+     "wallet": "sol-4",
+     "min_ago": 52,
+     "usd": 700
+    }
+   ],
+   "calls": [
+    {
+     "caller": "new_caller_x",
+     "min_ago": 55
+    }
+   ]
+  },
+  {
+   "chain": "base",
+   "symbol": "BASEDFROG",
+   "name": "Based Frog",
+   "launchpad": "",
+   "path": "bleed",
+   "params": {
+    "end": 0.52
+   },
+   "mcap": 230000,
+   "age_min": 600,
+   "buys": [
+    {
+     "wallet": "base-1",
+     "min_ago": 41,
+     "usd": 800
+    }
+   ],
+   "calls": []
+  },
+  {
+   "chain": "bsc",
+   "symbol": "牛马",
+   "name": "牛马",
+   "launchpad": "four.meme",
+   "path": "pumpdump",
+   "params": {
+    "peak": 1.9,
+    "m_peak": 14,
+    "end": 0.6
+   },
+   "mcap": 52000,
+   "age_min": 3,
+   "buys": [
+    {
+     "wallet": "bsc-5",
+     "min_ago": 31,
+     "usd": 1500
+    }
+   ],
+   "calls": []
+  },
+  {
+   "chain": "solana",
+   "symbol": "VIBECHECK",
+   "name": "Vibe Check",
+   "launchpad": "pump.fun",
+   "path": "flat",
+   "params": {},
+   "mcap": 88000,
+   "age_min": 45,
+   "buys": [
+    {
+     "wallet": "sol-6",
+     "min_ago": 22,
+     "usd": 500
+    }
+   ],
+   "calls": []
+  },
+  {
+   "chain": "solana",
+   "symbol": "DOGEAI",
+   "name": "Doge AI Agent",
+   "launchpad": "pump.fun",
+   "path": "grind",
+   "params": {
+    "end": 1.6
+   },
+   "mcap": 120000,
+   "age_min": 75,
+   "buys": [
+    {
+     "wallet": "sol-1",
+     "min_ago": 11,
+     "usd": 2100
+    }
+   ],
+   "calls": [
+    {
+     "caller": "solana_sage",
+     "min_ago": 14
+    }
+   ]
+  }
+ ],
+ "names": {
+  "chinese": [
+   "财神爷",
+   "打工人",
+   "大吉大利",
+   "暴富",
+   "发发发",
+   "锦鲤",
+   "躺平",
+   "摸鱼",
+   "小龙虾",
+   "东方红",
+   "福袋",
+   "白菜",
+   "麻将",
+   "月饼",
+   "孙悟空",
+   "功夫",
+   "红包",
+   "奶茶",
+   "包子",
+   "饺子"
+  ],
+  "ai": [
+   "Agent Swarm",
+   "GPT Wizard",
+   "Neural Net",
+   "Robo Taxi AI",
+   "LLM Coin",
+   "AGI Future",
+   "Bot Army",
+   "AI Oracle",
+   "Skynet AI",
+   "Agent Zero",
+   "Deep Think AI",
+   "Clawd Bot"
+  ],
+  "animals": [
+   "Pepe King",
+   "Shiba Wif",
+   "Kitty Cash",
+   "Frog Lord",
+   "Hippo Baby",
+   "Pengu Club",
+   "Goat Mode",
+   "Duck Season",
+   "Wolf Pack",
+   "Otter Pop",
+   "Capybara",
+   "Seal Team"
+  ],
+  "politics": [
+   "MAGA 2028",
+   "Trump Card",
+   "Vote Coin",
+   "Senate Bull",
+   "Election Day",
+   "POTUS Pup"
+  ],
+  "celebrity": [
+   "Musketeer",
+   "Drake Bet",
+   "Rogan Club",
+   "Kanye West",
+   "Tate Coin",
+   "MrBeast Burger"
+  ],
+  "binance": [
+   "CZ Punk",
+   "BNB King",
+   "Binance Bull",
+   "YZi DAO"
+  ],
+  "gaming": [
+   "GTA 6 Coin",
+   "Pixel Quest",
+   "Arcade Fi",
+   "Gamer Fuel"
+  ],
+  "other": [
+   "Chill Guy",
+   "Vibe Coin",
+   "Giga Chad",
+   "Sigma",
+   "Rizzler",
+   "NPC Coin",
+   "Aura",
+   "Copium",
+   "Brainrot",
+   "Touch Grass"
+  ]
+ },
+ "trending": {
+  "now": {
+   "chinese": 8,
+   "ai": 7,
+   "animals": 4,
+   "politics": 1,
+   "celebrity": 3,
+   "binance": 3,
+   "gaming": 2,
+   "other": 2
+  },
+  "base": {
+   "chinese": 3,
+   "ai": 7,
+   "animals": 9,
+   "politics": 4,
+   "celebrity": 0,
+   "binance": 2,
+   "gaming": 2,
+   "other": 3
+  }
+ },
+ "categories": {
+  "chinese": 12.4,
+  "ai": 3.1,
+  "animals": -4.6,
+  "politics": -7.9,
+  "celebrity": 5.2,
+  "binance": 6.8
+ }
+}

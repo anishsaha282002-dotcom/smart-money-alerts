@@ -1,0 +1,50 @@
+# OPTIONAL free "server": GitHub Actions runs the scanner on a schedule and commits the ledger.
+# Off until you opt in: Settings -> Secrets and variables -> Actions -> Variables -> SMS_SCAN_ENABLED = true
+# Keys are optional and go in Actions *secrets* (never in the repository).
+#
+# Good to know: scheduled workflows run at best every 5 minutes and are often late, so this is the
+# slow, free way to keep a public record. For timely alerts run `sms watch` on any always-on machine.
+# The ledger lives in record/ and every scan is a commit, so git history is a second witness to it.
+name: scan
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scan
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    if: vars.SMS_SCAN_ENABLED == 'true' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SMS_DATA_DIR: record
+      HELIUS_API_KEY: ${{ secrets.HELIUS_API_KEY }}
+      GMGN_API_KEY: ${{ secrets.GMGN_API_KEY }}
+      X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -e .
+      - run: sms run
+      - run: sms verify record/ledger.jsonl
+      - name: Commit the ledger and the site data
+        run: |
+          git config user.name "smart-money-stories-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add record web/data
+          git diff --cached --quiet || git commit -m "scan: $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push

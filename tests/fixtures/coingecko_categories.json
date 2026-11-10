@@ -1,0 +1,47 @@
+[
+ {
+  "id": "dog-themed-coins",
+  "name": "Dog-Themed",
+  "market_cap_change_24h": 0.3994810928536062
+ },
+ {
+  "id": "ai-agents",
+  "name": "AI Agents",
+  "market_cap_change_24h": 2.9749469142975182
+ },
+ {
+  "id": "frog-themed-coins",
+  "name": "Frog-Themed",
+  "market_cap_change_24h": 2.280567234042266
+ },
+ {
+  "id": "chinese-meme",
+  "name": "Chinese Meme",
+  "market_cap_change_24h": -0.06925487046900547
+ },
+ {
+  "id": "four-meme-ecosystem",
+  "name": "Four.meme Ecosystem (BNB Memes)",
+  "market_cap_change_24h": -1.0265255845148786
+ },
+ {
+  "id": "cat-themed-coins",
+  "name": "Cat-Themed",
+  "market_cap_change_24h": -0.9840951097025671
+ },
+ {
+  "id": "politifi",
+  "name": "PolitiFi",
+  "market_cap_change_24h": -1.5899907931324477
+ },
+ {
+  "id": "ai-meme-coins",
+  "name": "AI Meme",
+  "market_cap_change_24h": 1.7418259041337223
+ },
+ {
+  "id": "celebrity-themed-coins",
+  "name": "Celebrity-Themed",
+  "market_cap_change_24h": -0.5016103955168374
+ }
+]

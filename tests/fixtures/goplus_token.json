@@ -1,0 +1,15 @@
+{
+ "code": 1,
+ "message": "OK",
+ "result": {
+  "0xabc0000000000000000000000000000000004444": {
+   "is_honeypot": "1",
+   "buy_tax": "0.05",
+   "sell_tax": "0.25",
+   "is_open_source": "0",
+   "is_mintable": "0",
+   "hidden_owner": "0",
+   "cannot_sell_all": "0"
+  }
+ }
+}

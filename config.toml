@@ -1,0 +1,36 @@
+# Smart Money Stories — settings. Secrets (API keys, bot tokens) go in .env, never here.
+
+[general]
+chains = ["solana", "bsc"]        # add "base" if you want it
+
+[alerts]
+min_grade = "B"                   # only wallets graded this or better trigger an alert (A, B, C, D)
+min_buy_usd = 500                 # ignore buys smaller than this
+cooldown_hours = 6                # one alert per wallet + coin in this many hours
+cluster_window_min = 30           # "cluster" = other good wallets buying within this many minutes
+lookback_days = 30                # how far back a wallet's record goes
+max_alerts_per_run = 10
+
+[grading]
+prior_trades = 10                 # win rate is shrunk toward 50% as if this many coin-flip trades were added
+small_sample = 10                 # fewer closed trades than this gets a visible warning
+cap_below = 5                     # fewer than this can never grade above C
+
+[sources]
+keyless_pools_per_chain = 4       # with no keys: how many trending pools to read trades from, per chain
+gecko_max_per_min = 24            # GeckoTerminal allows 30/min per IP; stay under it
+safety_checks = true              # RugCheck (Solana) and GoPlus (BSC/Base) warnings on alerts
+copy_history_buys = 6             # past buys per wallet priced for the "can you still copy it?" check
+min_caller_followers = 2000       # ignore X accounts smaller than this (when follower counts are known)
+jupiter_base = "https://lite-api.jup.ag"
+
+[story]
+llm_reword = false                # true + ANTHROPIC_API_KEY in .env: Claude rewords the template (facts are checked)
+llm_model = "claude-opus-5-5"     # any Claude model id; a smaller one such as "claude-haiku-5-5" is much cheaper
+
+# Wallets you want followed directly (needs HELIUS_API_KEY for Solana, GMGN_API_KEY for BSC/Base).
+# Public addresses only. This tool never asks for, stores or uses a private key.
+[wallets]
+solana = []
+bsc = []
+base = []

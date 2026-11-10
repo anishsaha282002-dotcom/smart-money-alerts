@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "smart-money-stories"
+version = "0.1.0"
+description = "Free, read-only memecoin alerts in plain English: wallet grade, caller grade, narrative momentum, an honest copy check and a hash-chained public track record."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = [
+  "httpx>=0.27",
+  "typer>=0.12",
+  "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+llm = ["anthropic>=1.0"]
+
+[project.scripts]
+sms = "sms.cli:app"
+
+[tool.setuptools.packages.find]
+include = ["sms*"]
+
+[tool.setuptools.package-data]
+sms = ["demo_data/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smart Money Stories — memecoin alerts you can read, on a record you can check</title>
+<meta name="description" content="Free, open-source, read-only memecoin alerts in plain English. Three separate grades, an honest copy check, and a hash-chained public track record. Solana and BNB Chain.">
+<meta name="theme-color" content="#f5f5f7">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script>
+  // pick the theme before first paint: the visitor's saved choice, else the system setting
+  try {
+    var t = localStorage.getItem("sms-theme");
+    document.documentElement.dataset.theme = t || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  } catch (e) { document.documentElement.dataset.theme = "light"; }
+</script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Smart Money Stories, home">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="lg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#0a84ff"/><stop offset=".5" stop-color="#bf5af2"/><stop offset="1" stop-color="#ff375f"/></linearGradient></defs><rect width="24" height="24" rx="7" fill="url(#lg)"/><path d="M6 15l4-4 3 3 5-6" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Smart Money Stories
+    </a>
+    <nav aria-label="Sections">
+      <a href="#live" class="hide-s">Alerts</a>
+      <a href="#narratives" class="hide-s">Narratives</a>
+      <a href="#leaderboard" class="hide-s">Wallets</a>
+      <a href="record.html">Track record</a>
+    </nav>
+    <button class="icon-btn" id="theme" type="button" aria-label="Switch between light and dark">
+      <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.900 4.900l1.400 1.400M17.700 17.700l1.400 1.400M4.900 19.100l1.400-1.400M17.700 6.300l1.400-1.400"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.500A8 8 0 0 1 9.500 4a8 8 0 1 0 10.500 10.500z"/></svg>
+    </button>
+  </div>
+</div>
+
+<main>
+<header class="hero">
+  <div class="blobs" aria-hidden="true">
+    <div class="blob b1" data-parallax="0.18"></div><div class="blob b2" data-parallax="0.10"></div>
+    <div class="blob b3" data-parallax="0.26"></div><div class="blob b4" data-parallax="0.14"></div>
+  </div>
+  <div class="dots" aria-hidden="true"></div>
+  <div class="doodle-float f1" data-doodle="chinese" data-parallax="-0.10" data-rot="-12" aria-hidden="true"></div>
+  <div class="doodle-float f2" data-doodle="ai" data-parallax="-0.16" data-rot="10" aria-hidden="true"></div>
+  <div class="doodle-float f3" data-doodle="animals" data-parallax="-0.22" data-rot="8" aria-hidden="true"></div>
+  <div class="doodle-float f4" data-doodle="celebrity" data-parallax="-0.13" data-rot="-8" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <span class="eyebrow"><span class="pulse" aria-hidden="true"></span><span id="eyebrow-text">Free · open source · read-only</span></span>
+    <h1>Smart money, <span class="grad">told as a story.</span></h1>
+    <p class="sub">When a wallet with a real track record buys a memecoin, you get a short story: who bought, how good they really are, and whether there is anything left for you. Every alert goes on a public record, misses included.</p>
+    <div class="cta">
+      <a class="btn primary" href="#live">See the latest alerts</a>
+      <a class="btn ghost" href="record.html">Check the track record</a>
+    </div>
+    <div class="stats" id="stats" aria-live="polite"></div>
+  </div>
+
+  <div class="ticker" id="ticker" aria-label="Latest alerts">
+    <div class="ticker-track" id="ticker-track"></div>
+  </div>
+</header>
+
+<section id="grades" class="band">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Three grades</span>
+      <h2>Shown side by side. Never blended into one score.</h2>
+      <p>A single number hides what it is made of. Each alert shows three separate reads, so you can see when a great wallet is buying a fading theme, or a hyped coin has nobody credible behind it.</p>
+    </div>
+    <div class="trio">
+      <article class="card reveal" style="--i:0">
+        <div class="doodle" data-doodle="wallet"></div>
+        <h3>Wallet grade, A to D</h3>
+        <p>Built only from closed trades in the last 30 days.</p>
+        <ul><li>Win rate pulled toward 50% when the sample is small</li><li>Under 5 closed trades can never grade above C</li><li>Penalties for bots, bundles, snipers, wash trading, fresh-funded clusters</li></ul>
+      </article>
+      <article class="card reveal" style="--i:1">
+        <div class="doodle" data-doodle="caller"></div>
+        <h3>Caller grade</h3>
+        <p>Who on X mentioned the coin, and what their past calls did next.</p>
+        <ul><li>Price 15 minutes, 1 hour and 24 hours after each call</li><li>Fewer than 3 aged calls shows as “unrated”</li><li>Each caller listed by name with their own numbers</li></ul>
+      </article>
+      <article class="card reveal" style="--i:2">
+        <div class="doodle" data-doodle="wave"></div>
+        <h3>Narrative momentum</h3>
+        <p>Is the coin's theme new, rising, hot or fading right now?</p>
+        <ul><li>Chinese memes, AI, animals, politics and more</li><li>Share of the last hour's trending coins vs the day's</li><li>Reads Chinese names and tickers on four.meme</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="live">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Live alerts</span>
+      <h2>What the graded wallets just bought.</h2>
+      <p>Each card ends with the same honest question: if you buy 5 or 30 minutes after they did, how much is left? The four boxes underneath fill in as time passes, good or bad.</p>
+    </div>
+    <div class="filters reveal" id="filters" role="group" aria-label="Filter alerts"></div>
+    <div class="alerts" id="alerts" aria-live="polite"></div>
+    <div class="more" id="more"></div>
+  </div>
+</section>
+
+<section id="narratives" class="band">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Narrative momentum</span>
+      <h2>Which themes are arriving, and which are leaving.</h2>
+      <p>The blue bar is a theme's share of coins trending in the last hour. The grey bar is its share over the last day. Blue longer than grey means it is picking up.</p>
+    </div>
+    <div class="board" id="board"></div>
+  </div>
+</section>
+
+<section id="leaderboard">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Wallet leaderboard</span>
+      <h2>Ranked by record, flags and all.</h2>
+      <p>Every wallet the scanner has graded, including the ones it will not alert on. Hover a score to see what it is made of.</p>
+    </div>
+    <div class="card table-wrap reveal" id="wallets"></div>
+  </div>
+</section>
+
+<section id="how" class="band">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">How it works</span>
+      <h2>Free data in. Plain English out.</h2>
+    </div>
+    <div class="steps">
+      <div class="step card reveal" style="--i:0"><h3>Watch</h3><p>Reads public on-chain trades on Solana and BNB Chain from free APIs. No wallet connection, ever.</p></div>
+      <div class="step card reveal" style="--i:1"><h3>Grade</h3><p>Grades the wallet, the callers and the narrative separately, with fixed rules you can read in the code.</p></div>
+      <div class="step card reveal" style="--i:2"><h3>Tell</h3><p>Writes a short story and sends it to the console, Telegram, Discord and this site.</p></div>
+      <div class="step card reveal" style="--i:3"><h3>Check</h3><p>Records every alert in a hash-chained ledger and prices it again at 15m, 1h, 4h and 24h.</p></div>
+    </div>
+    <div class="reveal" style="margin-top:28px">
+<pre class="code"><span class="c"># try the whole thing in three commands, no keys needed</span>
+git clone -b smart-money-stories https://github.com/anishsaha282002-dotcom/smart-money-alerts && cd smart-money-alerts
+pip install -e .
+sms demo</pre>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="wrap cols">
+    <p><b>Not financial advice.</b> Memecoins are extremely risky and most go to zero. Past results of any wallet or caller do not predict future results. This tool only reads public data: it cannot trade, and it never asks for a wallet, private key or seed phrase.</p>
+    <p>MIT licensed · open source<br><a href="record.html">Public track record</a> · <a href="record.html#verify">Verify the ledger</a></p>
+  </div>
+</footer>
+
+<script type="module" src="assets/home.js"></script>
+</body>
+</html>

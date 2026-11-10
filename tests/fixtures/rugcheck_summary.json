@@ -1,0 +1,30 @@
+{
+ "tokenProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+ "tokenType": "",
+ "risks": [
+  {
+   "name": "Top 10 holders high ownership",
+   "value": "",
+   "description": "The top 10 users hold more than 70% token supply",
+   "score": 8911,
+   "level": "danger"
+  },
+  {
+   "name": "Single holder ownership",
+   "value": "71.81%",
+   "description": "One user holds a large amount of the token supply",
+   "score": 7181,
+   "level": "danger"
+  },
+  {
+   "name": "High ownership",
+   "value": "",
+   "description": "The top users hold more than 80% token supply",
+   "score": 1381,
+   "level": "danger"
+  }
+ ],
+ "score": 17474,
+ "score_normalised": 58,
+ "lpLockedPct": 0.028999008964053948
+}

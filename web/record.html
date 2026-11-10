@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Track record — Smart Money Stories</title>
+<meta name="description" content="Every alert Smart Money Stories has sent, priced again at 15 minutes, 1 hour, 4 hours and 24 hours, with misses included and a hash chain you can verify in your browser.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script>
+  try {
+    var t = localStorage.getItem("sms-theme");
+    document.documentElement.dataset.theme = t || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  } catch (e) { document.documentElement.dataset.theme = "light"; }
+</script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Smart Money Stories, home">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="lg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#0a84ff"/><stop offset=".5" stop-color="#bf5af2"/><stop offset="1" stop-color="#ff375f"/></linearGradient></defs><rect width="24" height="24" rx="7" fill="url(#lg)"/><path d="M6 15l4-4 3 3 5-6" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Smart Money Stories
+    </a>
+    <nav aria-label="Sections">
+      <a href="index.html#live">Alerts</a>
+      <a href="#misses-sec" class="hide-s">Misses</a>
+      <a href="#verify" class="hide-s">Verify</a>
+      <a href="record.html" aria-current="page" class="hide-s">Track record</a>
+    </nav>
+    <button class="icon-btn" id="theme" type="button" aria-label="Switch between light and dark">
+      <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.900 4.900l1.400 1.400M17.700 17.700l1.400 1.400M4.900 19.100l1.400-1.400M17.700 6.300l1.400-1.400"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.500A8 8 0 0 1 9.500 4a8 8 0 1 0 10.500 10.500z"/></svg>
+    </button>
+  </div>
+</div>
+
+<main>
+<header class="hero" style="padding-bottom:70px">
+  <div class="blobs" aria-hidden="true">
+    <div class="blob b1" data-parallax="0.16"></div><div class="blob b2" data-parallax="0.09"></div><div class="blob b4" data-parallax="0.20"></div>
+  </div>
+  <div class="dots" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow"><span id="range">Public track record</span></span>
+    <h1 style="max-width:14ch">Every alert. <span class="grad">Including the ones that lost.</span></h1>
+    <p class="sub">Each alert is written to an append-only ledger before it is sent, then priced again at 15 minutes, 1 hour, 4 hours and 24 hours. Nothing is removed. Results are measured from the price when the alert went out, not from the wallet's better entry.</p>
+    <div class="stats" id="stats"></div>
+  </div>
+</header>
+
+<section class="band">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">By wallet grade</span>
+      <h2>Did the better grades do better?</h2>
+      <p>For each checkpoint: the share of alerts trading above the alert-time price, how many that is, and the median move. The small tick marks 50%. Coins nobody traded any more are counted as misses.</p>
+    </div>
+    <div class="card table-wrap reveal" id="by-grade"></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap grid-2">
+    <div class="card panel reveal">
+      <h3>Paper run</h3>
+      <p class="cap">Running total of a fixed stake into every alert, sold one hour later. Not a strategy, just a number anyone can check against the ledger.</p>
+      <div id="curve"></div>
+    </div>
+    <div class="card panel reveal" style="--i:1">
+      <h3>Could you still copy it?</h3>
+      <p class="cap">For every alert, what was left 5 minutes after the wallet bought, measured to the 4-hour peak.</p>
+      <div id="copy" style="margin-top:18px"></div>
+      <p class="legend-note">These are best cases: nobody sells the exact peak.</p>
+    </div>
+  </div>
+</section>
+
+<section id="misses-sec" class="band">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">The misses</span>
+      <h2>What went wrong, in full view.</h2>
+      <p id="miss-count">Alerts that ended below the alert price, worst first.</p>
+    </div>
+    <div class="card table-wrap reveal" id="misses"></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Other cuts</span>
+      <h2>By caller grade and narrative state.</h2>
+      <p>The same measurement, split by the other two grades each alert carried.</p>
+    </div>
+    <div class="card table-wrap reveal" id="by-caller"></div>
+    <div class="card table-wrap reveal" id="by-state" style="margin-top:18px"></div>
+  </div>
+</section>
+
+<section id="verify" class="band">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Verify it yourself</span>
+      <h2>Do not trust this page. Check it.</h2>
+      <p>Every ledger line contains the SHA-256 hash of the line before it. Change, delete or insert any earlier line and the chain breaks. Your browser can recompute all of it right now, with nothing sent anywhere.</p>
+    </div>
+    <div class="card verify reveal">
+      <b>Published head hash</b>
+      <div class="head" id="v-head">—</div>
+      <div class="acts">
+        <button class="btn primary" id="v-run" type="button">Verify the ledger</button>
+        <button class="btn ghost" id="v-tamper" type="button">Try tampering with a copy</button>
+        <label class="btn ghost" style="cursor:pointer">Check your own file<input id="v-file" type="file" accept=".jsonl,.txt,application/json" class="sr"></label>
+        <a class="btn ghost" href="data/ledger.jsonl" download>Download ledger.jsonl</a>
+      </div>
+      <div class="progress" aria-hidden="true"><i id="v-bar"></i></div>
+      <div class="result" id="v-result" role="status" aria-live="polite"></div>
+      <div class="ledger-lines" id="v-lines" hidden></div>
+      <p class="legend-note">Same check from a terminal: <span class="mono">sms verify web/data/ledger.jsonl</span>. If the ledger is kept in a public git repository, its commit history is a second, independent witness.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="wrap cols">
+    <p><b>Not financial advice.</b> Memecoins are extremely risky and most go to zero. Past results of any wallet or caller do not predict future results. This tool only reads public data: it cannot trade, and it never asks for a wallet, private key or seed phrase.</p>
+    <p>MIT licensed · open source<br><a href="index.html">Back to the alerts</a></p>
+  </div>
+</footer>
+
+<script type="module" src="assets/record.js"></script>
+</body>
+</html>

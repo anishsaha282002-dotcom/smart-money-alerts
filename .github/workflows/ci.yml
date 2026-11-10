@@ -1,0 +1,26 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - run: pip install -e ".[dev]"
+      # the suite is offline by design: every source runs against a stored fixture,
+      # and tests/test_no_trading.py fails the build if any trade endpoint is ever requested
+      - run: pytest -q
+      # the zero-key path a new user takes: run the demo, then check its ledger
+      - run: sms demo --quiet --keep-site
+      - run: sms verify data/demo/ledger.jsonl
