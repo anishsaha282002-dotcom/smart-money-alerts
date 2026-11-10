@@ -10,7 +10,7 @@ from __future__ import annotations
 import logging
 import re
 
-from . import DISCLAIMER
+from . import ADVICE, DISCLAIMER
 from .grading.copycheck import VERDICT_TEXT
 from .grading.narrative import STATE_TEXT
 from .grading.wallet import FLAG_TEXT
@@ -126,7 +126,8 @@ def render(alert: dict, cap_below: int = 5) -> str:
         lines += ["", "⚠ SAFETY: " + "; ".join(risks[:4]) + "."]
 
     lines += ["", f"Alert {alert['id']}" + (" · SYNTHETIC DEMO DATA" if alert.get("demo") else ""),
-              "Not financial advice. This tool cannot trade."]
+              "Not financial advice. This tool cannot trade.",
+              ADVICE]
     return "\n".join(lines)
 
 
@@ -168,6 +169,9 @@ def reword(text: str, settings, client=None) -> str:
     """Reword with Claude if the user switched it on and supplied a key; otherwise the text as is."""
     if not (settings.llm_reword and (settings.anthropic_api_key or client is not None)):
         return text
+    if client is None and not (settings.llm_model or "").strip():
+        log.warning("llm reword skipped: set llm_model in config.toml")
+        return text
     try:
         if client is None:
             import anthropic   # optional dependency: pip install "smart-money-stories[llm]"
@@ -192,6 +196,6 @@ def reword(text: str, settings, client=None) -> str:
     if not out or not facts_preserved(text, out):
         log.warning("llm reword changed a fact; sending the template")
         return text
-    if DISCLAIMER.split(".")[0] not in out and "Not financial advice" not in out:
+    if ADVICE not in out or (DISCLAIMER.split(".")[0] not in out and "Not financial advice" not in out):
         return text
     return out

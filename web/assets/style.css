@@ -190,6 +190,7 @@ section { padding: 96px 0; position: relative; }
 .pill { display: inline-block; padding: 3px 10px; border-radius: 99px; font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; background: var(--gn-bg); color: var(--gn); }
 .pill.new { background: var(--gb-bg); color: var(--gb); } .pill.rising { background: var(--ga-bg); color: var(--ga); }
 .pill.hot { background: var(--gc-bg); color: var(--gc); } .pill.fading { background: var(--gd-bg); color: var(--gd); }
+.chip.sell { color: var(--down, #9a3412); border-color: currentColor; }
 .chip { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 99px; font-size: 12.5px; background: var(--surface-2); border: 1px solid var(--line); color: var(--ink-2); white-space: nowrap; }
 .warn { color: var(--gc); background: var(--gc-bg); border-radius: 12px; padding: 8px 12px; font-size: 13.5px; font-weight: 550; }
 .danger { color: var(--gd); background: var(--gd-bg); border-radius: 12px; padding: 8px 12px; font-size: 13.5px; font-weight: 550; }

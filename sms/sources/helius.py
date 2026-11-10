@@ -1,14 +1,9 @@
-"""Helius Enhanced Transactions API (free key) -> a Solana wallet's swaps.
+"""Helius, read-only. The live path is the Parsed Streams store when its heartbeat
+is under two minutes old, then Parsed Events history at about 10 credits a request.
+The 100-credit Enhanced Transactions history endpoint is not called.
 
-GET https://api.helius.xyz/v0/addresses/{address}/transactions?api-key=..&type=SWAP&limit=100&before=<sig>
-
-`parse_swap` is adapted from cvxv666/fomo-robinhood-radar (MIT), fomo_agent/sources/helius.py,
-Copyright (c) 2026 fomo-agent contributors: a trade belongs to `address` when it appears as a
-user account in the swap event or in the token / native transfers.
-
-Dollar values: Helius reports SOL, not dollars. SOL legs are converted at the SOL price passed
-in (today's), which is an approximation for trades from earlier in the month. Win/loss on a
-closed trade is unaffected by it when both legs are SOL; the dollar totals are approximate.
+`parse_swap` is kept for fixture tests. It is adapted from cvxv666/fomo-robinhood-radar
+(MIT), fomo_agent/sources/helius.py, Copyright (c) 2026 fomo-agent contributors.
 """
 from __future__ import annotations
 
@@ -96,25 +91,60 @@ def parse_swap(tx: dict, address: str, sol_price: float | None = None) -> Trade 
 class Helius:
     name = "helius"
 
-    def __init__(self, api_key: str, http: Http | None = None, max_per_min: int = 60):
+    def __init__(self, api_key: str, http: Http | None = None, max_per_min: int = 60,
+                 db_path: str | None = None):
+        from .helius_stream import HELIUS_RPC, SwapStore
         self.api_key = api_key
-        self.http = http or Http("helius", BASE, max_per_min=max_per_min)
+        self.http = http or Http("helius", HELIUS_RPC, max_per_min=max_per_min)
+        self.store = SwapStore(db_path)
 
-    def swaps(self, address: str, since: int, sol_price: float | None, max_pages: int = 5) -> list[Trade]:
-        out: list[Trade] = []
-        before = None
-        for _ in range(max_pages):
-            params = {"api-key": self.api_key, "type": "SWAP", "limit": 100}
-            if before:
-                params["before"] = before
-            batch = self.http.get(f"/v0/addresses/{address}/transactions", params)
-            if not batch or not isinstance(batch, list):
-                break
-            for raw in batch:
-                t = parse_swap(raw, address, sol_price)
-                if t and t.ts > since:
-                    out.append(t)
-            if batch[-1].get("timestamp", 0) <= since or len(batch) < 100:
-                break
-            before = batch[-1].get("signature")
+    def _from_store(self, address: str, since: int) -> list[Trade]:
+        from .helius_stream import to_sma_trade
+        out = []
+        for ev in self.store.events_since(since, [address]):
+            if ev.get("wallet") != address:
+                continue
+            row = to_sma_trade(ev)
+            out.append(Trade(chain="solana", wallet=address, token=row["token"], side=row["side"],
+                             ts=row["ts"], usd=0.0, token_amount=float(row["token_amount"] or 0),
+                             tx=row["tx"], source="helius_stream"))
         return out
+
+    def _parsed_events(self, address: str, since: int, pages: int) -> list[Trade]:
+        """POST /v1/parsed-events/transaction-history. About 10 credits. Not Enhanced history."""
+        from .helius_stream import parse_history_items
+        out: list[Trade] = []
+        for _ in range(max(1, pages)):
+            body = self.http.request(
+                "POST", "/v1/parsed-events/transaction-history",
+                params={"api-key": self.api_key},
+                json_body={"address": address, "limit": 100, "sortOrder": "desc",
+                           "commitment": "confirmed", "status": "succeeded",
+                           "tokenAccounts": "balanceChanged",
+                           **({"time": {"gte": int(since)}} if since else {})})
+            if body is None:
+                break
+            data = body
+            if isinstance(body, dict):
+                data = body.get("data", body.get("result", body))
+                if isinstance(data, dict) and "data" in data:
+                    data = data["data"]
+            if not isinstance(data, list) or not data:
+                break
+            rows = parse_history_items(data, [{"address": address}], since, "poll")
+            self.store.insert_many(rows)
+            self.store.bump_credits(10)
+            for ev in rows:
+                row = ev
+                out.append(Trade(chain="solana", wallet=address, token=row["mint"], side=row["side"],
+                                 ts=int(row.get("timestamp") or 0), usd=0.0,
+                                 token_amount=float(row.get("amount") or 0),
+                                 tx=row.get("signature") or "", source="helius"))
+            if len(data) < 100:
+                break
+        return out
+
+    def swaps(self, address: str, since: int, sol_price: float | None = None, max_pages: int = 1) -> list[Trade]:
+        if self.store.worker_fresh():
+            return self._from_store(address, since)
+        return self._parsed_events(address, since, max_pages)

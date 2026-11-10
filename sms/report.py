@@ -125,7 +125,8 @@ def site(ledger: Ledger, store: Store, hub, settings) -> dict:
                  "min_grade": settings.min_grade, "sources": hub.status(), "head": ledger.head, "lines": len(ledger)},
         "ticker": [{"id": a["id"], "ts": a["ts"], "text": headline(a), "grade": a["grades"]["wallet"]["grade"]}
                    for a in alerts[:14]],
-        "alerts": [{k: v for k, v in a.items() if k not in ("seq", "type", "prev")} for a in alerts[:60]],
+        "alerts": [{k: v for k, v in a.items() if k not in ("seq", "type", "prev")}
+                   for a in (alerts + list(ledger.entries("sm_selling")))][:80],
         "narratives": narratives,
         "wallets": leaderboard(store),
         "stats": stats(ledger),

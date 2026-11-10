@@ -6,4 +6,6 @@ __pycache__/
 .venv/
 data/*
 !data/.gitkeep
+!data/smart_wallets.json
+!data/pumpfun_callout_leaderboard.json
 node_modules/

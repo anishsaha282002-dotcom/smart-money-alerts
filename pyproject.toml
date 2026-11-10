@@ -18,6 +18,7 @@ dependencies = [
 [project.optional-dependencies]
 dev = ["pytest>=8"]
 llm = ["anthropic>=1.0"]
+stream = ["websockets>=12"]
 
 [project.scripts]
 sms = "sms.cli:app"

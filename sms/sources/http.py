@@ -29,6 +29,11 @@ _ALLOWED = re.compile(r"/pools/[^/]+/trades$", re.I)      # GeckoTerminal: a poo
 _FORBIDDEN_RPC = re.compile(r"^(sendTransaction|sendRawTransaction|eth_sendRawTransaction|eth_sendTransaction|"
                             r"eth_sign.*|personal_.*|simulateBundle|sendBundle)$")
 POST_OK_HOSTS = ("openapi.gmgn.ai",)      # GMGN's read endpoints for call-outs are POST
+# Read-only POSTs that are not trades: Helius Parsed Events (~10 credits) and
+# public Solana JSON-RPC getters. Enhanced 100-credit history is not one of them.
+_HELIUS_READ = ("mainnet.helius-rpc.com",)
+_SOLANA_RPC_HOSTS = ("api.mainnet-beta.solana.com",)
+_READ_RPC = re.compile(r"^get[A-Za-z0-9]+$")
 
 
 class TradingForbidden(RuntimeError):
@@ -42,10 +47,21 @@ def check_readonly(method: str, url: str, json_body: dict | None = None) -> None
         raise TradingForbidden(f"refusing {method} {parts.netloc}{path}: this tool is read-only and never trades")
     if method.upper() not in ("GET", "POST"):
         raise TradingForbidden(f"refusing {method} {parts.netloc}{path}: only reads are allowed")
-    if method.upper() == "POST" and parts.netloc not in POST_OK_HOSTS:
-        raise TradingForbidden(f"refusing POST to {parts.netloc}: data sources are read with GET")
+    if method.upper() == "POST" and not _post_is_read(parts.netloc, path, json_body):
+        raise TradingForbidden(f"refusing POST to {parts.netloc}{path}: data sources are read with GET")
     if isinstance(json_body, dict) and _FORBIDDEN_RPC.match(str(json_body.get("method", ""))):
         raise TradingForbidden(f"refusing RPC method {json_body['method']}: this tool never sends transactions")
+
+
+def _post_is_read(host: str, path: str, json_body: dict | None) -> bool:
+    if host in POST_OK_HOSTS:
+        return True
+    if host in _HELIUS_READ and (path.startswith("/v1/parsed-events/") or path.startswith("/v0/webhooks")):
+        return True
+    if host in _SOLANA_RPC_HOSTS:
+        method = str((json_body or {}).get("method") or "")
+        return bool(_READ_RPC.match(method)) and not method.lower().startswith("getsend")
+    return False
 
 
 class Http:

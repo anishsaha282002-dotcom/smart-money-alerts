@@ -28,7 +28,8 @@ def test_telegram_sends_plain_text_and_waits_out_one_429():
         return httpx.Response(200, json={"ok": True})
     tg = deliver.Telegram("TOKEN", "-100123", client=client(handler), sleep=lambda s: None)
     assert tg.send(ALERT) and len(seen) == 2
-    assert seen[0]["chat_id"] == "-100123" and seen[0]["text"] == ALERT["story"] and "parse_mode" not in seen[0]
+    assert seen[0]["chat_id"] == "-100123" and seen[0]["text"].startswith(ALERT["story"])
+    assert "Alerts only, not advice" in seen[0]["text"] and "parse_mode" not in seen[0]
 
 
 def test_discord_truncates_and_never_pings():

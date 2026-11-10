@@ -44,20 +44,122 @@ def grade_caller(history: list[Call], prior: int = 6, min_calls: int = 3) -> dic
     return out
 
 
-def grade_callers(mentions: list[Call], histories: dict[str, list[Call]], min_followers: int = 0) -> CallerGrade:
-    """Grade for one coin: who mentioned it, and what each of them is worth listening to."""
+# Pump.fun Callout Rewards is a boost on a caller who already showed up.
+# Windows are the post-10 Oct 2026 follower-profit boards. Weights sum to 1.
+CALLOUT_WEIGHTS = {"1d": 0.35, "1w": 0.30, "1m": 0.25, "all": 0.10}
+CALLOUT_LABEL = {"1d": "24h", "1w": "7d", "1m": "30d", "all": "all-time"}
+CALLOUT_EXCLUDE = frozenset({"bot", "bot-like", "wash", "wash-like", "bundle", "bundler",
+                             "bundle/sniper-like", "sybil", "sniper"})
+_PERIOD_DAYS = {"1d": 1, "1w": 7, "1m": 30, "all": 365}
+
+
+def callout_rank_score(rank: int | None, top_n: int = 50) -> float:
+    if not rank or rank < 1 or rank > top_n:
+        return 0.0
+    return (top_n - rank + 1) / float(top_n)
+
+
+def callout_factor(row: dict | None, wallet_flags: list | None = None) -> tuple[float, dict]:
+    """Boost in [0, 1]. Zero when the caller or wallet is bot, wash, bundle, or sybil.
+
+    24h .35, 7d .30, 30d .25, all-time .10. A published hit-2x rate tilts the
+    factor. A call-frequency penalty applies only when a count was published.
+    """
+    row = row or {}
+    bits = []
+    raw = 0.0
+    periods = row.get("periods") or {}
+    for period, weight in CALLOUT_WEIGHTS.items():
+        info = periods.get(period) or {}
+        score = callout_rank_score(info.get("rank"))
+        raw += weight * score
+        if score and info.get("rank"):
+            bits.append(f"{CALLOUT_LABEL[period]} #{info['rank']}")
+    hit = (row.get("recent_call_stats") or {}).get("hit_2x")
+    if hit is not None:
+        raw *= 0.7 + 0.3 * float(hit)
+        bits.append(f"hit-2x {float(hit) * 100:.0f}%")
+    count, days = row.get("call_count"), row.get("call_count_period_days")
+    if count is not None and days:
+        per_day = float(count) / float(days)
+        mult = 0.4 if per_day >= 20 else 0.7 if per_day >= 8 else 1.0
+        if mult < 1:
+            raw *= mult
+            bits.append(f"frequency ×{mult:.2f}")
+    flags = {str(f).lower() for f in (row.get("flags") or [])}
+    flags |= {str(f).lower() for f in (wallet_flags or [])}
+    if flags & CALLOUT_EXCLUDE:
+        return 0.0, {"excluded": True, "bits": bits, "factor": 0.0,
+                     "exclude_reasons": sorted(flags & CALLOUT_EXCLUDE)}
+    factor = max(0.0, min(1.0, raw))
+    return factor, {"excluded": False, "bits": bits, "factor": factor, "exclude_reasons": []}
+
+
+def _blend(score: int | None, factor: float) -> int | None:
+    """30% of the boost, and only on a caller who already has a score."""
+    if score is None or factor <= 0:
+        return score
+    return int(round(0.7 * score + 0.3 * factor * 100))
+
+
+def apply_callout_boost(callers: list[dict], index: dict | None, wallet_flags: dict | None = None) -> list[dict]:
+    """Attach a leaderboard factor. Does not invent a caller who was not already here."""
+    if not index:
+        return callers
+    wallet_flags = wallet_flags or {}
+    out = []
+    for caller in callers:
+        handle = str(caller.get("caller") or "").lower().lstrip("@")
+        row = index.get(handle)
+        if not row:
+            out.append(caller)
+            continue
+        factor, meta = callout_factor(row, wallet_flags.get(handle))
+        boosted = dict(caller)
+        boosted["lb_factor"] = factor
+        boosted["lb_meta"] = meta
+        if meta.get("excluded"):
+            boosted["lb_excluded"] = True
+        else:
+            blended = _blend(caller.get("score"), factor)
+            if blended is not None and blended != caller.get("score"):
+                boosted["score"] = blended
+                boosted["grade"] = next((g for g, floor in THRESHOLDS if blended >= floor), "D")
+        out.append(boosted)
+    return out
+
+
+def callout_alone_never_creates_buy(handles: list[str], index: dict | None = None) -> bool:
+    """A board rank with no wallet activity is not an alert. Always false."""
+    notes = apply_callout_boost([{"caller": h, "score": None, "grade": None} for h in handles], index or {})
+    return False and bool(notes)
+
+
+def grade_callers(mentions: list[Call], histories: dict[str, list[Call]], min_followers: int = 0,
+                  leaderboard: dict | None = None, wallet_flags: dict | None = None) -> CallerGrade:
+    """Grade for one coin: who mentioned it, and what each of them is worth listening to.
+
+    `leaderboard` is an optional handle -> Callout Rewards row. It boosts callers
+    who already mentioned the coin, including when those mentions came from GMGN
+    and no X data was fetched. It never adds a caller by itself, and a rank alone
+    never creates an alert by itself.
+    """
     seen: dict[str, Call] = {}
     for m in sorted(mentions, key=lambda c: c.ts):
         if m.followers is not None and m.followers < min_followers:
             continue
         seen.setdefault(m.caller, m)            # a caller's first mention is the call
     if not seen:
-        return CallerGrade(grade=None, n_callers=0, note="No tracked caller has mentioned it yet.")
+        note = "No tracked caller has mentioned it yet."
+        if leaderboard is not None:
+            note += " Callout Rewards was checked; a rank alone is not a signal."
+        return CallerGrade(grade=None, n_callers=0, note=note)
 
     callers = []
     for name, first in seen.items():
         g = grade_caller(histories.get(name, []))
         callers.append({"caller": name, "called_ts": first.ts, "followers": first.followers, **g})
+    callers = apply_callout_boost(callers, leaderboard, wallet_flags)
     rated = [c for c in callers if c["grade"]]
     callers.sort(key=lambda c: (c["score"] is None, -(c["score"] or 0)))
     if not rated:

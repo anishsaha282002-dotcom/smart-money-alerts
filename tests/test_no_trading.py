@@ -72,6 +72,10 @@ def test_guard_allows_the_reads_we_do_make():
     check_readonly("GET", "https://api.helius.xyz/v0/addresses/abc/transactions")
     check_readonly("GET", "https://openapi.gmgn.ai/v1/user/smartmoney")
     check_readonly("POST", "https://openapi.gmgn.ai/v1/callout/global")
+    check_readonly("POST", "https://mainnet.helius-rpc.com/v1/parsed-events/transaction-history",
+                   {"address": "abc", "limit": 1})
+    check_readonly("POST", "https://api.mainnet-beta.solana.com",
+                   {"jsonrpc": "2.0", "id": 1, "method": "getTransaction", "params": []})
 
 
 def test_http_client_raises_before_anything_is_sent():
@@ -145,13 +149,31 @@ def test_dependencies_and_env_template_hold_no_signing_material():
 
 # ------------------------------------------------ a whole scan, under watch
 
+def _read_post(request) -> bool:
+    host, path = request.url.host, request.url.path
+    if host == "openapi.gmgn.ai":
+        return path in gmgn.READ_ROUTES
+    if host == "mainnet.helius-rpc.com":
+        return path.startswith("/v1/parsed-events/")
+    if host == "api.mainnet-beta.solana.com":
+        import json
+        try:
+            body = json.loads(request.content or b"{}")
+        except (TypeError, ValueError):
+            return False
+        method = str(body.get("method") or "")
+        low = method.lower()
+        return method.startswith("get") and not low.startswith(("send", "sign"))
+    return False
+
+
 def assert_read_only(requests):
     assert requests, "the scan was expected to talk to its sources"
     for r in requests:
         path = r.url.path
         assert r.method in ("GET", "POST"), f"{r.method} {r.url}"
         if r.method == "POST":
-            assert r.url.host == "openapi.gmgn.ai" and path in gmgn.READ_ROUTES, f"unexpected POST {r.url}"
+            assert _read_post(r), f"unexpected POST {r.url}"
         if TRADE_PATH.search(path):
             assert READ_ONLY_EXCEPTION.search(path), f"trade-like request: {r.method} {r.url}"
         assert path not in gmgn.WRITE_ROUTES
@@ -179,7 +201,9 @@ def test_full_live_scan_never_calls_a_trade_endpoint(fake_net, settings, keys):
     hosts = {r.url.host for r in fake_net.requests}
     assert "api.geckoterminal.com" in hosts
     if keys:
-        assert {"openapi.gmgn.ai", "api.helius.xyz"} <= hosts
+        assert "openapi.gmgn.ai" in hosts
+        assert "mainnet.helius-rpc.com" in hosts
+        assert "api.helius.xyz" not in hosts, "the 100-credit Enhanced history endpoint must not be called"
 
 
 def test_demo_makes_no_network_calls_at_all(settings, monkeypatch):

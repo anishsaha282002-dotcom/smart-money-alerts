@@ -25,12 +25,11 @@ min_caller_followers = 2000       # ignore X accounts smaller than this (when fo
 jupiter_base = "https://lite-api.jup.ag"
 
 [story]
-llm_reword = false                # true + ANTHROPIC_API_KEY in .env: Claude rewords the template (facts are checked)
-llm_model = "claude-opus-5-5"     # any Claude model id; a smaller one such as "claude-haiku-5-5" is much cheaper
+llm_reword = false                # off unless you set this true AND ANTHROPIC_API_KEY. Facts are checked.
+llm_model = ""                    # your model id, only used when llm_reword is true. Left blank on purpose.
 
-# Wallets you want followed directly (needs HELIUS_API_KEY for Solana, GMGN_API_KEY for BSC/Base).
-# Public addresses only. This tool never asks for, stores or uses a private key.
+# Public addresses only. `file` is the dated snapshot (stream=true wallets are watched;
+# stream=false reserve and high-frequency wallets are kept but not polled or streamed).
+# This tool never asks for, stores or uses a private key.
 [wallets]
-solana = []
-bsc = []
-base = []
+file = "data/smart_wallets.json"

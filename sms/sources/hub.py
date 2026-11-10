@@ -24,6 +24,7 @@ from .gmgn import Gmgn
 from .helius import WSOL, Helius
 from .jupiter import Jupiter
 from .safety import Safety
+from .solana_rpc import SolanaRPC
 from .xapi import XApi
 
 log = logging.getLogger(__name__)
@@ -41,7 +42,9 @@ class LiveHub:
         self.ds = DexScreener()
         self.jup = Jupiter(base=settings.jupiter_base)
         self.cg = CoinGecko()
-        self.helius = Helius(settings.helius_api_key, max_per_min=settings.helius_max_per_min) if settings.helius_api_key else None
+        db = str(settings.data_dir / "helius_swaps.db")
+        self.helius = Helius(settings.helius_api_key, max_per_min=settings.helius_max_per_min, db_path=db) if settings.helius_api_key else None
+        self.solana = None if self.helius else SolanaRPC()
         self.gmgn = Gmgn(settings.gmgn_api_key, max_per_min=settings.gmgn_max_per_min) if settings.gmgn_api_key else None
         self.x = XApi(settings.x_bearer_token) if settings.x_bearer_token else None
         self.safety_src = Safety() if settings.safety_checks else None
@@ -66,6 +69,7 @@ class LiveHub:
         rows = [("geckoterminal", self.gt, True, "keyless"), ("dexscreener", self.ds, True, "keyless"),
                 ("jupiter", self.jup, True, "keyless"), ("coingecko", self.cg, True, "keyless"),
                 ("helius", self.helius, bool(self.helius), "HELIUS_API_KEY"),
+                ("solana_rpc", self.solana, bool(self.solana), "keyless, used when Helius is off"),
                 ("gmgn", self.gmgn, bool(self.gmgn), "GMGN_API_KEY"),
                 ("x", self.x, bool(self.x), "X_BEARER_TOKEN")]
         out = []
@@ -126,14 +130,27 @@ class LiveHub:
             fetched: list[Trade] = []
             if self.gmgn:
                 fetched += self.gmgn.wallet_activity(chain, wallet, since)
-            elif chain == "solana" and self.helius:
+            if chain == "solana" and self.helius:
                 fetched += self.helius.swaps(wallet, since, self._sol_price())
+            elif chain == "solana" and self.solana and not self.gmgn:
+                fetched += self.solana.trades(wallet, since)
             self.store.add_trades(fetched)
             self.store.put(key, len(fetched), self.now())
         return self.store.wallet_trades(chain, wallet, since, self.now())
 
     def wallet_meta(self, chain: str, wallet: str) -> dict:
-        return self._meta.get((chain, wallet), {})
+        book = self.s.wallet_book.get((chain, wallet), {})
+        meta = dict(self._meta.get((chain, wallet), {}))
+        if book:
+            meta.setdefault("name", book.get("name") or "")
+            tags = list(meta.get("tags") or [])
+            for tag in book.get("tags") or []:
+                if tag not in tags:
+                    tags.append(tag)
+            meta["tags"] = tags
+            meta["stream"] = book.get("stream")
+            meta["vetting"] = book.get("vetting") or {}
+        return meta
 
     # ---------------------------------------------------------------- tokens
 
