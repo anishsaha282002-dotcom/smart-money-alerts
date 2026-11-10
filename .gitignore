@@ -1,0 +1,36 @@
+# secrets and keys
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+keys/
+.gmgn-readonly/
+**/.gmgn-readonly/
+
+# local state
+*.db
+*.sqlite
+*.sqlite3
+*.pid
+*.log
+logs/
+demo-out/
+tracker/runs/
+tracker/callouts_cache.json
+
+# python / tooling
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+build/
+dist/
+.coverage
+htmlcov/
+
+# backups / scratch
+*_backup*
+*~

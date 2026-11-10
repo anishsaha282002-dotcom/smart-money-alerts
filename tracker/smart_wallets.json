@@ -1,0 +1,116 @@
+{
+  "updated": "2026-11-09",
+  "notes": [
+    "Seeded with publicly listed top Solana memecoin trader wallets for READ-ONLY recency checks. This is not financial advice; leaderboard ranks change quickly.",
+    "Full addresses were published in Solana Trading's 2 Nov 2026 recap of KOL Explorer's 1 Nov 2026 30-day realized-PnL leaderboard: https://solana-trading.com/blog/top-10-solana-memecoin-trader-wallets-october-2026",
+    "Kolscan account URLs exist in the form https://kolscan.io/account/<address> (checked for Cented and Decu). The public Kolscan leaderboard HTML only shows truncated prefixes (e.g. B32Qbb, 4vw54B), so full strings could not be scraped from Kolscan itself.",
+    "Cielo public list pages (e.g. Memecoins traders, Solana High Winrate) did not expose full wallet addresses in fetchable HTML, so no Cielo-sourced addresses were added.",
+    "tags: every wallet is 'smart' (counts toward the 2-in-1h cluster and soft sells). 'kol' is set for wallets with a public Kolscan account URL (Cented, Decu) and is the source of the KOL-buy label when GMGN has no key."
+  ],
+  "wallets": [
+    {
+      "name": "Cented",
+      "chain": "sol",
+      "address": "CyaE1VxvBrahnPWkqm5VsdCvyS2QmNht2UFrKJHga54o",
+      "source": "https://solana-trading.com/blog/top-10-solana-memecoin-trader-wallets-october-2026",
+      "source_also": "https://kolscan.io/account/CyaE1VxvBrahnPWkqm5VsdCvyS2QmNht2UFrKJHga54o",
+      "enabled": true,
+      "tags": [
+        "smart",
+        "kol"
+      ]
+    },
+    {
+      "name": "Decu",
+      "chain": "sol",
+      "address": "4vw54BmAogeRV3vPKWyFet5yf8DTLcREzdSzx4rw9Ud9",
+      "source": "https://solana-trading.com/blog/top-10-solana-memecoin-trader-wallets-october-2026",
+      "source_also": "https://kolscan.io/account/4vw54BmAogeRV3vPKWyFet5yf8DTLcREzdSzx4rw9Ud9",
+      "enabled": true,
+      "tags": [
+        "smart",
+        "kol"
+      ]
+    },
+    {
+      "name": "Theo",
+      "chain": "sol",
+      "address": "Bi4rd5FH5bYEN8scZ7wevxNZyNmKHdaBcvewdPFxYdLt",
+      "source": "https://solana-trading.com/blog/top-10-solana-memecoin-trader-wallets-october-2026",
+      "enabled": true,
+      "tags": [
+        "smart"
+      ]
+    },
+    {
+      "name": "Coler",
+      "chain": "sol",
+      "address": "99xnE2zEFi8YhmKDaikc1EvH6ELTQJppnqUwMzmpLXrs",
+      "source": "https://solana-trading.com/blog/top-10-solana-memecoin-trader-wallets-october-2026",
+      "enabled": true,
+      "tags": [
+        "smart"
+      ]
+    },
+    {
+      "name": "Trunoest",
+      "chain": "sol",
+      "address": "ardinRsN1mNYVeoJWTBsWeYeXvuR9UUDGMsCDKpb6AT",
+      "source": "https://solana-trading.com/blog/top-10-solana-memecoin-trader-wallets-october-2026",
+      "enabled": true,
+      "tags": [
+        "smart"
+      ]
+    },
+    {
+      "name": "Limfork",
+      "chain": "sol",
+      "address": "BQVz7fQ1WsQmSTMY3umdPEPPTm1sdcBcX9sP7o6kPRmB",
+      "source": "https://solana-trading.com/blog/top-10-solana-memecoin-trader-wallets-october-2026",
+      "enabled": true,
+      "tags": [
+        "smart"
+      ]
+    },
+    {
+      "name": "Nyhrox",
+      "chain": "sol",
+      "address": "6S8GezkxYUfZy9JPtYnanbcZTMB87Wjt1qx3c6ELajKC",
+      "source": "https://solana-trading.com/blog/top-10-solana-memecoin-trader-wallets-october-2026",
+      "enabled": true,
+      "tags": [
+        "smart"
+      ]
+    },
+    {
+      "name": "Bandit",
+      "chain": "sol",
+      "address": "5B79fMkcFeRTiwm7ehsZsFiKsC7m7n1Bgv9yLxPp9q2X",
+      "source": "https://solana-trading.com/blog/top-10-solana-memecoin-trader-wallets-october-2026",
+      "enabled": true,
+      "tags": [
+        "smart"
+      ]
+    },
+    {
+      "name": "Kadenox",
+      "chain": "sol",
+      "address": "B32QbbdDAyhvUQzjcaM5j6ZVKwjCxAwGH5Xgvb9SJqnC",
+      "source": "https://solana-trading.com/blog/top-10-solana-memecoin-trader-wallets-october-2026",
+      "enabled": true,
+      "tags": [
+        "smart"
+      ]
+    },
+    {
+      "name": "Art",
+      "chain": "sol",
+      "address": "CgaA9a1JwAXJyfHuvZ7VW8YfTVRkdiT5mjBBSKcg7Rz5",
+      "source": "https://solana-trading.com/blog/top-10-solana-memecoin-trader-wallets-october-2026",
+      "enabled": true,
+      "tags": [
+        "smart"
+      ]
+    }
+  ]
+}

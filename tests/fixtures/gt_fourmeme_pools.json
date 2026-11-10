@@ -1,0 +1,188 @@
+{
+ "data": [
+  {
+   "id": "bsc_0x6558cede8867df17500a391678369341705effff",
+   "type": "pool",
+   "attributes": {
+    "base_token_price_usd": "0.00000318448668260412",
+    "base_token_price_native_currency": "0.00000000462996028293707",
+    "quote_token_price_usd": "687.8",
+    "quote_token_price_native_currency": "1.0",
+    "base_token_price_quote_token": "0.000000004629960283",
+    "quote_token_price_base_token": "215984574.14102",
+    "address": "0x6558cede8867df17500a391678369341705effff",
+    "name": "GECKO / BNB",
+    "pool_created_at": "2026-11-09T04:21:45Z",
+    "fdv_usd": "3184.486683",
+    "market_cap_usd": null,
+    "price_change_percentage": {
+     "m5": "0",
+     "m15": "0",
+     "m30": "0",
+     "h1": "0",
+     "h6": "0",
+     "h24": "-1.912"
+    },
+    "transactions": {
+     "m5": {
+      "buys": 0,
+      "sells": 0,
+      "buyers": 0,
+      "sellers": 0
+     },
+     "m15": {
+      "buys": 0,
+      "sells": 0,
+      "buyers": 0,
+      "sellers": 0
+     },
+     "m30": {
+      "buys": 0,
+      "sells": 0,
+      "buyers": 0,
+      "sellers": 0
+     },
+     "h1": {
+      "buys": 0,
+      "sells": 1,
+      "buyers": 0,
+      "sellers": 1
+     },
+     "h6": {
+      "buys": 0,
+      "sells": 1,
+      "buyers": 0,
+      "sellers": 1
+     },
+     "h24": {
+      "buys": 519,
+      "sells": 472,
+      "buyers": 323,
+      "sellers": 316
+     }
+    },
+    "volume_usd": {
+     "m5": "0.0",
+     "m15": "0.0",
+     "m30": "0.0",
+     "h1": "2.5725911147",
+     "h6": "2.5725911147",
+     "h24": "54830.1971035271"
+    },
+    "reserve_in_usd": "2550.9396"
+   },
+   "relationships": {
+    "base_token": {
+     "data": {
+      "id": "bsc_0x6558cede8867df17500a391678369341705effff",
+      "type": "token"
+     }
+    },
+    "quote_token": {
+     "data": {
+      "id": "bsc_0x0000000000000000000000000000000000000000",
+      "type": "token"
+     }
+    },
+    "dex": {
+     "data": {
+      "id": "four-meme",
+      "type": "dex"
+     }
+    }
+   }
+  },
+  {
+   "id": "bsc_0x01fa98a147e871d6e7c548d40a237d95fd104444",
+   "type": "pool",
+   "attributes": {
+    "base_token_price_usd": "0.0000036149990212859",
+    "base_token_price_native_currency": "0.00000000524650453722755",
+    "quote_token_price_usd": "689.03",
+    "quote_token_price_native_currency": "1.0",
+    "base_token_price_quote_token": "0.000000005246504537",
+    "quote_token_price_base_token": "190603094.480204",
+    "address": "0x01fa98a147e871d6e7c548d40a237d95fd104444",
+    "name": "MEME / BNB",
+    "pool_created_at": "2026-11-10T04:05:53Z",
+    "fdv_usd": "3614.999021",
+    "market_cap_usd": null,
+    "price_change_percentage": {
+     "m5": "-6.375",
+     "m15": "-6.375",
+     "m30": "-6.375",
+     "h1": "-6.375",
+     "h6": "-6.375",
+     "h24": "-6.375"
+    },
+    "transactions": {
+     "m5": {
+      "buys": 252,
+      "sells": 288,
+      "buyers": 176,
+      "sellers": 162
+     },
+     "m15": {
+      "buys": 252,
+      "sells": 288,
+      "buyers": 176,
+      "sellers": 162
+     },
+     "m30": {
+      "buys": 252,
+      "sells": 288,
+      "buyers": 176,
+      "sellers": 162
+     },
+     "h1": {
+      "buys": 252,
+      "sells": 288,
+      "buyers": 176,
+      "sellers": 162
+     },
+     "h6": {
+      "buys": 252,
+      "sells": 288,
+      "buyers": 176,
+      "sellers": 162
+     },
+     "h24": {
+      "buys": 252,
+      "sells": 288,
+      "buyers": 176,
+      "sellers": 162
+     }
+    },
+    "volume_usd": {
+     "m5": "31278.2324648019",
+     "m15": "31278.2324648019",
+     "m30": "31278.2324648019",
+     "h1": "31278.2324648019",
+     "h6": "31278.2324648019",
+     "h24": "31278.2324648019"
+    },
+    "reserve_in_usd": "2863.6087"
+   },
+   "relationships": {
+    "base_token": {
+     "data": {
+      "id": "bsc_0x01fa98a147e871d6e7c548d40a237d95fd104444",
+      "type": "token"
+     }
+    },
+    "quote_token": {
+     "data": {
+      "id": "bsc_0x0000000000000000000000000000000000000000",
+      "type": "token"
+     }
+    },
+    "dex": {
+     "data": {
+      "id": "four-meme",
+      "type": "dex"
+     }
+    }
+   }
+  }
+ ]
+}

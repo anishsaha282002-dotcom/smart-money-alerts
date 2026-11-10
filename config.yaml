@@ -1,0 +1,46 @@
+# smart-money-alerts configuration. Secrets never go here - put keys in .env (see .env.example).
+chains: [solana, bsc]          # add "base" to enable Base (GMGN key needed for Base wallet data)
+paths:
+  data_dir: data               # sqlite cache, wallets.json, callers.json
+  ledger: public/ledger.jsonl  # the public, hash-chained alert ledger
+  site_dir: public             # static report output (GitHub Pages friendly)
+  wallets: data/wallets.json
+  callers: data/callers.json
+  helius_stream_db: ""            # default: env HELIUS_STREAM_DB or tracker/helius_swaps.db
+
+alerts:
+  min_wallet_grade: B          # A | B | C | D - only wallets at or above this grade trigger alerts
+  min_closed_trades: 3         # below this the wallet is ungraded (U) and never alerts
+  lookback_minutes: 60         # only buys newer than this are alert candidates
+  min_buy_usd: 300             # ignore dust buys
+  min_liquidity_usd: 10000     # skip illiquid pools
+  max_mcap_usd: 100000000      # memecoin focus: skip large caps / majors
+  dedupe_hours: 24             # one alert per wallet+token per window
+  max_alerts_per_run: 10
+
+grading:
+  window_days: 30              # closed-trade window for the wallet record
+  shrink_k: 8                  # pseudo-trades pulling win rate toward 50% (small-sample shrinkage)
+  low_sample: 5                # n below this -> LOW SAMPLE warning and grade capped at C
+  small_sample: 10             # n below this -> "small sample" note
+  closed_fraction: 0.9         # a position counts as closed once >=90% of peak size is sold
+  late_check_max_trades: 6     # past trades per wallet replayed through OHLCV (rate-limit budget)
+
+discovery:
+  gecko_trending_pools: 3      # per chain; their recent trades reveal active wallets (keyless)
+  fourmeme_pools: 2            # BSC four.meme pools via GeckoTerminal dex "four-meme"
+  big_buy_usd: 1500            # unknown wallets buying this much get graded on the fly (budgeted)
+  max_new_wallet_grades: 4     # per run; each costs many free-tier calls
+  solana_rpc_tx_budget: 60     # keyless Solana public RPC getTransaction calls per run
+
+budgets:                       # hard per-run call caps per source (free tiers)
+  helius: 40
+  gmgn: 20
+  x: 10
+  geckoterminal: 45
+
+ledger:
+  horizons: [15m, 1h, 4h, 24h]
+
+narration:
+  llm: false                   # true = rewrite the template story with an OpenAI-compatible LLM (needs LLM_API_KEY)

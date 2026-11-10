@@ -1,0 +1,1 @@
+{"_doc":"FICTIONAL demo callers for the offline demo.","callers":[{"handle":"demo_alpha_caller","tier":"A","lang":"en","note":"demo prior: 70% of 40"},{"handle":"demo_beta_caller","tier":"A","lang":"en","note":"demo prior: 52% of 30"},{"handle":"demo_zh_caller","tier":"B","lang":"zh","note":"demo Chinese-language caller, no prior"}],"flagged":[],"catalysts":[]}
