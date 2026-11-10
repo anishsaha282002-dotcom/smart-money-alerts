@@ -33,14 +33,14 @@ GMGN's value was the labeled set, not the clustering math. Free sources of full 
 
 ### How this plugs into the two codebases (when Anish asks to build)
 
-**`/workspace/memecoin-tracker/smartmoney.py`**
+**`tracker/smartmoney.py`**
 
 - Keep `cluster_by_mint`, `summarize`, and the rule "2+ tracked wallets in ~1h". Without GMGN, `sm_confirmed` still fires from `helius_buyers`.
 - Leave `HELIUS_MAX_WALLETS = 12` and `HELIUS_MAX_CALLS = 20` on the polling path.
 - New optional collector: webhook or Parsed Streams events → same `{mint, maker, side, timestamp}` shape → feed `cluster_by_mint`. That path can drop the 12-wallet cap.
 - GMGN blocks (`gmgn_sm`, type-12 / type-20 signals, KOL buy/sell) stay optional and dark until a key exists without a $100 balance.
 
-**`/workspace/smart-money-alerts/src/sma/sources/`**
+**`src/sma/sources/`**
 
 - `solana.py` already polls Helius Enhanced history when `HELIUS_API_KEY` is set. `pipeline.py` already treats other graded wallets buying the same token as `cobuyers`.
 - Add a webhook/stream source next to `solana.py` / `gmgn.py`. Parse SWAP/buy events, store them, and let the existing cobuyer + wallet-grade path do the "cluster in one message" work.
@@ -83,7 +83,7 @@ No maintained MIT/Apache library was found that is a drop-in "smart-money cluste
 | Repo | Stars | License | Language | Last push | Notes |
 | --- | --- | --- | --- | --- | --- |
 | [thelezend/solana-copy-trade-detect](https://github.com/thelezend/solana-copy-trade-detect) | 54 | Apache-2.0 | Rust | 2024-12-15 (**archived**) | CLI to test if *one wallet* is copy-trading others. Not a live cluster alerter. |
-| [nirholas/kol-quest](https://github.com/nirholas/kol-quest) | 28 | no SPDX (`NOASSERTION`) | TypeScript | 2026-11-04 | KOL leaderboard; previously noted as scraping GMGN (blocked from this box). |
+| [nirholas/kol-quest](https://github.com/nirholas/kol-quest) | 28 | no SPDX (`NOASSERTION`) | TypeScript | 2026-11-04 | KOL leaderboard; previously noted as scraping GMGN (often blocked). |
 | [1f1n/Dragon](https://github.com/1f1n/Dragon) | 183 | none stated | Python | 2025-11-21 | Wallet-finding toolkit, not a cluster API. |
 | [AtlasOnchain/Atlas](https://github.com/AtlasOnchain/Atlas) | 35 | none stated | TypeScript | 2026-06-22 | "Smart money tracker" / whale alerts; review license before any use. |
 | [AccursedGalaxy/Insider-Monitor](https://github.com/AccursedGalaxy/Insider-Monitor) | 41 | none stated | Go | 2026-10-21 | Wallet activity monitor. |

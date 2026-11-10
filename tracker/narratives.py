@@ -2,14 +2,14 @@
 """
 Narrative layer for the memecoin tracker (research/signals only - never trades, never posts).
 
-`collect --run RUN` pulls free, keyless feeds that work from this box, clusters every token it sees into
+`collect --run RUN` pulls free, keyless feeds that are keyless, clusters every token it sees into
 narratives (seed synonym map + emergent keywords, English and Chinese), scores them, and writes
 runs/RUN/narratives.json, which includes the X count queries for the top narratives.
 `tracker.py extract` adds those queries to the run's budgeted counts_plan.json, and `tracker.py score`
 calls `finalize()` to fold in X keyword velocity, compare against history in state.db, and label each
 narrative NEW / RISING / HOT / FLAT / FADING.
 
-Feeds (all free, no key, tested from the box on 2026-11-09):
+Feeds (all free, no key, tested on 2026-11-09):
   DexScreener  /metas/trending/v1 + /metas/meta/v1/<slug>  (DexScreener's own narrative 'metas' with mcap change)
                /token-boosts/latest/v1, /token-boosts/top/v1 (PAID promos - counted as weak/paid signal only)
                /token-profiles/latest/v1, /community-takeovers/latest/v1, /tokens/v1/<chain>/<addrs> (enrichment)
@@ -18,7 +18,7 @@ Feeds (all free, no key, tested from the box on 2026-11-09):
   PumpPortal   wss://pumpportal.fun/api/data subscribeNewToken + subscribeMigration (N-second snapshot)
   Binance      Alpha token list (bapi public) - Chinese-named BSC memes that Binance Alpha listed
   CoinGecko    /search/trending (coins + categories)
-Blocked from the box (Cloudflare/WAF): pump.fun frontend API, gmgn.ai, four.meme API, Binance Square.
+Not reachable without a browser (Cloudflare/WAF): pump.fun frontend API, gmgn.ai, four.meme API, Binance Square.
 """
 import argparse, asyncio, json, os, re, sqlite3, sys, time, math, datetime as dt
 import urllib.request, urllib.error

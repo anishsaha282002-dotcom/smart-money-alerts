@@ -442,7 +442,7 @@ def parse_webhook_body(body, wallets, source='webhook'):
 
 
 class WebhookReceiver:
-    """Optional local HTTP receiver. Disabled by default; the box has no public URL."""
+    """Optional local HTTP receiver. Disabled by default; there is no public URL."""
 
     def __init__(self, store, wallets, host='127.0.0.1', port=8787):
         self.store, self.wallets, self.host, self.port = store, wallets, host, port

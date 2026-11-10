@@ -14,7 +14,7 @@ Market data: DexScreener (prices/liquidity/volume/txns), RugCheck (authorities, 
 GeckoTerminal (fallback + OHLCV for backtest).
 Optional read-only boosters (env keys, skipped if missing): Helius Free Parsed Streams worker
 (stream_worker.py) plus a Parsed Events poll fallback, and GMGN OpenAPI smart-money / KOL feeds
-(never trades, never signs, never links a wallet). pump.fun's own API is Cloudflare-blocked from this box.
+(never trades, never signs, never links a wallet). pump.fun's own API is Cloudflare-blocked.
 """
 import argparse, json, os, re, sqlite3, sys, time, glob, datetime as dt
 import urllib.request, urllib.error

@@ -9,7 +9,7 @@ Question: does anything (paid or free) already do all five of these together?
 5. **C5 Public record**: a public, checkable track record of the alerts' own performance.
 
 Scores: **Y** = does it as defined; **P** = partial (an element is present but it's on-demand, raw, aggregate-only, or covers one chain or one source); **N** = no or not found; **?** = could not verify.
-How I checked: I did not sign up, sign in or contact anyone. Every evidence URL below returned HTTP 200 from the box on 10 Nov 2026 unless noted (403 = the site blocks bots; the page exists).
+How I checked: I did not sign up, sign in or contact anyone. Every evidence URL below returned HTTP 200 on 10 Nov 2026 unless noted (403 = the site blocks bots; the page exists).
 
 ## Verdict
 **Nobody does all five.** No candidate scores Y on C1, C2 or C3 as defined. The best totals are 4 of 5 at partial-or-better:
