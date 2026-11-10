@@ -6,7 +6,8 @@ paths:
   site_dir: public             # static report output (GitHub Pages friendly)
   wallets: data/wallets.json
   callers: data/callers.json
-  helius_stream_db: ""            # default: env HELIUS_STREAM_DB or tracker/helius_swaps.db
+  pumpfun_callout_leaderboard: data/pumpfun_callout_leaderboard.json
+  helius_stream_db: ""            # default: env HELIUS_STREAM_DB or sibling memecoin-tracker/helius_swaps.db
 
 alerts:
   min_wallet_grade: B          # A | B | C | D - only wallets at or above this grade trigger alerts

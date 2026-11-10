@@ -64,6 +64,7 @@ cd tracker && python -m unittest discover -s tests -q
 ```
 
 
+
 ## Live calls page
 
 A static site in [`web/`](web/) displays alerts from the public hash-chained ledger as readable cards (coin, chain, BUY/SELL, why, wallet and caller grades, late-copy check, ledger outcomes). It is CDN-free HTML/JS/CSS with no build step.
@@ -81,6 +82,10 @@ The exporter writes `web/data/alerts.json` plus caller/wallet summaries from loc
 Hosted URL (GitHub Pages): https://anishsaha282002-dotcom.github.io/smart-money-alerts/
 
 A workflow at [`.github/workflows/pages.yml`](.github/workflows/pages.yml) deploys the `web/` folder on every push to `main`. The first time, set the repository's Pages source to **GitHub Actions** in Settings → Pages; the workflow cannot flip that setting by itself.
+
+## Pump.fun Callout Rewards (boost only)
+
+`data/pumpfun_callout_leaderboard.json` is a dated snapshot of the public Callout Rewards board (24h / 7-day / 30-day / all-time). Caller grades blend this in beside the existing 24h-2x hit rate from X. Post-10 Oct 2026 windows outweigh all-time; high call frequency is penalised only when a source published a call count; wallets flagged bot-like, wash-like, sybil, or bundled get no boost. **A call or a leaderboard rank alone never creates a BUY.**
 
 ## License
 

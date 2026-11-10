@@ -169,6 +169,7 @@ scripts/make_demo_fixtures.py
 
 ## Known limitations
 
+- **Pump.fun Callout Rewards.** `data/pumpfun_callout_leaderboard.json` is a dated public snapshot (daily/weekly/monthly/all-time). It is merged into caller grades as a boost beside the 24h-2x hit rate. Post-10 Oct 2026 windows outweigh all-time. A call or a board rank alone never creates an alert.
 - **Streaming when the worker is up.** Solana tracked-wallet swaps come from the Helius Parsed Streams worker (`helius_swaps.db`) when its heartbeat is fresh; otherwise `sma run` cheap-polls Parsed Events. BSC/four.meme stays on GeckoTerminal. Caller chatter stays on the official X bearer / built-in X reads — not opentwitter-mcp.
 - **Keyless grading is thin.** The public Solana RPC is rate-limited, and famous wallets are flooded with failed spam transactions. Without Helius, many wallets end up U or carry a partial-history warning. Without GMGN, BSC and Base wallets are only graded from trades this tool has observed itself.
 - **Values are in the trade's own unit** (USD from GeckoTerminal/GMGN, SOL from RPC/Helius). Token-account rent is counted as buy cost, and fees and slippage are ignored.

@@ -21,6 +21,7 @@ import urllib.request, urllib.error
 from xparse import load_x_json, posts_from
 import narratives as NARR
 import smartmoney as SM
+import pumpfun_callouts as PFC
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DB = os.path.join(HERE, 'state.db')
@@ -452,6 +453,10 @@ def fmt_usd(x):
 
 def cmd_score(a):
     c = db(); j, tiers, flagged = load_callers()
+    try:
+        lb_snap = PFC.load_snapshot()
+    except Exception:
+        lb_snap = {}
     rd = os.path.join(RUNS, a.run); T = now()
     cutoff48 = iso(T - dt.timedelta(hours=48)); cutoffW = iso(T - dt.timedelta(hours=CFG['caller_window_h']))
     cand = [r[0] for r in c.execute('select distinct mint from mentions where created_at>=?', (cutoff48,))]
@@ -585,6 +590,13 @@ def cmd_score(a):
             if narrs: passes.append('NARRATIVE: ' + '; '.join(f"{d['narrative']} [{d['status']}]" for d in narrs[:3]))
             if (rc or {}).get('warns') and chain_of(m) == 'bsc': passes.append('NOTE (GoPlus warn): ' + ', '.join(rc['warns']))
             if info['flagged_callers']: passes.append('NOTE: also pushed by flagged accounts: ' + ', '.join(info['flagged_callers']))
+            # Callout leaderboard is boost-only: a note on an existing path, never a new sig_type or a cleared fail.
+            try:
+                _lb_note, _ = PFC.boost_note_for_handles(callers_w, snap=lb_snap)
+            except Exception:
+                _lb_note = None
+            if _lb_note:
+                passes.append(_lb_note)
             sm = info.get('sm') or {}
             if sm.get('sm_confirmed'):
                 passes.append('smart-money confirmed: ' + sm.get('sm_reason', ''))
@@ -620,8 +632,11 @@ def coin_block(i, extra):
     if i.get('sig_type'): title += f" - {i['sig_type']}-led"
     if i.get('confidence') and i['confidence'] not in ('standard',):
         title += f" - {i['confidence']}"
-    lines = [title,
-             f"- Narrative: {nar}",
+    lines = [title]
+    passed = [str(e)[8:].strip() for e in (extra or []) if str(e).startswith('PASSED:')]
+    if passed:
+        lines.append(f"- In plain English: a BUY on {i['name']} (${i['sym']}) because {'; '.join(passed)}. Not financial advice.")
+    lines += [f"- Narrative: {nar}",
              f"- CA: `{i['mint']}`", f"- Chart: {i['url']}",
              f"- Price {i['price']} | mcap {fmt_usd(i['mcap'])} | liq {fmt_usd(i['liq'])} | vol 1h {fmt_usd(i['vol_h1'])} | 1h buys/sells {i['b1']}/{i['s1']} | holders {rc.get('holders','n/a')} | dex {','.join(i['dexes']) or 'n/a'}",
              f"- Callers (all time in DB): {', '.join(i['callers_all'])}; first tracked call: {i['first_call']}"]

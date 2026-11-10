@@ -109,3 +109,9 @@ WATCH means a tracked caller is in but at most 2 conditions are missing, or ther
 ## SELL rule (for coins that got a BUY)
 Hard exits (any one triggers a SELL): price down 35% from the signal (stop-loss); trailing stop at -30% from the post-signal peak once the coin has been up 30% or more; liquidity down 30% or more since the signal; creator wallet sold 50% or more since the signal; RugCheck marks the token rugged.
 Soft exits (2 or more trigger a SELL): the coin's narrative is FADING; last-3h mentions down 60% or more from the peak hour; no tracked-caller post in 12h; negative caller words (rug, dump, sold, jeet, dead, ...); 1h volume below 30% of the 6h hourly average; 1h buys/sells below 0.8; take-profit zone reached (2x, sell at least half); a tracked smart-money or KOL wallet (or GMGN, if keyed) sold a previously signaled coin in the last ~1h.
+
+## Pump.fun Callout Rewards leaderboard (boost only)
+
+`pumpfun_callouts.py` loads `data/pumpfun_callout_leaderboard.json`, a dated snapshot of the public Callout Rewards board (daily / weekly / monthly / all-time). Ranks and rewards from after the 10 Oct 2026 follower-profit change are weighted more than all-time; a high call-frequency penalty applies only when a source published a call count; caller wallets flagged as bot-like, wash-like, sybil, or bundled get no boost.
+
+This is an extra input next to the existing 24h-2x caller hit rate. **A callout or a leaderboard rank alone never creates a BUY** — it only adds a plain-English boost note when a coin already has an independent signal.

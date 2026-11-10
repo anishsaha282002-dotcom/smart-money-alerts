@@ -173,6 +173,7 @@ def cmd_sources(args):
             ("Helius", "set" if env["HELIUS_API_KEY"] else "missing HELIUS_API_KEY", "stream store or Parsed Events poll (not 100-credit history)"),
             ("GMGN read-only", "set" if env["GMGN_API_KEY"] else "missing GMGN_API_KEY", "smart-money/KOL feed, SOL/BSC/Base wallet activity"),
             ("X API", "set" if env["X_BEARER_TOKEN"] else "missing X_BEARER_TOKEN", "caller chatter"),
+            ("Pump.fun callout board", "snapshot" if resolve(cfg, "pumpfun_callout_leaderboard").is_file() else "no snapshot", "boost-only leaderboard factor (never a BUY by itself)"),
             ("Telegram", "set" if env["TELEGRAM_BOT_TOKEN"] and env["TELEGRAM_CHAT_ID"] else "off", "delivery"),
             ("Discord", "set" if env["DISCORD_WEBHOOK_URL"] else "off", "delivery"),
             ("LLM narration", "set" if env["LLM_API_KEY"] and cfg["narration"].get("llm") else "off", "optional rewrite")]

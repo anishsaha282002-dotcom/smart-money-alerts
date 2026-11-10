@@ -92,9 +92,19 @@ def render(a):
     elif not c.get("callers"):
         lines.append(f"Caller chatter: grade {c['grade']} — {c['posts']} X posts, none from tracked callers.")
     else:
-        names = ", ".join(
-            f"@{x['handle']} ({x['grade']}, {x['rate'] * 100:.0f}% sample-adjusted 2x-rate, n≈{x['n_eff']:.0f})" if x["n_eff"] >= 1
-            else f"@{x['handle']} (no track record yet)" for x in c["callers"][:3])
+        def _caller_bit(x):
+            if x.get("n_eff", 0) >= 1:
+                bit = f"@{x['handle']} ({x['grade']}, {x['rate'] * 100:.0f}% sample-adjusted 2x-rate, n≈{x['n_eff']:.0f}"
+            else:
+                bit = f"@{x['handle']} (no track record yet"
+            if x.get("lb_excluded"):
+                bit += "; callout-board boost withheld: flagged wallet"
+            elif x.get("lb_factor"):
+                bits = (x.get("lb_meta") or {}).get("bits") or []
+                detail = "; ".join(bits[:3])
+                bit += f"; pump.fun callout leaderboard factor {x['lb_factor']:.2f}" + (f" — {detail}" if detail else "")
+            return bit + ")"
+        names = ", ".join(_caller_bit(x) for x in c["callers"][:3])
         lines.append(f"Caller chatter: grade {c['grade']} — {len(c['callers'])} tracked caller(s): {names}; {c['posts']} posts total.")
     n = a.get("narrative") or {}
     if n.get("narrative"):

@@ -8,6 +8,7 @@ from collections import defaultdict
 from . import latecheck, story
 from .config import GRADE_ORDER, HORIZON_S, resolve
 from .grading import caller as callerg
+from .sources import pumpfun_callouts as pfc
 from .grading import narrative as narr
 from .grading.wallet import grade_wallet
 from .ledger import Ledger
@@ -78,6 +79,9 @@ def run(hub, store, cfg, now_ts, *, deliver_enabled=True, log=print):
     callers_j = json.loads((resolve(cfg, "callers")).read_text(encoding="utf-8"))
     callers = callerg.load_callers(callers_j)
     caller_tracked = store.caller_stats()
+    lb_path = cfg.get("paths", {}).get("pumpfun_callout_leaderboard") or ""
+    lb_snap = pfc.load_snapshot(resolve(cfg, "pumpfun_callout_leaderboard") if lb_path else None)
+    lb_idx = pfc.index_callers(lb_snap) if lb_snap.get("loaded") else None
     natives = hub.native_prices() or {}
     since = now_ts - a_cfg["lookback_minutes"] * 60
     summary = {"now": utc_iso(now_ts), "alerts": [], "skipped": defaultdict(int), "graded_wallets": 0}
@@ -162,7 +166,7 @@ def run(hub, store, cfg, now_ts, *, deliver_enabled=True, log=print):
         if posts is None:
             cinfo = dict(callerg.NOT_CHECKED)
         else:
-            cinfo = callerg.grade_chatter(posts, callers, caller_tracked)
+            cinfo = callerg.grade_chatter(posts, callers, caller_tracked, leaderboard_idx=lb_idx)
             for c in cinfo["callers"]:
                 store.add_caller_call(c["handle"], chain, token, info["pool"], c.get("ts") or now_ts, fw.get("price_now"))
         alert = {

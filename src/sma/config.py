@@ -12,7 +12,7 @@ except ImportError:  # pragma: no cover
 DEFAULTS = {
     "chains": ["solana", "bsc"],
     "paths": {"data_dir": "data", "ledger": "public/ledger.jsonl", "site_dir": "public",
-              "wallets": "data/wallets.json", "callers": "data/callers.json", "helius_stream_db": ""},
+              "wallets": "data/wallets.json", "callers": "data/callers.json", "pumpfun_callout_leaderboard": "data/pumpfun_callout_leaderboard.json", "helius_stream_db": ""},
     "alerts": {"min_wallet_grade": "B", "min_closed_trades": 3, "lookback_minutes": 60, "min_buy_usd": 300,
                "min_liquidity_usd": 10000, "max_mcap_usd": 100000000, "dedupe_hours": 24, "max_alerts_per_run": 10},
     "grading": {"window_days": 30, "shrink_k": 8, "low_sample": 5, "small_sample": 10,

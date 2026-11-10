@@ -37,13 +37,41 @@ def caller_rate(info, tracked_hits=0, tracked_n=0):
     return rate, n
 
 
+def attach_leaderboard(info, handle, leaderboard_idx=None, wallet_flags=None):
+    """Blend the 24h-2x rate with a pump.fun callout-board factor (boost only)."""
+    if not leaderboard_idx:
+        return info
+    from ..sources.pumpfun_callouts import lookup, leaderboard_factor, merge_rate
+    row = lookup(leaderboard_idx, handle=handle, username=handle)
+    if not row:
+        return info
+    factor, meta = leaderboard_factor(row, wallet_flags=wallet_flags)
+    info = dict(info)
+    info["lb_factor"] = factor
+    info["lb_meta"] = meta
+    info["lb_username"] = row.get("username")
+    info["hit_rate"] = info.get("rate")
+    if meta.get("excluded"):
+        info["lb_excluded"] = True
+        return info
+    info["rate"] = merge_rate(info["rate"], factor)
+    info["grade"] = rate_grade(info["rate"])
+    return info
+
+
 def rate_grade(rate):
     return "A" if rate >= 0.55 else "B" if rate >= 0.42 else "C" if rate >= 0.32 else "D"
 
 
-def grade_chatter(posts, callers, tracked=None, window_h=6):
-    """posts: [{author, text, ts}] that mention the token. Returns a dict for the alert."""
+def grade_chatter(posts, callers, tracked=None, window_h=6, leaderboard_idx=None, wallet_flags=None):
+    """posts: [{author, text, ts}] that mention the token. Returns a dict for the alert.
+
+    leaderboard_idx, when provided, is an extra input alongside the 24h-2x hit rate.
+    It only changes a caller's grade when that caller already appears in `posts`
+    (a board rank alone is not a signal).
+    """
     tracked = tracked or {}
+    wallet_flags = wallet_flags or {}
     by_caller = {}
     for p in posts:
         h = (p.get("author") or "").lower()
@@ -51,9 +79,11 @@ def grade_chatter(posts, callers, tracked=None, window_h=6):
             info = callers[h]
             th, tn = tracked.get(h, (0, 0))
             rate, n_eff = caller_rate(info, th, tn)
-            by_caller[h] = {"handle": info["handle"], "rate": rate, "n_eff": round(n_eff, 1),
-                            "grade": rate_grade(rate), "tracked_n": tn, "ts": p.get("ts"),
-                            "prior": info.get("prior")}
+            rec = {"handle": info["handle"], "rate": rate, "n_eff": round(n_eff, 1),
+                   "grade": rate_grade(rate), "tracked_n": tn, "ts": p.get("ts"),
+                   "prior": info.get("prior")}
+            rec = attach_leaderboard(rec, h, leaderboard_idx, wallet_flags.get(h))
+            by_caller[h] = rec
     callers_hit = sorted(by_caller.values(), key=lambda c: -c["rate"])
     if not posts:
         grade = "D"
