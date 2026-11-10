@@ -43,6 +43,25 @@ sell recommendation; trade decisions stay with the user. No keys, no secrets, no
 - `web/record.html`, `web/assets/record.js` — new "By signal type" section: live table + backtest table.
 - `README.md`, `config.toml` — documented the above.
 
+## Pair / quote-token fix and stream shard retry (10 Nov 2026, afternoon)
+- `sms/sources/quote_tokens.py` — a swap's `mint` is now always the traded memecoin, never what it was
+  paired against. Known quote / non-meme mints (SOL, USDC, USDT, USD1, PYUSD, LSTs like hSOL/jupSOL/
+  jitoSOL, wrapped majors, PUMP, tokenized stocks such as TTWO, SPCX, NVDA) are dropped; a mint the
+  wallet receives and sends with the same amount in one tx is a routing hop and dropped; in a
+  token-for-token swap the launchpad side (`…pump` / `…bonk`) is kept and the other side is the quote.
+  Memecoin-for-memecoin rotations keep both legs. Extra quote mints: `SMS_EXTRA_QUOTE_MINTS` env var.
+  Found because Dacity (`nxPqZ4F7ux8Vph5NFu25rEP6Kx9Gr1U6Fmj36Rjpump`) sells routed through TTWO
+  were recorded as TTWO trades.
+- `sms/sources/dexscreener.py` — `token(chain, address)` only uses pools where `address` is the base
+  token, so looking up a quote token can no longer return a different coin's address and name.
+- `sms/stream_worker.py` — subscribe requests are spaced 0.5 s apart; a shard refused with -32005 is
+  retried on the same socket (20 s doubling to 120 s) while the other shards keep streaming, instead
+  of tearing down the socket (which left more stale sessions behind).
+- `scripts/backtest_signals.py` / `scripts/backtest_crawl/txs.py` — skip quote / non-meme mints; fixed
+  the USDT mint in the crawler. `data/baserates.json` regenerated on the same snapshot: 10,924 -> 10,823
+  signals (101 were on non-memecoins); bucket rates moved by under 1 point.
+- Tests: `tests/test_pair_parsing.py`, `tests/test_stream_shard_retry.py`.
+
 ## Tests
 - `tests/test_overnight.py` (19 tests): backtest math, base-rate copy (no advice wording), story
   sections, structure parsing (pools excluded, real RugCheck report), full-report-then-summary

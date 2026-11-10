@@ -23,6 +23,18 @@ HEARTBEAT_S = 15
 LOG_CREDIT_EVERY = 25
 BACKOFF_START = 1
 BACKOFF_MAX = 60
+# Space out the per-shard subscribe requests instead of firing all 9 in the same millisecond.
+SUBSCRIBE_STAGGER_S = 0.5
+# When Helius answers one shard with -32005 (old sessions not yet released), keep the shards that did
+# subscribe and retry only the refused ones on the same socket. Tearing the socket down and
+# reconnecting just leaves more half-open sessions behind and makes -32005 worse.
+SHARD_RETRY_START_S = 20
+SHARD_RETRY_MAX_S = 120
+
+
+def is_too_many_subs(err):
+    e = err if isinstance(err, dict) else {}
+    return e.get('code') == -32005 or 'too many subscriptions' in str(err).lower()
 # A socket that dies without a close frame (keepalive ping timeout) leaves the old session and its
 # subscriptions alive on Helius for a while; resubscribing 1-2 s later is what produced
 # "-32005 Too many subscriptions". Wait 60-90 s before resubscribing after such a drop.
@@ -214,14 +226,25 @@ async def listen_parsed(key, wallets, store, stop, budget=None):
         f'(max {MAX_ACCOUNTS_PER_SUB}/sub)')
     async with websockets.connect(url, open_timeout=20, close_timeout=5, ping_interval=PING_S, ping_timeout=20) as ws:
         for i, batch in enumerate(batches, start=1):
+            if i > 1:
+                await asyncio.sleep(SUBSCRIBE_STAGGER_S)
             await ws.send(json.dumps(parsed_subscribe_payload(batch, req_id=i)))
         pending = set(range(1, len(batches) + 1))
+        retry_at = {}      # shard id -> time to resend
+        retry_wait = {}    # shard id -> current wait
         confirmed = 0
         last_beat = 0
         last_event = time.time()
         while not stop.is_set():
+            now = time.time()
+            for sid in [k for k, t in retry_at.items() if t <= now]:
+                retry_at.pop(sid)
+                await ws.send(json.dumps(parsed_subscribe_payload(batches[sid - 1], req_id=sid)))
+            wait_s = HEARTBEAT_S
+            if retry_at:
+                wait_s = max(0.5, min(wait_s, min(retry_at.values()) - time.time()))
             try:
-                msg = await recv_json(ws, HEARTBEAT_S)
+                msg = await recv_json(ws, wait_s)
             except asyncio.TimeoutError:
                 now = time.time()
                 if confirmed and silent_for(last_event, now):
@@ -240,13 +263,20 @@ async def listen_parsed(key, wallets, store, stop, budget=None):
                             return st['action']
                 continue
             if msg.get('error'):
+                sid = msg.get('id')
+                if is_too_many_subs(msg['error']) and sid in pending and confirmed:
+                    w = min(retry_wait.get(sid, SHARD_RETRY_START_S / 2) * 2, SHARD_RETRY_MAX_S)
+                    retry_wait[sid] = w
+                    retry_at[sid] = time.time() + w
+                    log(f'shard {sid}/{len(batches)} refused (-32005); keeping {confirmed} live, retrying in {w:.0f}s')
+                    continue
                 raise RuntimeError(HS.redact(msg['error']))
             if pending and 'result' in msg and msg.get('id') in pending:
                 pending.discard(msg['id'])
                 confirmed += 1
                 store.heartbeat(method='parsedTransactionSubscribe', wallets=len(addrs),
                                 subscribed=str(confirmed), sub_id=msg.get('result'))
-                if confirmed == 1 or not pending:
+                if confirmed == 1 or not pending or msg['id'] in retry_wait:
                     log(f'subscribed parsedTransactionSubscribe {confirmed}/{len(batches)} '
                         f'id={msg.get("result")} wallets={len(addrs)}')
                 last_beat = time.time()

@@ -2,7 +2,10 @@ import json,sqlite3,time,urllib.request,concurrent.futures as cf,random,threadin
 import os
 EP=os.environ.get("EP","https://solana-rpc.publicnode.com")
 H={"content-type":"application/json","User-Agent":"curl/8.5.0"}
-Q={"So11111111111111111111111111111111111111112":"SOL","EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v":"USDC","Es9vMFrzaCERmJfrF8H5zN2rL1CqHUm6qzRQLWMYJNYb":"USDT"}
+Q={"So11111111111111111111111111111111111111112":"SOL","EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v":"USDC","Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB":"USDT"}
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
+from sms.sources.quote_tokens import quote_mints  # noqa: E402
+NONMEME=quote_mints()  # LSTs, wrapped majors, tokenized stocks (e.g. TTWO) are never the coin
 db=sqlite3.connect('bt.db',check_same_thread=False); L=threading.Lock()
 db.execute("create table if not exists swaps(sig text, wallet text, mint text, side text, tok real, sol real, usd_q real, ts int, primary key(sig,wallet,mint))")
 db.execute("create table if not exists txdone(sig text primary key, ok int)")
@@ -35,7 +38,7 @@ def parse(tx,wallet):
             else: q+=d.pop(mint)
     out=[]
     for mint,v in d.items():
-        if abs(v)<=0: continue
+        if abs(v)<=0 or mint in NONMEME: continue
         if v>0 and (sol<-0.001 or q<-0.5): out.append((mint,'buy',v,-sol,-q))
         elif v<0 and (sol>0.001 or q>0.5): out.append((mint,'sell',-v,sol,q))
     return out

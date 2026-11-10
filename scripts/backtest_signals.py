@@ -26,6 +26,7 @@ sys.path.insert(0, str(ROOT))
 
 from sms import backtest as bt  # noqa: E402
 from sms.wallets import bot_reason  # noqa: E402
+from sms.sources.quote_tokens import is_quote_mint  # noqa: E402
 
 WINDOWS = {"30m": 1800, "1h": 3600, "6h": 6 * 3600}
 SIZES = (2, 3, 4, 5)
@@ -78,7 +79,7 @@ def build_signals(db, book: dict, lbw: set[str], since: int = 0) -> tuple[list[d
     first: dict[str, dict] = collections.defaultdict(dict)
     for sig, w, m, ts in db.execute("select sig, wallet, mint, ts from swaps where side='buy' and ts >= ? order by ts",
                                     (since,)):
-        if w in excluded:
+        if w in excluded or is_quote_mint(m):  # SOL, stables, LSTs, tokenized stocks (TTWO) are never the coin
             continue
         first[m].setdefault(w, (ts, sig))
     sigs = []
