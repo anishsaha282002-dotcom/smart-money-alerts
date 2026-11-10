@@ -8,6 +8,8 @@ from __future__ import annotations
 import logging
 
 from . import story
+from .holding import held_share
+from .links import verify_links
 from .config import Settings
 from .grading import baserate, copycheck, narrative
 from .grading.caller import grade_callers
@@ -178,6 +180,8 @@ class Pipeline:
                                      "text": f"Wallet cluster bought: {len(sm)} tracked wallets bought it within the hour ({names})."})
         if kol:
             alert["reasons"].append({"kind": "kol", "text": f"KOL bought: {kol.get('name') or short(buy.wallet)}."})
+        alert["holding"] = held_share(trades, buy.token, now)
+        alert["links"] = verify_links(alert)
         alert["base_rate"] = baserate.lookup(alert, self.baserates(), leaders=self.leader_wallets())
         alert["story"] = story.reword(story.render(alert, self.s.cap_below), self.s)
         return alert

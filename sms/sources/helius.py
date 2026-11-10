@@ -88,6 +88,44 @@ def parse_swap(tx: dict, address: str, sol_price: float | None = None) -> Trade 
     return None       # token-to-token and multi-leg swaps are skipped rather than guessed at
 
 
+def quote_value(item: dict, address: str, sol_price: float | None) -> tuple[str, tuple[float, float]]:
+    """(signature, (signed net USD, USD size)) of the SOL / WSOL / stablecoin side for `address`.
+    Negative net = money left the wallet (it bought); positive = money came in (it sold).
+
+    Parsed-events items carry no dollar figures. Without this every trade was worth $0, so every
+    wallet graded from Helius history came out with zero profit and a D.
+    """
+    from .helius_stream import unwrap_tx
+    tx = unwrap_tx(item) or {}
+    sig = tx.get("signature") or item.get("signature") or ""
+    sol = stable = 0.0
+    for nt in tx.get("nativeTransfers") or []:
+        amt = float(nt.get("amount") or 0) / LAMPORTS
+        if nt.get("fromUserAccount") == address:
+            sol -= amt
+        if nt.get("toUserAccount") == address:
+            sol += amt
+    for tt in tx.get("tokenTransfers") or []:
+        mint = tt.get("mint")
+        if mint != WSOL and mint not in STABLES:
+            continue
+        raw = tt.get("rawTokenAmount")
+        if isinstance(raw, dict):
+            amt = _amt(tt)
+        elif raw is not None:
+            amt = float(raw) / (10 ** int(tt.get("decimals") or 0))
+        else:
+            amt = float(tt.get("tokenAmount") or 0)
+        sign = -1 if tt.get("fromUserAccount") == address else 1 if tt.get("toUserAccount") == address else 0
+        if mint == WSOL:
+            sol += sign * amt
+        else:
+            stable += sign * amt
+    # wrapping SOL into WSOL shows up as a native transfer out and a WSOL transfer: the net is what moved
+    net = sol * (sol_price or 0.0) + stable
+    return sig, (net, abs(net))
+
+
 class Helius:
     name = "helius"
 
@@ -110,10 +148,11 @@ class Helius:
                              tx=row["tx"], source="helius_stream"))
         return out
 
-    def _parsed_events(self, address: str, since: int, pages: int) -> list[Trade]:
+    def _parsed_events(self, address: str, since: int, pages: int, sol_price: float | None = None) -> list[Trade]:
         """POST /v1/parsed-events/transaction-history. About 10 credits. Not Enhanced history."""
         from .helius_stream import parse_history_items
         out: list[Trade] = []
+        token = None
         for _ in range(max(1, pages)):
             body = self.http.request(
                 "POST", "/v1/parsed-events/transaction-history",
@@ -121,7 +160,8 @@ class Helius:
                 json_body={"address": address, "limit": 100, "sortOrder": "desc",
                            "commitment": "confirmed", "status": "succeeded",
                            "tokenAccounts": "balanceChanged",
-                           **({"time": {"gte": int(since)}} if since else {})})
+                           **({"time": {"gte": int(since)}} if since else {}),
+                           **({"paginationToken": token} if token else {})})
             if body is None:
                 break
             data = body
@@ -134,17 +174,30 @@ class Helius:
             rows = parse_history_items(data, [{"address": address}], since, "poll")
             self.store.insert_many(rows)
             self.store.bump_credits(10)
+            values = {sig: v for sig, v in (quote_value(it, address, sol_price) for it in data) if sig}
+            per_side: dict[tuple, int] = {}
+            for ev in rows:
+                k = (ev.get("signature") or "", ev.get("side"))
+                per_side[k] = per_side.get(k, 0) + 1
             for ev in rows:
                 row = ev
+                sig = row.get("signature") or ""
+                # The SOL/stable side gives a trade its dollar value: money out pays for the buys,
+                # money in comes from the sells. Split across coins moved the same way (rare);
+                # 0 when there was no such side (a coin-for-coin swap), which grading then skips.
+                net, value = values.get(sig, (0.0, 0.0))
+                side_gets = (net < 0 and row["side"] == "buy") or (net > 0 and row["side"] == "sell")
+                value = value / max(1, per_side.get((sig, row["side"]), 1)) if side_gets else 0.0
                 out.append(Trade(chain="solana", wallet=address, token=row["mint"], side=row["side"],
-                                 ts=int(row.get("timestamp") or 0), usd=0.0,
+                                 ts=int(row.get("timestamp") or 0), usd=round(value, 2),
                                  token_amount=float(row.get("amount") or 0),
                                  tx=row.get("signature") or "", source="helius"))
-            if len(data) < 100:
+            token = body.get("paginationToken") if isinstance(body, dict) else None
+            if len(data) < 100 or not token:
                 break
         return out
 
     def swaps(self, address: str, since: int, sol_price: float | None = None, max_pages: int = 1) -> list[Trade]:
         if self.store.worker_fresh():
             return self._from_store(address, since)
-        return self._parsed_events(address, since, max_pages)
+        return self._parsed_events(address, since, max_pages, sol_price)

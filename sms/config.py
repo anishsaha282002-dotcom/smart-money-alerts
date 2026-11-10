@@ -53,6 +53,7 @@ class Settings:
     keyless_pools_per_chain: int = 4
     gecko_max_per_min: int = 24
     helius_max_per_min: int = 60
+    helius_history_pages: int = 5   # pages of 100 transactions read to grade a wallet (about 10 credits each)
     gmgn_max_per_min: int = 30
     jupiter_base: str = "https://lite-api.jup.ag"
     safety_checks: bool = True

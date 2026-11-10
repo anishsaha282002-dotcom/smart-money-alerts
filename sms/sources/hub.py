@@ -134,7 +134,7 @@ class LiveHub:
             if self.gmgn:
                 fetched += self.gmgn.wallet_activity(chain, wallet, since)
             if chain == "solana" and self.helius:
-                fetched += self.helius.swaps(wallet, since, self._sol_price())
+                fetched += self.helius.swaps(wallet, since, self._sol_price(), max_pages=self.s.helius_history_pages)
             elif chain == "solana" and self.solana and not self.gmgn:
                 fetched += self.solana.trades(wallet, since)
             self.store.add_trades(fetched)

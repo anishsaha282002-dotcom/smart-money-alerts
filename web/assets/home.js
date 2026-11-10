@@ -159,14 +159,45 @@ function card(a, i) {
       badge(c.grade, "Callers", c.n_callers ? `${c.n_callers}` : "none yet"),
       el("span", { class: "badge", title: `Narrative: ${n.label}` }, statePill(n.state), el("span", { text: n.key === "other" ? "No clear theme" : n.label }))),
     a.reasons.length ? el("ul", { class: "why" }, a.reasons.map((r) => el("li", { text: r.text }))) : null,
+    holdingLine(a),
     el("div", { class: "track", text: w.n_closed
-      ? `Won ${w.last10_wins} of its last ${w.last10_n} closed trades in ${w.days} days · ${fmt.signedUsd(w.pnl_usd)} realised · ${w.n_closed} closed trades`
+      ? `Won ${w.last10_wins} of its last ${w.last10_n} closed trades in ${w.days} days · ${fmt.signedUsd(w.pnl_usd)} realised`
+        + (w.n_tokens ? ` · made money on ${w.wins_tokens} of ${w.n_tokens} different coins` : ` · ${w.n_closed} closed trades`)
       : `No closed trades in the last ${w.days} days.` }),
+    w.n_tokens >= 3 && w.wins_tokens === 1
+      ? el("div", { class: "warn", text: "⚠ Most of this record comes from one coin. One lucky coin can make a record look good." }) : null,
     sample, cold, flags, risks, history, holders,
     copyBox(a),
     el("div", { class: "outcome", role: "group", "aria-label": "Price after the alert" }, HORIZONS.map((h) => outcome(a, h))),
+    verifyLinks(a),
     el("details", { class: "story" }, el("summary", { text: "Read the full story" }), el("pre", { text: a.story })),
     el("footer", {}, el("span", { class: "mono", text: a.id }), el("a", { href: "record.html#verify", text: "on the public record →" })));
+}
+
+// "Is the wallet still in?" — the first question traders ask after "who bought"
+function heldText(held) {
+  if (held == null) return null;
+  if (held >= 0.98) return "wallet still holds all";
+  if (held <= 0.02) return "wallet sold everything";
+  return `wallet sold ${Math.round((1 - held) * 100)}%`;
+}
+
+function holdingLine(a) {
+  const latest = HORIZONS.slice().reverse().find((h) => a.scores[h] && a.scores[h].held != null);
+  const held = latest ? a.scores[latest].held : a.holding && a.holding.held;
+  if (held == null) return null;
+  const when = latest ? `by +${latest}` : "at alert time";
+  const sold = held < 0.98;
+  return el("div", { class: sold ? "warn" : "track", text: (sold ? "⚠ " : "") + `${heldText(held)[0].toUpperCase()}${heldText(held).slice(1)} (${when}).` });
+}
+
+// read-only explorers, so nobody has to take this site's word for anything
+function verifyLinks(a) {
+  const links = a.links || [];
+  if (!links.length) return null;
+  return el("div", { class: "meta", role: "group", "aria-label": "Check it yourself" },
+    el("span", { class: "muted", text: "Check it yourself:" }),
+    links.map((l) => el("a", { class: "chip", href: l.url, target: "_blank", rel: "noopener noreferrer", text: l.label })));
 }
 
 function outcome(a, h) {
@@ -177,7 +208,8 @@ function outcome(a, h) {
     cls = s.x >= 1 ? "up" : "down";
     text = fmt.pct(s.x);
     title = s.status === "quiet" ? "Nobody traded before this checkpoint: last traded price shown, counted as a miss"
-      : `Price vs the alert-time price. Peak ${fmt.pct(s.peak_x)}, low ${fmt.pct(s.low_x)}`;
+      : `Price vs the alert-time price. Peak ${fmt.pct(s.peak_x)}, low ${fmt.pct(s.low_x)}`
+        + (s.held != null ? `. At this point the ${heldText(s.held)}.` : "");
     if (s.status === "quiet") { cls = "down"; text += " · dead"; }
   }
   return el("div", { class: "out", title }, el("div", { class: "h", text: `+${h}` }), el("div", { class: `x num ${cls}`, text }));

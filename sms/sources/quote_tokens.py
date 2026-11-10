@@ -103,7 +103,12 @@ def resolve_pair_rows(rows, extra=None):
             if 'buy' in sides and 'sell' in sides:
                 b = sum(float(x.get('amount') or 0) for x in sides['buy'])
                 s = sum(float(x.get('amount') or 0) for x in sides['sell'])
-                if _same_amount(b, s):
+                # A mint the wallet both receives and sends inside one transaction is passing
+                # through (a router hop), not being traded, when something else was traded too.
+                # Amounts rarely match exactly on real routes (fees, rounding), so the amount
+                # match alone missed real hops, e.g. SOL -> JENSEN -> coin.
+                others = [m for m in by_mint if m != mint]
+                if _same_amount(b, s) or others:
                     drop.update(id(x) for x in sides['buy'] + sides['sell'])
         live = [r for r in grp if id(r) not in drop]
         buys = {r['mint'] for r in live if r['side'] == 'buy'}
