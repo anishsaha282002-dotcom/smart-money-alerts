@@ -240,6 +240,24 @@ def stream(probe: bool = typer.Option(False, "--probe", help="Check Free-plan su
 
 
 @app.command()
+def publish(branch: str = typer.Option("smart-money-stories", "--branch", "-b", help="Branch the website is built from."),
+            dry_run: bool = typer.Option(False, "--dry-run", help="Commit locally, do not push.")):
+    """On an always-on server: commit the public record and website data, and push them to GitHub.
+
+    GitHub Pages then republishes the site. Needs GITHUB_TOKEN in .env (a fine-grained token with
+    Contents read/write on this repository only). The token is passed per command and never saved.
+    """
+    from . import publish as pub
+    settings = _setup()
+    try:
+        msg = pub.publish(settings, branch=branch, push=not dry_run)
+    except pub.PublishError as e:
+        typer.echo(f"publish: {e}")
+        raise typer.Exit(1)
+    typer.echo(msg)
+
+
+@app.command()
 def serve(port: int = typer.Option(8000, "--port", "-p")):
     """Preview the website locally (it is plain static files)."""
     settings = _setup()

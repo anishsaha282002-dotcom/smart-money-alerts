@@ -28,7 +28,9 @@ concurrency:
 
 jobs:
   scan:
-    if: vars.SMS_SCAN_ENABLED == 'true' || github.event_name == 'workflow_dispatch'
+    # stands down once an always-on server publishes the record (SMS_LIVE_SERVER = true), so the
+    # ledger only ever has one writer and its hash chain never forks
+    if: vars.SMS_LIVE_SERVER != 'true' && (vars.SMS_SCAN_ENABLED == 'true' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
     timeout-minutes: 25
     environment:
@@ -51,7 +53,9 @@ jobs:
       - name: Restore the scanner's working memory
         uses: actions/cache/restore@v4
         with:
-          path: record/state.db
+          path: |
+            record/state.db
+            record/helius_swaps.db
           key: sms-state-${{ github.run_id }}
           restore-keys: sms-state-
       - run: pip install -e .
@@ -70,7 +74,9 @@ jobs:
         if: always()
         uses: actions/cache/save@v4
         with:
-          path: record/state.db
+          path: |
+            record/state.db
+            record/helius_swaps.db
           key: sms-state-${{ github.run_id }}
       # publish the site with the data this run just wrote (web/data is not committed by the scanner)
       - uses: actions/configure-pages@v5

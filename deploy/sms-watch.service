@@ -1,0 +1,17 @@
+[Unit]
+Description=Smart Money Stories - turn new trades into alerts and Telegram messages (read-only)
+After=network-online.target sms-stream.service
+Wants=network-online.target
+
+[Service]
+User=__USER__
+WorkingDirectory=__DIR__
+EnvironmentFile=__DIR__/.env
+Environment=HELIUS_STREAM_DB=__DIR__/record/helius_swaps.db
+Environment=SMS_DATA_DIR=__DIR__/record
+ExecStart=__DIR__/.venv/bin/sms watch --interval 30
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target

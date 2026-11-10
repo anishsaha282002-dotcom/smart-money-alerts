@@ -330,3 +330,10 @@ footer.site p { max-width: 62ch; }
   .pulse { animation: none; }
   .bar-fill { transition: none; }
 }
+
+/* live-server health strip */
+.health { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 18px; font-size: 13.5px; }
+.health span { padding: 5px 12px; border-radius: 99px; background: var(--glass); border: 1px solid var(--line); color: var(--ink-2); }
+.health .ok { color: var(--ga); background: var(--ga-bg); border-color: transparent; font-weight: 600; }
+.health .bad { color: var(--gd); background: var(--gd-bg); border-color: transparent; font-weight: 600; }
+.health .meh { color: var(--gc); background: var(--gc-bg); border-color: transparent; font-weight: 600; }

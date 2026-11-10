@@ -4,6 +4,7 @@
 # This publishes what is committed in web/, which is the labelled synthetic demo data. Once the
 # scheduled scanner is switched on (SMS_SCAN_ENABLED = true), scan.yml publishes the site with live
 # data instead and this workflow stands down, so the demo never overwrites the live record.
+# Once an always-on server pushes the record (SMS_LIVE_SERVER = true), this publishes each push.
 name: pages
 
 on:
@@ -23,7 +24,8 @@ concurrency:
 
 jobs:
   deploy:
-    if: vars.SMS_SCAN_ENABLED != 'true'
+    # publishes whenever web/ changes, except while the scheduled scan is the one publishing
+    if: vars.SMS_LIVE_SERVER == 'true' || vars.SMS_SCAN_ENABLED != 'true'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
