@@ -102,6 +102,8 @@ class WalletGrade:
     days: int = 30
     narratives: list[str] = field(default_factory=list)
     median_buy_usd: float | None = None
+    n_tokens: int = 0               # different coins behind the closed trades
+    wins_tokens: int = 0            # different coins it made money on
 
     def to_dict(self) -> dict:
         return asdict(self)

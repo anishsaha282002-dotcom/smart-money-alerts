@@ -28,7 +28,7 @@ def collect(ledger: Ledger) -> list[dict]:
     alerts = {e["id"]: {**e, "scores": {}, "copy": None} for e in ledger.entries("alert")}
     for e in ledger.entries("score"):
         if e["alert_id"] in alerts:
-            alerts[e["alert_id"]]["scores"][e["h"]] = {k: e.get(k) for k in ("x", "peak_x", "low_x", "status")}
+            alerts[e["alert_id"]]["scores"][e["h"]] = {k: e.get(k) for k in ("x", "peak_x", "low_x", "status", "held")}
     for e in ledger.entries("copy"):
         if e["alert_id"] in alerts:
             alerts[e["alert_id"]]["copy"] = {k: v for k, v in e.items() if k not in ("seq", "type", "prev", "alert_id")}

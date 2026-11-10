@@ -15,6 +15,7 @@ wallet's own entry, because that is the price a reader could have had.
 from __future__ import annotations
 
 from .grading import copycheck
+from .holding import held_share
 from .ledger import Ledger
 from .models import HORIZONS, Token
 from .store import Store
@@ -22,6 +23,16 @@ from .store import Store
 GIVE_UP = 6 * 3600
 QUIET = 3600
 CALL_HORIZONS = {"x15m": 900, "x1h": 3600, "x24h": 86400}
+
+
+def _held(hub, a: dict, at: int):
+    """Share of the alerting wallet's position still held at `at`, or None if unknown."""
+    try:
+        trades = hub.wallet_trades(a["chain"], a["wallet"]["address"], a["buy"]["ts"] - 30 * 86400)
+    except Exception:  # noqa: BLE001 - a missing history must not stop scoring
+        return None
+    h = held_share(trades, a["token"]["address"], at)
+    return h["held"] if h else None
 
 
 def score_ledger(hub, ledger: Ledger) -> dict:
@@ -56,7 +67,8 @@ def score_ledger(hub, ledger: Ledger) -> dict:
             status = "quiet" if target - before[-1][0] > QUIET else "ok"
             ledger.append("score", now, {
                 "alert_id": a["id"], "h": h, "status": status, "x": round(p / entry, 4),
-                "peak_x": round(max(peak or p, p) / entry, 4), "low_x": round(min(low or p, p) / entry, 4)})
+                "peak_x": round(max(peak or p, p) / entry, 4), "low_x": round(min(low or p, p) / entry, 4),
+                "held": _held(hub, a, target)})
             counts["scores"] += 1
 
         if copy_due:

@@ -18,6 +18,7 @@ cap_below = 5                     # fewer than this can never grade above C
 
 [sources]
 keyless_pools_per_chain = 4       # with no keys: how many trending pools to read trades from, per chain
+helius_history_pages = 5         # with HELIUS_API_KEY: pages of 100 transactions read per wallet (about 10 credits each)
 gecko_max_per_min = 24            # GeckoTerminal allows 30/min per IP; stay under it
 safety_checks = true              # RugCheck (Solana) and GoPlus (BSC/Base) warnings on alerts
 copy_history_buys = 6             # past buys per wallet priced for the "can you still copy it?" check

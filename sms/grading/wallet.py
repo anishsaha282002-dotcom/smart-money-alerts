@@ -105,6 +105,9 @@ def close_trades(trades: list[Trade], now: int, days: int = 30, stale_days: int 
             # never sold and old: a bag. Counted as lost, on the day it went stale.
             elif last_sell is None and now - opened > stale_days * 86400 and opened + stale_days * 86400 >= since:
                 out.append(Closed(token, symbol, b_usd, 0.0, opened, opened + stale_days * 86400, abandoned=True))
+    # a round trip with no dollar value on either side (a source that reports token amounts only)
+    # says nothing about skill: leave it out instead of counting it as a $0 loss
+    out = [c for c in out if c.cost > 0 or c.proceeds > 0]
     out.sort(key=lambda c: c.closed)
     return out
 
@@ -198,4 +201,5 @@ def grade_wallet(trades: list[Trade], now: int, meta: dict | None = None, *, day
         median_hold_s=median_hold, flags=flags, penalties=penalties, parts=parts,
         small_sample=n < small_sample, capped=capped, days=days,
         median_buy_usd=round(statistics.median(buys), 2) if buys else None,
+        n_tokens=len({c.token for c in closed}), wins_tokens=len({c.token for c in closed if c.pnl > 0}),
     )

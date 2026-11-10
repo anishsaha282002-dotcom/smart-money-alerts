@@ -13,6 +13,7 @@ import re
 from . import ADVICE, DISCLAIMER
 from .grading import baserate
 from .grading.copycheck import VERDICT_TEXT
+from .holding import holding_text
 from .grading.narrative import STATE_TEXT
 from .grading.wallet import FLAG_TEXT
 from .models import CHAIN_LABEL, short
@@ -40,8 +41,13 @@ def record_line(w: dict) -> str:
     if not w["n_closed"]:
         return f"No closed trades in the last {w['days']} days."
     hold = f", typical hold {duration(w['median_hold_s'])}" if w.get("median_hold_s") is not None else ""
+    coins = ""
+    if w.get("n_tokens"):
+        coins = f" Made money on {w['wins_tokens']} of {w['n_tokens']} different coins."
+        if w["n_tokens"] >= 3 and w.get("wins_tokens", 0) == 1:
+            coins += " ⚠ One lucky coin can make a record look good."
     return (f"Won {w['last10_wins']} of its last {w['last10_n']} closed trades in {w['days']} days "
-            f"({signed_usd(w['pnl_usd'])} realised{hold}).")
+            f"({signed_usd(w['pnl_usd'])} realised{hold}).{coins}")
 
 
 def caller_lines(c: dict) -> list[str]:
@@ -116,9 +122,10 @@ def render(alert: dict, cap_below: int = 5) -> str:
     lines = [
         f"{GRADE_DOT.get(w['grade'], '⚪')} {w['grade']}-grade wallet bought ${sym}{name} on {where}",
         f"{who} put {usd(buy['usd'])} in{mcap}{age}.",
-        "",
-        "WHY THIS ONE",
     ]
+    if alert.get("holding"):
+        lines.append(holding_text(alert["holding"], "at alert time"))
+    lines += ["", "WHY THIS ONE"]
     lines += [f"• {r['text']}" for r in alert["reasons"]] or ["• A graded wallet opened a position."]
 
     lines += ["", f"WALLET GRADE: {w['grade']} ({w['score']}/100)", record_line(w), sample_line(w, cap_below)]
@@ -143,6 +150,10 @@ def render(alert: dict, cap_below: int = 5) -> str:
     risks = (alert.get("safety") or {}).get("risks") or []
     if risks:
         lines += ["", "⚠ SAFETY: " + "; ".join(risks[:4]) + "."]
+
+    links = alert.get("links") or []
+    if links:
+        lines += ["", "CHECK IT YOURSELF"] + [f"• {l['label']}: {l['url']}" for l in links[:4]]
 
     lines += ["", f"Alert {alert['id']}" + (" · SYNTHETIC DEMO DATA" if alert.get("demo") else ""),
               "Not financial advice. This tool cannot trade.",
