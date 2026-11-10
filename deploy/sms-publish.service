@@ -1,0 +1,9 @@
+[Unit]
+Description=Smart Money Stories - push the public record and website data to GitHub
+
+[Service]
+Type=oneshot
+User=__USER__
+WorkingDirectory=__DIR__
+EnvironmentFile=__DIR__/.env
+ExecStart=__DIR__/.venv/bin/sms publish

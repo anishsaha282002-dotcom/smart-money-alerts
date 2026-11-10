@@ -28,6 +28,7 @@ class Settings:
     telegram_chat_id: str = ""
     discord_webhook_url: str = ""
     anthropic_api_key: str = ""
+    github_token: str = ""          # only for `sms publish` on an always-on server
 
     # --- general
     chains: tuple[str, ...] = ("solana", "bsc")
@@ -77,6 +78,7 @@ _ENV = {
     "telegram_chat_id": "TELEGRAM_CHAT_ID",
     "discord_webhook_url": "DISCORD_WEBHOOK_URL",
     "anthropic_api_key": "ANTHROPIC_API_KEY",
+    "github_token": "GITHUB_TOKEN",
 }
 
 _SECTIONS = ("general", "alerts", "grading", "sources", "story")

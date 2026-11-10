@@ -1,0 +1,18 @@
+[Unit]
+Description=Smart Money Stories - live Helius stream of tracked wallets (read-only)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=__USER__
+WorkingDirectory=__DIR__
+EnvironmentFile=__DIR__/.env
+Environment=SMS_DATA_DIR=__DIR__/record
+Environment=HELIUS_STREAM_DB=__DIR__/record/helius_swaps.db
+ExecStart=__DIR__/.venv/bin/sms stream
+Restart=always
+RestartSec=60
+# never more than one: the worker also takes its own single-instance lock
+
+[Install]
+WantedBy=multi-user.target

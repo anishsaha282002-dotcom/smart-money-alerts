@@ -25,6 +25,7 @@ loadSite().then((data) => {
   site = data;
   demoBar(site.meta);
   hero();
+  health();
   ticker();
   filters();
   alerts();
@@ -34,6 +35,27 @@ loadSite().then((data) => {
 }).catch((err) => { fail($("#alerts"), err); reveal(); });
 
 // ------------------------------------------------------------------------ hero
+// Is the live server up? Shown plainly, so nobody has to guess whether "no alerts" means "broken".
+function health() {
+  const root = $("#health");
+  if (!root || site.meta.demo) return;
+  const now = Date.now() / 1000, w = site.meta.worker, gen = site.meta.generated_ts;
+  const ago = (ts) => (ts ? fmt.dur(Math.max(0, now - ts)) + " ago" : "never");
+  const pill = (cls, text) => el("span", { class: cls, text });
+  const items = [];
+  const siteAge = now - gen;
+  items.push(pill(siteAge < 1800 ? "ok" : siteAge < 7200 ? "meh" : "bad", `Site updated ${ago(gen)}`));
+  if (!w) {
+    items.push(pill("meh", "Live stream: not running (updates every ~30 min)"));
+  } else {
+    const live = w.heartbeat_ts && now - w.heartbeat_ts < 300;
+    items.push(pill(live ? "ok" : "bad", live ? `Live stream on · ${w.wallets} wallets` : `Live stream down · last seen ${ago(w.heartbeat_ts)}`));
+    items.push(pill("", `Last trade seen ${ago(w.last_event_ts)}`));
+    if (w.credits_day != null) items.push(pill("", `Helius credits today: ${Number(w.credits_day).toLocaleString("en-US")}`));
+  }
+  root.replaceChildren(...items);
+}
+
 function hero() {
   const s = site.stats, hour = s.overall.h["1h"];
   $("#eyebrow-text").textContent = site.meta.demo

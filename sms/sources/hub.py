@@ -107,9 +107,59 @@ class LiveHub:
                     out += self.helius.swaps(wallet, since, self._sol_price(), max_pages=1)
                 elif self.gmgn:
                     out += self.gmgn.wallet_activity(chain, wallet, since, max_pages=1)
+            if chain == "solana":
+                out += self._stream_trades(since)
             if not self.gmgn:
                 out += self._pool_tape(chain)
         return [t for t in out if t.ts > since]
+
+    def _stream_trades(self, since: int) -> list[Trade]:
+        """Swaps the always-on stream worker has seen for every tracked wallet since `since`.
+
+        The worker writes into the swap store; without this, nothing it saw ever became an alert.
+        Only used while the worker's heartbeat is fresh. Stream rows carry token amounts but no
+        dollar value, so buys are valued at the coin's current price (an estimate, labelled as such
+        by `source`), which is what the minimum-buy filter needs.
+        """
+        if not self.helius or not self.helius.store.worker_fresh():
+            return []
+        out: list[Trade] = []
+        for ev in self.helius.store.events_since(since):
+            if ev.get("side") not in ("buy", "sell") or not ev.get("mint") or not ev.get("wallet"):
+                continue
+            t = Trade(chain="solana", wallet=ev["wallet"], token=ev["mint"], side=ev["side"],
+                      ts=int(ev.get("timestamp") or 0), usd=0.0, token_amount=float(ev.get("amount") or 0),
+                      tx=ev.get("signature") or "", source="helius_stream")
+            if t.side == "buy" and t.token_amount > 0:
+                tok = self.token("solana", t.token)
+                if tok and tok.price_usd:
+                    t.usd = round(t.token_amount * tok.price_usd, 2)
+                    t.price_usd = tok.price_usd
+                    t.symbol = tok.symbol
+                    t.source = "helius_stream~price"
+            if ev.get("name"):
+                self._meta.setdefault(("solana", t.wallet), {"name": ev["name"], "tags": list(ev.get("tags") or [])})
+            out.append(t)
+        return out
+
+    def worker_health(self) -> dict | None:
+        """What the always-on stream worker last reported, for the site's health strip."""
+        if not self.helius:
+            return None
+        st = self.helius.store
+        get = st.get_meta
+        if not get("heartbeat_ts"):
+            return None          # no worker has ever run here (e.g. the scheduled GitHub scan)
+
+        def num(k):
+            try:
+                return int(float(get(k, "0") or 0))
+            except (TypeError, ValueError):
+                return 0
+        return {"fresh": st.worker_fresh(), "running": get("running", "0") == "1",
+                "heartbeat_ts": num("heartbeat_ts") or None, "last_event_ts": num("last_event_ts") or None,
+                "method": get("method", "") or "", "wallets": num("wallets"),
+                "credits_day": st.credits().get("day"), "last_error": (get("last_error", "") or "")[:120]}
 
     def _pool_tape(self, chain: str) -> list[Trade]:
         """Keyless discovery: the trade tape of the pools that are moving right now."""

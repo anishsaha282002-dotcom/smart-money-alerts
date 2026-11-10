@@ -124,7 +124,8 @@ def site(ledger: Ledger, store: Store, hub, settings) -> dict:
     return {
         "meta": {"generated_ts": hub.now(), "demo": bool(getattr(hub, "demo", False)), "version": __version__,
                  "disclaimer": DISCLAIMER, "chains": [CHAIN_LABEL.get(c, c) for c in settings.chains],
-                 "min_grade": settings.min_grade, "sources": hub.status(), "head": ledger.head, "lines": len(ledger)},
+                 "min_grade": settings.min_grade, "sources": hub.status(),
+                 "worker": hub.worker_health() if hasattr(hub, "worker_health") else None, "head": ledger.head, "lines": len(ledger)},
         "ticker": [{"id": a["id"], "ts": a["ts"], "text": headline(a), "grade": a["grades"]["wallet"]["grade"]}
                    for a in alerts[:14]],
         "alerts": [{k: v for k, v in a.items() if k not in ("seq", "type", "prev")}
