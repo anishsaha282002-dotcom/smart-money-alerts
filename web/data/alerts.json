@@ -1,0 +1,27 @@
+{
+  "generated": "2026-11-10T05:26:09Z",
+  "example": false,
+  "source": "public/ledger.jsonl",
+  "ledger": {
+    "exists": false,
+    "path": "ledger.jsonl",
+    "lines": 0,
+    "alerts": 0,
+    "head": "0000000000000000000000000000000000000000000000000000000000000000",
+    "ok": true,
+    "problems": [],
+    "skipped_demo": 0
+  },
+  "counts": {
+    "alerts": 0,
+    "buy": 0,
+    "sell": 0,
+    "solana": 0,
+    "bsc": 0,
+    "base": 0,
+    "sm_confirmed": 0,
+    "kol_buy": 0
+  },
+  "alerts": [],
+  "disclaimer": "Signals only. Not financial advice. This tool never trades."
+}

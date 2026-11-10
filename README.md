@@ -63,6 +63,25 @@ pytest -q
 cd tracker && python -m unittest discover -s tests -q
 ```
 
+
+## Live calls page
+
+A static site in [`web/`](web/) displays alerts from the public hash-chained ledger as readable cards (coin, chain, BUY/SELL, why, wallet and caller grades, late-copy check, ledger outcomes). It is CDN-free HTML/JS/CSS with no build step.
+
+After `sma run` (or whenever `public/ledger.jsonl` changes), export the public data and open the page locally:
+
+```bash
+python3 scripts/export_site_data.py
+python3 -m http.server -d web 8080
+# then open http://127.0.0.1:8080
+```
+
+The exporter writes `web/data/alerts.json` plus caller/wallet summaries from local public files only. It never reads `.env` or copies secrets, and it never invents calls — if the ledger is empty, the page shows a clear "no calls yet" state. Add `?sample=1` to the URL to load labeled example data (`web/data/alerts.sample.json`).
+
+Hosted URL (GitHub Pages): https://anishsaha282002-dotcom.github.io/smart-money-alerts/
+
+A workflow at [`.github/workflows/pages.yml`](.github/workflows/pages.yml) deploys the `web/` folder on every push to `main`. The first time, set the repository's Pages source to **GitHub Actions** in Settings → Pages; the workflow cannot flip that setting by itself.
+
 ## License
 
 MIT © 2026 Anish Saha

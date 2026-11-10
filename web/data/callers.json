@@ -1,0 +1,450 @@
+{
+  "source": "callers.json",
+  "exists": true,
+  "generated": "2026-11-10T05:26:09Z",
+  "counts": {
+    "callers": 54,
+    "flagged": 5,
+    "catalysts": 3
+  },
+  "callers": [
+    {
+      "handle": "PoorGoat_",
+      "tier": "A",
+      "lang": "en",
+      "note": "pumpbubble weekly 92% of 25 calls hit 2x peak; all-time hold-now 0.07x; top callout-reward earner ($588K-707K) = paid incentive",
+      "group": "caller"
+    },
+    {
+      "handle": "Cupseyy",
+      "tier": "A",
+      "lang": "en",
+      "note": "86% of 22 weekly calls hit 2x; Kolscan/SolanaTracker wallet realized PnL ~$34M; hold-now 0.07x",
+      "group": "caller"
+    },
+    {
+      "handle": "harrypauldavies",
+      "tier": "A",
+      "lang": "en",
+      "note": "76% of 25; bio says 'Mr Frontrun' - assume he is ahead of you",
+      "group": "caller"
+    },
+    {
+      "handle": "wirelyss",
+      "tier": "A",
+      "lang": "en",
+      "note": "71% of 38",
+      "group": "caller"
+    },
+    {
+      "handle": "daumenxyz",
+      "tier": "A",
+      "lang": "en",
+      "note": "71% of 31",
+      "group": "caller"
+    },
+    {
+      "handle": "Chairman_DN",
+      "tier": "A",
+      "lang": "en",
+      "note": "66% of 29; #2 callout-reward earner",
+      "group": "caller"
+    },
+    {
+      "handle": "Dior100x",
+      "tier": "A",
+      "lang": "en",
+      "note": "67% of 30",
+      "group": "caller"
+    },
+    {
+      "handle": "ProofOfEly",
+      "tier": "A",
+      "lang": "en",
+      "note": "62% of 84",
+      "group": "caller"
+    },
+    {
+      "handle": "jackduval",
+      "tier": "A",
+      "lang": "en",
+      "note": "74% hit-2x over last 100 (all-time board)",
+      "group": "caller"
+    },
+    {
+      "handle": "mickeymantled",
+      "tier": "A",
+      "lang": "en",
+      "note": "61% of 71",
+      "group": "caller"
+    },
+    {
+      "handle": "IcedKnife",
+      "tier": "A",
+      "lang": "en",
+      "note": "68% of 40",
+      "group": "caller"
+    },
+    {
+      "handle": "Schoen_xyz",
+      "tier": "A",
+      "lang": "en",
+      "note": "68% of 40",
+      "group": "caller"
+    },
+    {
+      "handle": "Cented7",
+      "tier": "A",
+      "lang": "en",
+      "note": "52% of 61; Kolscan wallet realized ~$14.8M",
+      "group": "caller"
+    },
+    {
+      "handle": "undercoverwhale",
+      "tier": "A",
+      "lang": "en",
+      "note": "67% of 15",
+      "group": "caller"
+    },
+    {
+      "handle": "notdecu",
+      "tier": "A",
+      "lang": "en",
+      "note": "61% hit-2x last 100; bio has trading-app referral link",
+      "group": "caller"
+    },
+    {
+      "handle": "MemeRetire",
+      "tier": "A",
+      "lang": "en",
+      "note": "57% of 30 weekly, 73% last-100; sells paid TG group",
+      "group": "caller"
+    },
+    {
+      "handle": "dr_crypto_calls",
+      "tier": "A",
+      "lang": "en",
+      "note": "52% of 63 weekly but all-time hit-2x 37%, hold-now 0.16x",
+      "group": "caller"
+    },
+    {
+      "handle": "blknoiz06",
+      "tier": "A",
+      "lang": "en",
+      "note": "Ansem, Kolscan wallet realized ~$7.4M; mostly narrative/majors, not microcap CAs",
+      "group": "caller"
+    },
+    {
+      "handle": "orangie",
+      "tier": "B",
+      "lang": "en",
+      "note": "large memecoin streamer; no verified hit rate",
+      "group": "caller"
+    },
+    {
+      "handle": "notthreadguy",
+      "tier": "B",
+      "lang": "en",
+      "note": "works on @fomo app (conflict of interest)",
+      "group": "caller"
+    },
+    {
+      "handle": "The__Solstice",
+      "tier": "B",
+      "lang": "en",
+      "note": "all-time hit-2x 44%, hold-now 0.10x; promotes own coin (stonk) and fomo referral",
+      "group": "caller"
+    },
+    {
+      "handle": "SolanaRockets",
+      "tier": "B",
+      "lang": "en",
+      "note": "unverified; pushes telegram",
+      "group": "caller"
+    },
+    {
+      "handle": "Legend_Legolas",
+      "tier": "B",
+      "lang": "en",
+      "note": "unverified",
+      "group": "caller"
+    },
+    {
+      "handle": "Lowskii",
+      "tier": "B",
+      "lang": "en",
+      "note": "unverified",
+      "group": "caller"
+    },
+    {
+      "handle": "NachSOL",
+      "tier": "B",
+      "lang": "en",
+      "note": "unverified",
+      "group": "caller"
+    },
+    {
+      "handle": "metaversejoji",
+      "tier": "B",
+      "lang": "en",
+      "note": "unverified",
+      "group": "caller"
+    },
+    {
+      "handle": "ecca",
+      "tier": "B",
+      "lang": "en",
+      "note": "unverified",
+      "group": "caller"
+    },
+    {
+      "handle": "spunosounds",
+      "tier": "B",
+      "lang": "en",
+      "note": "unverified",
+      "group": "caller"
+    },
+    {
+      "handle": "WolverCrypto",
+      "tier": "B",
+      "lang": "en",
+      "note": "unverified",
+      "group": "caller"
+    },
+    {
+      "handle": "gammichan",
+      "tier": "B",
+      "lang": "en",
+      "note": "unverified",
+      "group": "caller"
+    },
+    {
+      "handle": "DamnGoodCoins",
+      "tier": "B",
+      "lang": "en",
+      "note": "unverified",
+      "group": "caller"
+    },
+    {
+      "handle": "Indegenuity",
+      "tier": "B",
+      "lang": "en",
+      "note": "unverified",
+      "group": "caller"
+    },
+    {
+      "handle": "realChainDoctor",
+      "tier": "B",
+      "lang": "zh",
+      "note": "Chinese-language; no verified hit rate. Meme KOL, 85.5K followers; Foresight News Chinese Web3 top-200 list (XHunt influence score) https://foresightnews.pro/article/detail/84780",
+      "group": "caller"
+    },
+    {
+      "handle": "xingpt",
+      "tier": "B",
+      "lang": "zh",
+      "note": "Chinese-language; no verified hit rate. Meme + secondary-market KOL, 57.6K; Foresight News Chinese Web3 top-200 list (XHunt influence score) https://foresightnews.pro/article/detail/84780",
+      "group": "caller"
+    },
+    {
+      "handle": "huahuayjy",
+      "tier": "B",
+      "lang": "zh",
+      "note": "Chinese-language; no verified hit rate. Meme + secondary KOL, 308K; bio now AI/stocks/fitness; Foresight News Chinese Web3 top-200 list (XHunt influence score) https://foresightnews.pro/article/detail/84780",
+      "group": "caller"
+    },
+    {
+      "handle": "lijiuer1",
+      "tier": "B",
+      "lang": "zh",
+      "note": "Chinese-language; no verified hit rate. trader/meme player, 123K; bio has a Binance referral link; Foresight News Chinese Web3 top-200 list (XHunt influence score) https://foresightnews.pro/article/detail/84780",
+      "group": "caller"
+    },
+    {
+      "handle": "liping007",
+      "tier": "B",
+      "lang": "zh",
+      "note": "Chinese-language; no verified hit rate. meme player, 52K; Foresight News Chinese Web3 top-200 list (XHunt influence score) https://foresightnews.pro/article/detail/84780",
+      "group": "caller"
+    },
+    {
+      "handle": "0xmagnolia",
+      "tier": "B",
+      "lang": "zh",
+      "note": "Chinese-language; no verified hit rate. meme player, 66K; Foresight News Chinese Web3 top-200 list (XHunt influence score) https://foresightnews.pro/article/detail/84780",
+      "group": "caller"
+    },
+    {
+      "handle": "0xKirara",
+      "tier": "B",
+      "lang": "zh",
+      "note": "Chinese-language; no verified hit rate. meme player / RootData researcher, 53K; Foresight News Chinese Web3 top-200 list (XHunt influence score) https://foresightnews.pro/article/detail/84780",
+      "group": "caller"
+    },
+    {
+      "handle": "brc20niubi",
+      "tier": "B",
+      "lang": "zh",
+      "note": "Chinese-language; no verified hit rate. meme player, 94K (哈基米 holder per bio); Foresight News Chinese Web3 top-200 list (XHunt influence score) https://foresightnews.pro/article/detail/84780; also in @xixikawaii BSC meme guide (Jan 2026) https://x.com/xixikawaii/status/2013522582885278160",
+      "group": "caller"
+    },
+    {
+      "handle": "0xmasiwei",
+      "tier": "B",
+      "lang": "zh",
+      "note": "Chinese-language; no verified hit rate. 'DEGEN ON BSC', 34K; Foresight News Chinese Web3 top-200 list (XHunt influence score) https://foresightnews.pro/article/detail/84780",
+      "group": "caller"
+    },
+    {
+      "handle": "CryptoDevinL",
+      "tier": "B",
+      "lang": "zh",
+      "note": "Chinese-language; no verified hit rate. Meme KOL '1000X GEM', 90K; runs a TG group; Foresight News Chinese Web3 top-200 list (XHunt influence score) https://foresightnews.pro/article/detail/84780; @xixikawaii BSC meme guide (Jan 2026) https://x.com/xixikawaii/status/2013522582885278160",
+      "group": "caller"
+    },
+    {
+      "handle": "Tintinx2021",
+      "tier": "B",
+      "lang": "zh",
+      "note": "Chinese-language; no verified hit rate. meme player, 58K; works at vergex_ai / yetalabs; Foresight News Chinese Web3 top-200 list (XHunt influence score) https://foresightnews.pro/article/detail/84780",
+      "group": "caller"
+    },
+    {
+      "handle": "lanyihou",
+      "tier": "B",
+      "lang": "zh",
+      "note": "Chinese-language; no verified hit rate. meme player, 107K; Foresight News Chinese Web3 top-200 list (XHunt influence score) https://foresightnews.pro/article/detail/84780",
+      "group": "caller"
+    },
+    {
+      "handle": "Unipioneer",
+      "tier": "B",
+      "lang": "zh",
+      "note": "Chinese-language; no verified hit rate. meme degen, founder of 985 community, 53K; Foresight News Chinese Web3 top-200 list (XHunt influence score) https://foresightnews.pro/article/detail/84780",
+      "group": "caller"
+    },
+    {
+      "handle": "Btc_Dou",
+      "tier": "B",
+      "lang": "zh",
+      "note": "Chinese-language; no verified hit rate. BSC core Chinese builder per @xixikawaii BSC meme guide (Jan 2026) https://x.com/xixikawaii/status/2013522582885278160; 21.6K, account from Sep 2025",
+      "group": "caller"
+    },
+    {
+      "handle": "0xSunNFT",
+      "tier": "B",
+      "lang": "zh",
+      "note": "Chinese-language; no verified hit rate. BSC core Chinese builder per @xixikawaii BSC meme guide (Jan 2026) https://x.com/xixikawaii/status/2013522582885278160; 212K",
+      "group": "caller"
+    },
+    {
+      "handle": "hexiecs",
+      "tier": "B",
+      "lang": "zh",
+      "note": "Chinese-language; no verified hit rate. BSC core per @xixikawaii BSC meme guide (Jan 2026) https://x.com/xixikawaii/status/2013522582885278160; 98K",
+      "group": "caller"
+    },
+    {
+      "handle": "BitCloutCat",
+      "tier": "B",
+      "lang": "zh",
+      "note": "Chinese-language; no verified hit rate. BSC core per @xixikawaii BSC meme guide (Jan 2026) https://x.com/xixikawaii/status/2013522582885278160; 153K",
+      "group": "caller"
+    },
+    {
+      "handle": "corleonefnf",
+      "tier": "B",
+      "lang": "zh",
+      "note": "Chinese-language; no verified hit rate. BSC core per @xixikawaii BSC meme guide (Jan 2026) https://x.com/xixikawaii/status/2013522582885278160; 38K; '10k to 1M challenge'",
+      "group": "caller"
+    },
+    {
+      "handle": "haze0x",
+      "tier": "B",
+      "lang": "zh",
+      "note": "Chinese-language; no verified hit rate. BSC core per @xixikawaii BSC meme guide (Jan 2026) https://x.com/xixikawaii/status/2013522582885278160; 141K; bio: 'Don't copy trade my wallet, I will sell it at any time'",
+      "group": "caller"
+    },
+    {
+      "handle": "feibo03",
+      "tier": "B",
+      "lang": "zh",
+      "note": "Chinese-language; no verified hit rate. on-chain hunter per @xixikawaii BSC meme guide (Jan 2026) https://x.com/xixikawaii/status/2013522582885278160; 43K; bio carries a GMGN referral link",
+      "group": "caller"
+    },
+    {
+      "handle": "xixikawaii",
+      "tier": "B",
+      "lang": "zh",
+      "note": "Chinese-language; no verified hit rate. author of the BSC meme guide; 72K",
+      "group": "caller"
+    },
+    {
+      "handle": "hotsaucehong",
+      "tier": "B",
+      "lang": "zh",
+      "note": "Chinese-language; no verified hit rate. Reddit r/CryptoTrenching list of Chinese BSC KOL wallets (Oct 2025); only 750 followers - low weight",
+      "group": "caller"
+    }
+  ],
+  "flagged": [
+    {
+      "handle": "0xEthan",
+      "tier": "flagged",
+      "lang": "en",
+      "note": "Bubblemaps (9 Oct 2026) alleged linked wallets bought before 49 callouts and sold ~3 min after; est. $125K. Allegation, not proven.",
+      "group": "flagged"
+    },
+    {
+      "handle": "anglio",
+      "tier": "flagged",
+      "lang": "en",
+      "note": "Bubblemaps alleged 5 linked wallets bought before 61% of his calls and sold minutes later. Allegation.",
+      "group": "flagged"
+    },
+    {
+      "handle": "0xkgc",
+      "tier": "flagged",
+      "lang": "en",
+      "note": "Promotes coins he launched/locked himself (e.g. Big Thighs Coin, 9 Nov 2026) - self-interest; bio 'dont copytrade me'",
+      "group": "flagged"
+    },
+    {
+      "handle": "0xZyaf",
+      "tier": "flagged",
+      "lang": "en",
+      "note": "Promises 'next 100x' callouts; no verifiable record",
+      "group": "flagged"
+    },
+    {
+      "handle": "slingoorio",
+      "tier": "flagged",
+      "lang": "en",
+      "note": "Board-listed caller but this X handle shows 0 followers; may not be the real person - do not trust until verified",
+      "group": "flagged"
+    }
+  ],
+  "catalysts": [
+    {
+      "handle": "cz_binance",
+      "tier": "catalyst",
+      "lang": "zh/en",
+      "note": "CZ, 13.0M followers. His posts/replies routinely become BNB-chain meme names within minutes (e.g. 我踏马来了 after a CZ interaction). Not a caller - narrative catalyst.",
+      "group": "catalyst"
+    },
+    {
+      "handle": "heyibinance",
+      "tier": "catalyst",
+      "lang": "zh",
+      "note": "He Yi, Binance co-founder, 679K. Same catalyst role (客服小何 etc.).",
+      "group": "catalyst"
+    },
+    {
+      "handle": "yingbinance",
+      "tier": "catalyst",
+      "lang": "zh",
+      "note": "Head of Binance Square (Foresight list #90), 39K. Binance employee - catalyst only.",
+      "group": "catalyst"
+    }
+  ]
+}

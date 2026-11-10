@@ -1,0 +1,366 @@
+{
+  "generated": "2026-11-10T05:26:09Z",
+  "example": true,
+  "source": "ledger.jsonl",
+  "ledger": {
+    "exists": true,
+    "path": "ledger.jsonl",
+    "lines": 15,
+    "alerts": 3,
+    "head": "c8a822fd7e406661bf7588efb52b3d5a5ae9a6dc830eefab80f620c2e5ea2db9",
+    "ok": true,
+    "problems": [],
+    "skipped_demo": 0
+  },
+  "counts": {
+    "alerts": 3,
+    "buy": 3,
+    "sell": 0,
+    "solana": 2,
+    "bsc": 1,
+    "base": 0,
+    "sm_confirmed": 2,
+    "kol_buy": 1
+  },
+  "alerts": [
+    {
+      "id": "83c54cc65614b856",
+      "seq": 2,
+      "decision": "BUY",
+      "created": "2026-11-10T04:00:00Z",
+      "created_ts": 1794283200,
+      "chain": "solana",
+      "symbol": "AGENTZ",
+      "name": "Agentz AI",
+      "token": "DemoAGE6f3AyWsj7SzfamcinEXm7U67QaRUtaU86ddXu",
+      "dex": "pumpswap",
+      "url": "https://dexscreener.com/solana/DemoPAGPepnaDjDBT5Xx3oMx2NbEQDHPib5ePUMVnAbQ",
+      "explorers": {
+        "dexscreener": "https://dexscreener.com/solana/DemoPAGPepnaDjDBT5Xx3oMx2NbEQDHPib5ePUMVnAbQ",
+        "scan": "https://solscan.io/token/DemoAGE6f3AyWsj7SzfamcinEXm7U67QaRUtaU86ddXu",
+        "scan_label": "Solscan"
+      },
+      "text": "SMART-MONEY BUY · $AGENTZ on Solana · alert #2\nWallet DemoBeta — grade B (73/100) bought $600 15m ago.\nRecord: won 7 of last 10 closed trades over 30d (7/11 overall); sample-adjusted win rate 58%; median closed trade +48%, typical hold 40m (n=11 closed, data: demo fixture).\nWhy it's interesting: first time this wallet has bought this token; 1 other graded wallet(s) (A) bought it in the last 60m; token is only 3.0h old; its narrative 'AI/agents' is HOT.\nCan you still copy it? Price is +13% since its buy 15 min ago. Replaying its last 6 trades: at its price median +46%, 5 min late +24%, 30 min late +4% — historically still worth it 5 min late.\nCaller chatter: grade B — 2 tracked caller(s): @demo_alpha_caller (B, 53% sample-adjusted 2x-rate, n≈13), @demo_beta_caller (C, 41% sample-adjusted 2x-rate, n≈10); 33 posts total.\nNarrative: AI/agents — HOT (momentum 22.2, 6 tokens, $957.0K 1h volume).\nRisk: liquidity $85.0K, mcap $765.0K. Prices before fees/slippage. Not financial advice.\nhttps://dexscreener.com/solana/DemoPAGPepnaDjDBT5Xx3oMx2NbEQDHPib5ePUMVnAbQ",
+      "why": [
+        "first time this wallet has bought this token",
+        "1 other graded wallet(s) (A) bought it in the last 60m",
+        "token is only 3.0h old",
+        "its narrative 'AI/agents' is HOT"
+      ],
+      "wallet": {
+        "address": "DemoBtatBmUNJAEqN76R7PwPfHt3oWb8R6cKvhgyxQdD",
+        "label": "DemoBeta",
+        "grade": "B",
+        "score": 72.8,
+        "n_closed": 11,
+        "win_rate_shrunk": 0.5789,
+        "tracked": false
+      },
+      "cobuyers": [
+        {
+          "address": "DemoAceh82pJGF9p7kpzb6eU326EFZf2cDnimbTFVeJt",
+          "grade": "A",
+          "ts": 1794282780
+        }
+      ],
+      "caller": {
+        "grade": "B",
+        "checked": true,
+        "reason": null,
+        "posts": 33,
+        "callers": [
+          {
+            "handle": "demo_alpha_caller",
+            "grade": "B",
+            "rate": 0.5286,
+            "n_eff": 13.3
+          },
+          {
+            "handle": "demo_beta_caller",
+            "grade": "C",
+            "rate": 0.41,
+            "n_eff": 10.0
+          }
+        ]
+      },
+      "sm_confirmed": true,
+      "kol_buy": false,
+      "late": {
+        "n": 6,
+        "late_5m": 0.2425,
+        "late_30m": 0.0407,
+        "at_buy": 0.4573,
+        "too_fast_5m": 0,
+        "verdict": "historically still worth it 5 min late"
+      },
+      "outcomes": {
+        "15m": {
+          "ret_from_alert": 0.0556,
+          "ret_from_wallet_buy": 0.1937,
+          "ret_if_5m_late": 0.1849,
+          "ret_if_30m_late": 0.0,
+          "max_ret_from_alert": 0.0661,
+          "scored": "2026-11-11T05:00:00Z"
+        },
+        "1h": {
+          "ret_from_alert": 0.1998,
+          "ret_from_wallet_buy": 0.3568,
+          "ret_if_5m_late": 0.3468,
+          "ret_if_30m_late": 0.1367,
+          "max_ret_from_alert": 0.2251,
+          "scored": "2026-11-11T05:00:00Z"
+        },
+        "4h": {
+          "ret_from_alert": -0.0667,
+          "ret_from_wallet_buy": 0.0554,
+          "ret_if_5m_late": 0.0476,
+          "ret_if_30m_late": -0.1159,
+          "max_ret_from_alert": 0.2251,
+          "scored": "2026-11-11T05:00:00Z"
+        },
+        "24h": {
+          "ret_from_alert": -0.2971,
+          "ret_from_wallet_buy": -0.2052,
+          "ret_if_5m_late": -0.211,
+          "ret_if_30m_late": -0.3341,
+          "max_ret_from_alert": 0.2251,
+          "scored": "2026-11-11T05:00:00Z"
+        }
+      },
+      "narrative": {
+        "narrative": "AI/agents",
+        "status": "HOT",
+        "score": 22.24,
+        "n_tokens": 6,
+        "vol_h1": 956995
+      },
+      "buy_usd": 600.0,
+      "liq": 85000,
+      "mcap": 765000,
+      "demo": true
+    },
+    {
+      "id": "4f5f680a324f7285",
+      "seq": 1,
+      "decision": "BUY",
+      "created": "2026-11-10T04:00:00Z",
+      "created_ts": 1794283200,
+      "chain": "bsc",
+      "symbol": "牛逼币",
+      "name": "牛逼币",
+      "token": "0xdem0e7899be97595cc43efa12a8ddf60604a65e",
+      "dex": "four-meme",
+      "url": "https://dexscreener.com/bsc/0xdem070e7899b5fcd78a2b15a4b9d370e60f40e7",
+      "explorers": {
+        "dexscreener": "https://dexscreener.com/bsc/0xdem070e7899b5fcd78a2b15a4b9d370e60f40e7",
+        "scan": "https://bscscan.com/token/0xdem0e7899be97595cc43efa12a8ddf60604a65e",
+        "scan_label": "BscScan"
+      },
+      "text": "SMART-MONEY BUY · $牛逼币 on BSC (four.meme) · alert #1\nWallet DemoFourMeme — grade A (75/100) bought $900 12m ago.\nRecord: won 7 of last 9 closed trades over 30d; sample-adjusted win rate 65%; median closed trade +30%, typical hold 8m (n=9 closed, data: demo fixture).\n⚠ small sample: 9 closed trades - the grade can move a lot\nWhy it's interesting: first time this wallet has bought this token; 2.2x its usual buy size; token is only 5.0h old; GMGN tag: kol.\nCan you still copy it? Price is +7% since its buy 12 min ago. Replaying its last 6 trades: at its price median +24%, 5 min late -3%, 30 min late +0% — historically NOT worth copying 5 min late.\nCaller chatter: grade D — 1 tracked caller(s): @demo_zh_caller (no track record yet); 10 posts total.\nNarrative: Chinese-culture — FADING (momentum 13.3, 4 tokens, $63.3K 1h volume).\nRisk: liquidity $40.0K, mcap $360.0K. Prices before fees/slippage. Not financial advice.\nhttps://dexscreener.com/bsc/0xdem070e7899b5fcd78a2b15a4b9d370e60f40e7",
+      "why": [
+        "first time this wallet has bought this token",
+        "2.2x its usual buy size",
+        "token is only 5.0h old",
+        "tag: kol"
+      ],
+      "wallet": {
+        "address": "0xdem0666d000079273c8eb5bb682575ec87a171a",
+        "label": "DemoFourMeme",
+        "grade": "A",
+        "score": 75.0,
+        "n_closed": 9,
+        "win_rate_shrunk": 0.6471,
+        "tracked": false
+      },
+      "cobuyers": [],
+      "caller": {
+        "grade": "D",
+        "checked": true,
+        "reason": null,
+        "posts": 10,
+        "callers": [
+          {
+            "handle": "demo_zh_caller",
+            "grade": "D",
+            "rate": 0.3,
+            "n_eff": 0.0
+          }
+        ]
+      },
+      "sm_confirmed": false,
+      "kol_buy": true,
+      "late": {
+        "n": 6,
+        "late_5m": -0.0266,
+        "late_30m": 0.0,
+        "at_buy": 0.2382,
+        "too_fast_5m": 0,
+        "verdict": "historically NOT worth copying 5 min late"
+      },
+      "outcomes": {
+        "15m": {
+          "ret_from_alert": -0.0612,
+          "ret_from_wallet_buy": 0.0003,
+          "ret_if_5m_late": -0.159,
+          "ret_if_30m_late": null,
+          "max_ret_from_alert": 0.0257,
+          "scored": "2026-11-11T05:00:00Z"
+        },
+        "1h": {
+          "ret_from_alert": -0.2088,
+          "ret_from_wallet_buy": -0.157,
+          "ret_if_5m_late": -0.2912,
+          "ret_if_30m_late": -0.1495,
+          "max_ret_from_alert": 0.0257,
+          "scored": "2026-11-11T05:00:00Z"
+        },
+        "4h": {
+          "ret_from_alert": -0.489,
+          "ret_from_wallet_buy": -0.4556,
+          "ret_if_5m_late": -0.5423,
+          "ret_if_30m_late": -0.4507,
+          "max_ret_from_alert": 0.0257,
+          "scored": "2026-11-11T05:00:00Z"
+        },
+        "24h": {
+          "ret_from_alert": -0.6163,
+          "ret_from_wallet_buy": -0.5912,
+          "ret_if_5m_late": -0.6563,
+          "ret_if_30m_late": -0.5876,
+          "max_ret_from_alert": 0.0257,
+          "scored": "2026-11-11T05:00:00Z"
+        }
+      },
+      "narrative": {
+        "narrative": "Chinese-culture",
+        "status": "FADING",
+        "score": 13.31,
+        "n_tokens": 4,
+        "vol_h1": 63309
+      },
+      "buy_usd": 900.0,
+      "liq": 40000,
+      "mcap": 360000,
+      "demo": true
+    },
+    {
+      "id": "075148d165bdcb95",
+      "seq": 0,
+      "decision": "BUY",
+      "created": "2026-11-10T04:00:00Z",
+      "created_ts": 1794283200,
+      "chain": "solana",
+      "symbol": "AGENTZ",
+      "name": "Agentz AI",
+      "token": "DemoAGE6f3AyWsj7SzfamcinEXm7U67QaRUtaU86ddXu",
+      "dex": "pumpswap",
+      "url": "https://dexscreener.com/solana/DemoPAGPepnaDjDBT5Xx3oMx2NbEQDHPib5ePUMVnAbQ",
+      "explorers": {
+        "dexscreener": "https://dexscreener.com/solana/DemoPAGPepnaDjDBT5Xx3oMx2NbEQDHPib5ePUMVnAbQ",
+        "scan": "https://solscan.io/token/DemoAGE6f3AyWsj7SzfamcinEXm7U67QaRUtaU86ddXu",
+        "scan_label": "Solscan"
+      },
+      "text": "SMART-MONEY BUY · $AGENTZ on Solana · alert #0\nWallet DemoAce — grade A (80/100) bought $2.4K 7m ago.\nRecord: won 8 of last 10 closed trades over 30d (11/14 overall); sample-adjusted win rate 68%; median closed trade +48%, typical hold 40m (n=14 closed, data: demo fixture).\nWhy it's interesting: first time this wallet has bought this token; 1 other graded wallet(s) (B) bought it in the last 60m; token is only 3.0h old; its narrative 'AI/agents' is HOT; GMGN tag: smart_degen.\nCan you still copy it? Price is +12% since its buy 7 min ago. Replaying its last 6 trades: at its price median +47%, 5 min late +25%, 30 min late +6% — historically still worth it 5 min late.\nCaller chatter: grade B — 2 tracked caller(s): @demo_alpha_caller (B, 53% sample-adjusted 2x-rate, n≈13), @demo_beta_caller (C, 41% sample-adjusted 2x-rate, n≈10); 33 posts total.\nNarrative: AI/agents — HOT (momentum 22.2, 6 tokens, $957.0K 1h volume).\nRisk: liquidity $85.0K, mcap $765.0K. Prices before fees/slippage. Not financial advice.\nhttps://dexscreener.com/solana/DemoPAGPepnaDjDBT5Xx3oMx2NbEQDHPib5ePUMVnAbQ",
+      "why": [
+        "first time this wallet has bought this token",
+        "1 other graded wallet(s) (B) bought it in the last 60m",
+        "token is only 3.0h old",
+        "its narrative 'AI/agents' is HOT",
+        "tag: smart_degen"
+      ],
+      "wallet": {
+        "address": "DemoAceh82pJGF9p7kpzb6eU326EFZf2cDnimbTFVeJt",
+        "label": "DemoAce",
+        "grade": "A",
+        "score": 79.8,
+        "n_closed": 14,
+        "win_rate_shrunk": 0.6818,
+        "tracked": false
+      },
+      "cobuyers": [
+        {
+          "address": "DemoBtatBmUNJAEqN76R7PwPfHt3oWb8R6cKvhgyxQdD",
+          "grade": "B",
+          "ts": 1794282300
+        }
+      ],
+      "caller": {
+        "grade": "B",
+        "checked": true,
+        "reason": null,
+        "posts": 33,
+        "callers": [
+          {
+            "handle": "demo_alpha_caller",
+            "grade": "B",
+            "rate": 0.5286,
+            "n_eff": 13.3
+          },
+          {
+            "handle": "demo_beta_caller",
+            "grade": "C",
+            "rate": 0.41,
+            "n_eff": 10.0
+          }
+        ]
+      },
+      "sm_confirmed": true,
+      "kol_buy": false,
+      "late": {
+        "n": 6,
+        "late_5m": 0.2494,
+        "late_30m": 0.0552,
+        "at_buy": 0.4651,
+        "too_fast_5m": 0,
+        "verdict": "historically still worth it 5 min late"
+      },
+      "outcomes": {
+        "15m": {
+          "ret_from_alert": 0.0556,
+          "ret_from_wallet_buy": 0.1817,
+          "ret_if_5m_late": 0.0858,
+          "ret_if_30m_late": null,
+          "max_ret_from_alert": 0.0661,
+          "scored": "2026-11-11T05:00:00Z"
+        },
+        "1h": {
+          "ret_from_alert": 0.1998,
+          "ret_from_wallet_buy": 0.3432,
+          "ret_if_5m_late": 0.2341,
+          "ret_if_30m_late": 0.1088,
+          "max_ret_from_alert": 0.2251,
+          "scored": "2026-11-11T05:00:00Z"
+        },
+        "4h": {
+          "ret_from_alert": -0.0667,
+          "ret_from_wallet_buy": 0.0448,
+          "ret_if_5m_late": -0.0401,
+          "ret_if_30m_late": -0.1375,
+          "max_ret_from_alert": 0.2251,
+          "scored": "2026-11-11T05:00:00Z"
+        },
+        "24h": {
+          "ret_from_alert": -0.2971,
+          "ret_from_wallet_buy": -0.2131,
+          "ret_if_5m_late": -0.277,
+          "ret_if_30m_late": -0.3505,
+          "max_ret_from_alert": 0.2251,
+          "scored": "2026-11-11T05:00:00Z"
+        }
+      },
+      "narrative": {
+        "narrative": "AI/agents",
+        "status": "HOT",
+        "score": 22.24,
+        "n_tokens": 6,
+        "vol_h1": 956995
+      },
+      "buy_usd": 2400.0,
+      "liq": 85000,
+      "mcap": 765000,
+      "demo": true
+    }
+  ],
+  "disclaimer": "Signals only. Not financial advice. This tool never trades.",
+  "example_note": "EXAMPLE DATA from bundled demo fixtures — not live market calls."
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Smart Money Alerts — Live calls</title>
+  <meta name="description" content="Live smart-money memecoin calls on Solana and BSC. Signals only, not financial advice.">
+  <meta name="color-scheme" content="dark">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#feed">Skip to calls</a>
+  <header class="top">
+    <div class="brand">
+      <p class="eyebrow">smart-money-alerts</p>
+      <h1>Live calls</h1>
+    </div>
+    <p class="lede">Plain-English alerts from the public hash-chained ledger. Wallet, caller, and copy-check grades on every card. Signals only — this tool never trades.</p>
+  </header>
+
+  <div id="sample-banner" class="banner example" hidden>
+    You are viewing <strong>example data</strong>, not live market calls. Remove <code>?sample=1</code> from the URL to see the real ledger.
+  </div>
+  <div id="status-error" class="banner error" hidden></div>
+
+  <section class="toolbar" aria-label="Filters and status">
+    <div class="filters">
+      <label>Chain
+        <select id="filter-chain" aria-label="Filter by chain">
+          <option value="all">All chains</option>
+          <option value="solana">Solana</option>
+          <option value="bsc">BSC</option>
+          <option value="base">Base</option>
+        </select>
+      </label>
+      <label>Side
+        <select id="filter-side" aria-label="Filter by buy or sell">
+          <option value="all">BUY &amp; SELL</option>
+          <option value="BUY">BUY</option>
+          <option value="SELL">SELL</option>
+        </select>
+      </label>
+    </div>
+    <div class="meta" id="meta">
+      <span id="meta-counts">Loading…</span>
+      <span id="meta-updated" class="muted"></span>
+    </div>
+  </section>
+
+  <main id="feed" class="feed" aria-live="polite"></main>
+
+  <footer class="foot">
+    <p id="ledger-line" class="muted"></p>
+    <p>Watching <span id="watch-wallets">—</span> wallets and <span id="watch-callers">—</span> callers.
+      Source:
+      <a href="https://github.com/anishsaha282002-dotcom/smart-money-alerts">github.com/anishsaha282002-dotcom/smart-money-alerts</a>.
+      Not financial advice.</p>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>
