@@ -13,6 +13,7 @@ from pathlib import Path
 
 from . import DISCLAIMER, __version__
 from .ledger import Ledger
+from .grading import baserate
 from .models import CHAIN_LABEL, GRADES, HORIZONS
 from .story import headline
 from .store import Store
@@ -96,6 +97,7 @@ def stats(ledger: Ledger) -> dict:
         "by_caller_grade": by(lambda a: a["grades"]["caller"]["grade"] or "none"),
         "by_narrative_state": by(lambda a: a["grades"]["narrative"]["state"]),
         "by_chain": by(lambda a: a["chain"]),
+        "by_signal": by(lambda a: baserate.bucket_for(a)),
         "misses": sorted((b for b in measured if b["x"] < 1), key=lambda b: b["x"])[:15],
         "best": sorted((b for b in measured if b["x"] >= 1), key=lambda b: -b["x"])[:8],
         "n_misses": sum(b["x"] < 1 for b in measured), "n_measured": len(measured),
@@ -130,6 +132,7 @@ def site(ledger: Ledger, store: Store, hub, settings) -> dict:
         "narratives": narratives,
         "wallets": leaderboard(store),
         "stats": stats(ledger),
+        "baserates": baserate.load(),
     }
 
 

@@ -25,6 +25,37 @@ FLAG_TAGS = {
 }
 
 
+# Trade-rate limits beyond which a wallet is treated as a bot and kept out of the stream.
+# A person clicking buttons does not make 10,000 trades in 30 days or 500 transactions a day.
+BOT_TRADES_30D = 10_000
+BOT_TX_PER_DAY = 500
+
+
+def bot_reason(raw: dict) -> str | None:
+    """Why a wallet looks like a bot, from its own published stats, or None.
+
+    Examples it catches: a leaderboard row named "Mayhem Bot" (BwWK17…, 73k trades in 30 days),
+    and wallets whose vetting saw thousands of signatures per day.
+    """
+    name = str(raw.get("name") or "").lower()
+    if "bot" in name.replace("abbot", "").split() or name.endswith(" bot") or name.startswith("bot "):
+        return "named as a bot"
+    st = raw.get("stats") or {}
+    try:
+        trades = float(st.get("trades") or 0)
+    except (TypeError, ValueError):
+        trades = 0
+    if trades > BOT_TRADES_30D:
+        return f"{trades:,.0f} trades in 30 days"
+    try:
+        per_day = float((raw.get("vetting") or {}).get("est_per_day") or 0)
+    except (TypeError, ValueError):
+        per_day = 0
+    if per_day > BOT_TX_PER_DAY:
+        return f"~{per_day:,.0f} transactions a day"
+    return None
+
+
 def _chain(raw: str | None) -> str:
     return CHAIN.get((raw or "sol").lower(), (raw or "solana").lower())
 
@@ -36,6 +67,9 @@ def _row(raw: dict) -> dict | None:
     chain = _chain(raw.get("chain"))
     addr = norm(chain, addr)
     tags = [str(t).lower() for t in (raw.get("tags") or [])]
+    bot = bot_reason(raw)
+    if bot and "bot" not in tags:
+        tags.append("bot")
     for tag in list(tags):
         mapped = FLAG_TAGS.get(tag)
         if mapped and mapped not in tags:
@@ -54,7 +88,8 @@ def _row(raw: dict) -> dict | None:
         "source": raw.get("source") or "",
         "tags": tags,
         "score": score,
-        "stream": raw.get("stream") is not False,
+        "stream": raw.get("stream") is not False and not bot,
+        "bot_reason": bot or "",
         "narratives": [str(x) for x in narr if str(x).strip()] or ["general"],
         "vetting": raw.get("vetting") or {},
         "stats": raw.get("stats") or {},

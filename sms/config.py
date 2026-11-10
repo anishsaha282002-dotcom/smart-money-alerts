@@ -58,6 +58,7 @@ class Settings:
     safety_checks: bool = True
     copy_history_buys: int = 6      # past buys per wallet priced for the copy check
     min_caller_followers: int = 2000
+    telegram_channels: tuple[str, ...] = ()   # public channels read keylessly from t.me/s/<name>
 
     # --- story
     llm_reword: bool = False
@@ -101,7 +102,7 @@ def load(config_path: str | Path | None = None, env_file: str | Path | None = No
                     raise ValueError(f"config.toml: unknown setting [{section}] {k}")
                 if k in ("data_dir", "web_dir"):
                     v = Path(v) if Path(v).is_absolute() else ROOT / v
-                elif k == "chains":
+                elif k in ("chains", "telegram_channels"):
                     v = tuple(v)
                 setattr(s, k, v)
         wallets = raw.get("wallets") or {}

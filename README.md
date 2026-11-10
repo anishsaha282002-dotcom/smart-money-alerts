@@ -147,6 +147,7 @@ fired and check whether alerts like it have actually worked, that is what this i
 | **+ `GMGN_API_KEY`** | Smart-money and KOL trade feeds, 30-day wallet history, wallet tags (sniper, bundler, insider) and call-outs for caller grades, on Solana, BNB Chain and Base. This is the key that makes live mode useful on day one. |
 | **+ `X_BEARER_TOKEN`** | Caller mentions and narrative post counts from X. Needs a paid X API tier. |
 | **+ Telegram / Discord** | Alerts delivered to a chat or channel. |
+| **`telegram_channels` in config.toml** | Keyless: public Telegram channels read from `t.me/s/<name>`. Contract addresses in posts become caller mentions. Like every call, they only add context to an alert that wallet activity already triggered. |
 | **+ `ANTHROPIC_API_KEY`** | Optional rewording of the alert text. Off by default. |
 
 Every source is optional. One that is missing, down or rate-limited is skipped with a single
@@ -275,6 +276,23 @@ From minute candles after the wallet's buy, over a 4-hour window:
 
 Everything is measured to the peak, which nobody sells at. So these are ceilings: if even the
 ceiling says "mostly gone", it was gone.
+
+### How similar alerts turned out (backtest)
+
+Each alert carries a line like *"Of 128 past alerts of this kind (3+ tracked wallets buying within
+1h), 17% touched 2x within 24h and 57% fell 50% or more"* (the real first backtest, 8-10 Nov 2026). The numbers come from
+`data/baserates.json`, written by [`scripts/backtest_signals.py`](scripts/backtest_signals.py),
+which replays every signal type on real tracked-wallet history with free GeckoTerminal candles.
+Entry is the alert-time candle, not the wallet's fill. A bucket with fewer than 30 priced signals
+says "not enough history yet" instead of a percentage. It is history, not a forecast, and it is
+never a reason given to buy or sell. The track-record page shows the backtest next to the live
+results for each signal type.
+
+### Holder structure
+
+On Solana the RugCheck full report adds a holder line to each alert: top-10 share with pool
+accounts left out, how many linked insider wallets RugCheck's graph found, and how much the
+creator still holds. Large numbers show as warnings. They never hide an alert.
 
 ### The ledger
 

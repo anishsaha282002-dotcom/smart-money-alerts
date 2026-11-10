@@ -18,6 +18,9 @@ loadSite().then((data) => {
     (g) => g === "none" ? el("span", { class: "chip", text: "no callers" }) : badge(g, "callers"));
   gradeTable($("#by-state"), site.stats.by_narrative_state, Object.keys(site.stats.by_narrative_state),
     (s) => el("span", { class: `pill ${s}`, text: s === "unknown" ? "quiet" : s }));
+  const sig = site.stats.by_signal || {};
+  gradeTable($("#by-signal"), sig, Object.keys(sig), (k) => el("span", { class: "chip", text: signalLabel(k) }));
+  backtest($("#backtest"), site.baserates || {});
   copyVerdicts();
   verifier();
   reveal();
@@ -67,6 +70,29 @@ function gradeTable(root, groups, order, label, total) {
       el("td", {}, lab), el("td", { class: "r num", text: String(row.n) }),
       HORIZONS.map((h) => cell(row, h, name)),
       el("td", { class: "r num", text: fmt.share(row.reached_2x) }), el("td", { class: "r num", text: fmt.share(row.down_80) }))))));
+}
+
+function signalLabel(k) {
+  if (k.startsWith("cluster>=")) { const [n, w] = k.slice(9).split("/"); return `${n}+ wallets within ${w}`; }
+  return { "kol-bought": "KOL wallet bought", "any-tracked-buy": "one tracked wallet",
+    "callout-leader-wallet-bought": "Callout leader's wallet bought" }[k] || k;
+}
+
+function backtest(root, rates) {
+  const b = rates.buckets || {};
+  const keys = Object.keys(b);
+  if (!keys.length) { root.replaceChildren(el("div", { class: "empty", text: "No backtest published yet." })); return; }
+  const H = ["1h", "6h", "24h"];
+  const cell = (r) => !r || !r.n ? el("td", {}, el("span", { class: "muted", text: "—" }))
+    : el("td", { title: `n=${r.n}` }, el("div", { class: "t" },
+        el("b", { class: "num", text: `${Math.round(r.pct_2x * 100)}% 2×` }),
+        el("span", { class: "num", text: ` · ${Math.round(r.pct_down50 * 100)}% −50% · n=${r.n}${r.n < (rates.min_sample || 30) ? " (small)" : ""}` })));
+  root.replaceChildren(
+    el("p", { class: "muted", text: `Backtest: ${rates.period || ""}. ${rates.method || ""}` }),
+    el("table", {},
+      el("thead", {}, el("tr", {}, el("th", { text: "Signal", scope: "col" }), H.map((h) => el("th", { text: `within ${h}`, scope: "col" })))),
+      el("tbody", {}, keys.map((k) => el("tr", {}, el("td", {}, el("span", { class: "chip", text: signalLabel(k) })),
+        H.map((h) => cell(b[k][h])))))));
 }
 
 // ------------------------------------------------------------------ paper run

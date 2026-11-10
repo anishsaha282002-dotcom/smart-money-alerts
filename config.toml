@@ -23,6 +23,7 @@ safety_checks = true              # RugCheck (Solana) and GoPlus (BSC/Base) warn
 copy_history_buys = 6             # past buys per wallet priced for the "can you still copy it?" check
 min_caller_followers = 2000       # ignore X accounts smaller than this (when follower counts are known)
 jupiter_base = "https://lite-api.jup.ag"
+telegram_channels = []            # public channel names read from t.me/s/<name>, e.g. ["somechannel"]; calls only boost
 
 [story]
 llm_reword = false                # off unless you set this true AND ANTHROPIC_API_KEY. Facts are checked.

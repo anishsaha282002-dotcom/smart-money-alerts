@@ -9,7 +9,7 @@ A daily credit cap (America/Chicago) pauses at 100% and shrinks to the top
 """
 from __future__ import annotations
 
-import argparse, asyncio, json, os, signal, sys, time
+import argparse, asyncio, json, os, random, signal, sys, time
 
 from . import credit_budget as CB
 from .sources import helius_stream as HS
@@ -23,6 +23,46 @@ HEARTBEAT_S = 15
 LOG_CREDIT_EVERY = 25
 BACKOFF_START = 1
 BACKOFF_MAX = 60
+# A socket that dies without a close frame (keepalive ping timeout) leaves the old session and its
+# subscriptions alive on Helius for a while; resubscribing 1-2 s later is what produced
+# "-32005 Too many subscriptions". Wait 60-90 s before resubscribing after such a drop.
+STALE_SESSION_WAIT = (60, 90)
+# A subscribed socket that delivers nothing for this long is treated as stalled and reconnected
+# (seen 2026-11-10: 73 silent minutes with no error).
+SILENT_RECONNECT_S = 600
+LOCK_PATH = os.path.join(ROOT, "data", "stream_worker.lock")
+_STALE_MARKERS = ('keepalive', 'ping timeout', 'no close frame', '-32005', 'too many subscriptions',
+                  'connectionclosed', '1011')
+
+
+def reconnect_delay(err, backoff, rng=random):
+    """Seconds to wait before reconnecting. Stale-session drops wait 60-90 s; others back off."""
+    text = str(err or '').lower()
+    if any(m in text for m in _STALE_MARKERS):
+        return max(backoff, rng.uniform(*STALE_SESSION_WAIT))
+    return backoff
+
+
+def silent_for(last_event_ts, now, limit=SILENT_RECONNECT_S):
+    """True when a subscribed socket has delivered no notification for `limit` seconds."""
+    return last_event_ts is not None and now - last_event_ts >= limit
+
+
+def acquire_lock(path=LOCK_PATH):
+    """Single-instance lock (fcntl). Returns the open file to keep, or None if another worker holds it."""
+    import fcntl
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    f = open(path, 'a+')
+    try:
+        fcntl.flock(f.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except OSError:
+        f.close()
+        return None
+    f.seek(0)
+    f.truncate()
+    f.write(str(os.getpid()))
+    f.flush()
+    return f
 
 
 def log(msg, log_path=None):
@@ -178,11 +218,15 @@ async def listen_parsed(key, wallets, store, stop, budget=None):
         pending = set(range(1, len(batches) + 1))
         confirmed = 0
         last_beat = 0
+        last_event = time.time()
         while not stop.is_set():
             try:
                 msg = await recv_json(ws, HEARTBEAT_S)
             except asyncio.TimeoutError:
                 now = time.time()
+                if confirmed and silent_for(last_event, now):
+                    log(f'no events for {int(now - last_event)}s while subscribed; forcing reconnect')
+                    return 'silent'
                 if now - last_beat >= HEARTBEAT_S:
                     store.heartbeat(method='parsedTransactionSubscribe', wallets=len(addrs),
                                     subscribed=str(confirmed))
@@ -208,6 +252,7 @@ async def listen_parsed(key, wallets, store, stop, budget=None):
                 last_beat = time.time()
                 continue
             if msg.get('method') == 'parsedTransactionNotification':
+                last_event = time.time()
                 rows = HS.parse_notification(msg, wallets, source='stream')
                 added = store.insert_many(rows)
                 credits = store.bump_credits(1)
@@ -330,7 +375,12 @@ async def run_forever(key, wallets, store, stop, prefer='parsedTransactionSubscr
                 continue
             if result == 'pause':
                 continue
-            log('socket closed; reconnecting')
+            wait = reconnect_delay('connectionclosed' if result in ('closed', 'silent') else result, BACKOFF_START)
+            log(f'socket {result}; reconnecting in {wait:.0f}s')
+            try:
+                await asyncio.wait_for(stop.wait(), timeout=wait)
+            except asyncio.TimeoutError:
+                pass
         except asyncio.CancelledError:
             break
         except Exception as e:
@@ -342,7 +392,12 @@ async def run_forever(key, wallets, store, stop, prefer='parsedTransactionSubscr
                 backoff = BACKOFF_START
                 continue
             store.heartbeat(method=method, last_error=err[:200])
-            await asyncio.sleep(backoff)
+            wait = reconnect_delay(f'{type(e).__name__} {err}', backoff)
+            log(f'reconnecting in {wait:.0f}s')
+            try:
+                await asyncio.wait_for(stop.wait(), timeout=wait)
+            except asyncio.TimeoutError:
+                pass
             backoff = min(backoff * 2, BACKOFF_MAX)
     store.mark_stopped()
 
@@ -377,6 +432,10 @@ def cmd_run(args):
     other = pid_alive()
     if other and other != os.getpid():
         log(f'run: already running pid={other}')
+        return 0
+    lock = acquire_lock()
+    if lock is None:
+        log('run: another worker holds the single-instance lock; exiting')
         return 0
     wallets, notes = sol_wallets()
     if not wallets:

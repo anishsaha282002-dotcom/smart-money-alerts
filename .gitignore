@@ -8,4 +8,5 @@ data/*
 !data/.gitkeep
 !data/smart_wallets.json
 !data/pumpfun_callout_leaderboard.json
+!data/baserates.json
 node_modules/
