@@ -43,6 +43,12 @@ def _scan(hub, store, ledger, pipe, settings) -> None:
     alerts = pipe.run_once()
     scored = score_ledger(hub, ledger)
     score_calls(hub, store)
+    from . import paper
+    paper_book = Ledger(settings.data_dir / "paper.jsonl")
+    try:
+        paper.step(hub, ledger, paper_book)
+    except Exception as e:  # noqa: BLE001 - the paper run must never stop real alerts
+        logging.getLogger("sms").warning("paper run skipped this round (%s)", type(e).__name__)
     report.export(ledger, store, hub, settings)
     stamp = datetime.now(timezone.utc).strftime("%H:%M:%S")
     typer.echo(f"[{stamp} UTC] {len(alerts)} new alert(s), {scored['scores']} price check(s) recorded, "
@@ -237,6 +243,15 @@ def stream(probe: bool = typer.Option(False, "--probe", help="Check Free-plan su
         argv += ["--method", method]
     code = stream_main(argv)
     raise typer.Exit(code or 0)
+
+
+@app.command("paper")
+def paper_cmd():
+    """Show the imaginary 1 SOL paper run: what the strategy would have done with the alerts so far."""
+    from . import paper
+    settings = _setup()
+    typer.echo(paper.text(paper.summary(Ledger(settings.data_dir / "paper.jsonl"), paper.PaperRules())))
+    typer.echo("\nImaginary money only. This tool cannot trade. " + DISCLAIMER)
 
 
 @app.command()
