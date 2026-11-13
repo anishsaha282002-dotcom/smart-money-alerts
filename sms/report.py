@@ -116,6 +116,13 @@ def leaderboard(store: Store, limit: int = 60) -> list[dict]:
     return rows[:limit]
 
 
+def _paper(settings):
+    from . import paper
+    from .ledger import Ledger as _L
+    path = settings.data_dir / "paper.jsonl"
+    return paper.summary(_L(path), paper.PaperRules()) if path.exists() else None
+
+
 def site(ledger: Ledger, store: Store, hub, settings) -> dict:
     alerts = sorted(collect(ledger), key=lambda a: -a["ts"])
     board = store.get("narratives") or {}
@@ -133,6 +140,7 @@ def site(ledger: Ledger, store: Store, hub, settings) -> dict:
         "narratives": narratives,
         "wallets": leaderboard(store),
         "stats": stats(ledger),
+        "paper": _paper(settings),
         "baserates": baserate.load(),
     }
 
