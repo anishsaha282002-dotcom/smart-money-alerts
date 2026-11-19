@@ -192,3 +192,4 @@
 {"seq":191,"type":"score","ts":1795057089,"alert_id":"a-00026","h":"24h","status":"ok","x":0.4213,"peak_x":1.0515,"low_x":0.3266,"held":0.585,"prev":"9b38fe47e4255d3b6fc9a774daceeda38f40c3686b3c14252789c7257e5199f9"}
 {"seq":192,"type":"score","ts":1795057089,"alert_id":"a-00027","h":"24h","status":"ok","x":0.6898,"peak_x":1.0688,"low_x":0.5953,"held":0.0,"prev":"b8f803e290b8aaacfe6b75f1fe885b11657ea42c0bf6b5176005caf9cd80b017"}
 {"seq":193,"type":"score","ts":1795057089,"alert_id":"a-00028","h":"24h","status":"ok","x":0.965,"peak_x":1.0096,"low_x":0.955,"held":0.288,"prev":"19fee3376a3761c7459d2cd4edb1ee673b74fb6a8ec245928987a4ee29bdf0d8"}
+{"seq":194,"type":"score","ts":1795086905,"alert_id":"a-00029","h":"24h","status":"ok","x":0.1634,"peak_x":1.4821,"low_x":0.1582,"held":0.222,"prev":"fa28079bb3e49a8eb653b9f3a2f229ebcc6712dd20818e9324f456c87a0088c7"}
